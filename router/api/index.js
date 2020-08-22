@@ -5,3 +5,4 @@ const forumRoutes = require("./forums");
 router.use("/forums", forumRoutes);
 
 module.exports = router;
+
