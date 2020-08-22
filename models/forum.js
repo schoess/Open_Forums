@@ -8,4 +8,6 @@ const ForumSchema = new Schema({
   date: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Forum", ForumSchema);
+const Forum = mongoose.model("Forum", ForumSchema);
+
+module.exports = Forum;
