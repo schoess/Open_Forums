@@ -1,7 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import { Grid, TextField, Button } from '@material-ui/core';
 
 const myStyle = {
     textField: {
@@ -12,40 +10,49 @@ const myStyle = {
     }
 }
 
-
-
 function SubmitPost() {
     return (
         <div>
             <Grid container spacing={1} direction="column" justify="center" alignItems="center">
                 <Grid item xs={12}>
-                            <form>
-                                <div>
-                                    <TextField
-                                        style={myStyle.textField}
-                                        id="text"
-                                        label="Message"
-                                        defaultValue="Say something..."
-                                        variant="outlined"
-                                        margin="normal"
-                                        multiline
-                                        rows={6}
-                                        fullWidth
-                                    />
-                                </div>
-                                <div>
-                                    <Button
-                                        style={myStyle.button}
-                                        label="submit"
-                                        type="submit"
-                                        fullWidth
-                                        color="primary"
-                                        variant="contained"
-                                    >
-                                        Send
+                    <form>
+                        <div>
+                            <TextField
+                                style={myStyle.textField}
+                                id="message"
+                                label="Title"
+                                defaultValue=" "
+                                variant="outlined"
+                                margin="normal"
+                                fullWidth
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                style={myStyle.textField}
+                                id="message"
+                                label="Message"
+                                defaultValue=" "
+                                variant="outlined"
+                                margin="normal"
+                                multiline
+                                rows={6}
+                                fullWidth
+                            />
+                        </div>
+                        <div>
+                            <Button
+                                style={myStyle.button}
+                                label="submit"
+                                type="submit"
+                                fullWidth
+                                color="primary"
+                                variant="contained"
+                            >
+                                Send
                                     </Button>
-                                </div>
-                            </form>
+                        </div>
+                    </form>
                 </Grid>
             </Grid>
 
