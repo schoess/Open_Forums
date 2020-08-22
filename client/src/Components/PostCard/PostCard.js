@@ -1,34 +1,34 @@
 import React from 'react';
 import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
+import "./PostCard.css";
 
 const myStyle = {
     textAlign: "center",
     width: "700px"
 }
 
-function PostCard() {
+export default function PostCard(props) {
     return (
-        <div style={myStyle}>
-            <Card>
+        <div className="post-card" style={myStyle}>
+        {
+            props.data.map(item => (
+                <Card key={item.id}>
                 <CardContent>
-                    <Typography color="textSecondary" gutterBottom>
-                        Word of the Day
+                    <Typography className="alignLeft" color="textSecondary" gutterBottom>
+                        {item.Title}
                     </Typography>
-                    <Typography color="textSecondary">
-                        adjective
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        well meaning and kindly.
+                    <Typography className="alignLeft" variant="body2" component="p">
+                        {item.PostBody}
                     <br />
-                        {'"a benevolent smile"'}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Learn More</Button>
+                    <Button size="small">Delete</Button>
                 </CardActions>
             </Card>
+            ))
+
+        }
         </div>
     );
 }
-
-export default PostCard;
