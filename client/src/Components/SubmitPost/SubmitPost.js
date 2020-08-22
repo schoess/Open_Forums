@@ -1,7 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import { Grid, TextField, Button } from '@material-ui/core';
 
 const myStyle = {
     textField: {
