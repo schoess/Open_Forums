@@ -1,10 +1,13 @@
 import React from 'react';
+import Dashboard from './Components/Dashboard/Dashboard';
+import { CssBaseline } from '@material-ui/core';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Vibes</h1>
-    </div>
+      <React.Fragment>
+        <CssBaseline />
+        <Dashboard />
+      </React.Fragment>
   );
 }
 
