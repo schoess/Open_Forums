@@ -1,0 +1,13 @@
+
+// formus/{id}
+function() {
+  
+    const forum = forumModel.finById(req.id)
+    
+
+    const user = userModel.finById(form.createdBy);
+
+    form.user = user;
+
+    res.json(form);
+}
