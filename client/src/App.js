@@ -1,12 +1,12 @@
 import React from 'react';
-import SubmitPost from './Components/SubmitPost/SubmitPost.js';
+import Dashboard from './Components/Dashboard/Dashboard';
 import { CssBaseline } from '@material-ui/core';
 
 function App() {
   return (
       <React.Fragment>
         <CssBaseline />
-        <SubmitPost />
+        <Dashboard />
       </React.Fragment>
   );
 }
