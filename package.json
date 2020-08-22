@@ -23,9 +23,9 @@
   },
   "homepage": "https://github.com/schoess/Open_Forums#readme",
   "dependencies": {
-    
     "express": "^4.17.1",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "mongoose": "^5.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
