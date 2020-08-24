@@ -1,15 +1,20 @@
 import React from 'react';
 import Dashboard from './Components/Dashboard/Dashboard';
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 import { CssBaseline } from '@material-ui/core';
-import NavBar from './Components/NavBar/NavBar.js';
+import {Route,Switch} from 'react-router-dom';
 
 function App() {
   return (
-      <React.Fragment>
-        <CssBaseline />
-        <NavBar />
-        <Dashboard />
-      </React.Fragment>
+      <div>
+      <CssBaseline />
+      <Switch>
+        <Route exact path="/" component= { Login } />
+        <Route exact path="/dashboard" component={ Dashboard } />
+        <Route exact path="/register" component= { Register } />
+      </Switch>
+      </div>
   );
 }
 
