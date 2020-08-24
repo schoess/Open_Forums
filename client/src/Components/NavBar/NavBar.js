@@ -13,7 +13,7 @@ function NavBar() {
                     <Typography variant="h6" >
                         Open Forum
                     </Typography>
-                        <Button color="inherit">Login</Button>
+                        <Button href="/" color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
         </div>
