@@ -1,7 +1,8 @@
-import React from "react";
-import Dashboard from "./Components/Dashboard/Dashboard";
-import { CssBaseline } from "@material-ui/core";
-import NavBar from "./Components/NavBar/NavBar.js";
+import React from 'react';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Login from "./Components/Login/Login";
+import { CssBaseline } from '@material-ui/core';
+import {Route,Switch} from 'react-router-dom';
 import UserInfo from "./Components/UserInfo/UserInfo";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -11,12 +12,15 @@ function App() {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <React.Fragment>
+      <div>
       <CssBaseline />
-      <NavBar />
       <UserInfo />
-      <Dashboard />
-    </React.Fragment>
+      <Switch>
+        <Route exact path="/" component= { Login } />
+        <Route exact path="/dashboard" component={ Dashboard } />
+        <Route exact path="/register" component= { Register } />
+      </Switch>
+      </div>
   );
 }
 

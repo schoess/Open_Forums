@@ -7,19 +7,20 @@ import Login from "../Login/Login";
 
 function NavBar() {
   const { isAuthenticated } = useAuth0();
-  return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">Open Forum</Typography>
-          <Button>{isAuthenticated ? <Logout /> : <Login />}</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+
+    return (
+      <div>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton edge="start" color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6">Open Forum</Typography>
+            <Button>{isAuthenticated ? <Logout /> : <Login />}</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
 }
 
 export default NavBar;
