@@ -4,6 +4,7 @@ import PostCard from '../PostCard/PostCard.js'
 import { Container} from '@material-ui/core';
 import info from "../../assets/seed/data.json";
 import NavBar from "../NavBar/NavBar";
+import UserInfo from "../UserInfo/UserInfo";
 
 const myStyle = {
     textAlign: "center"
@@ -24,16 +25,17 @@ function Dashboard() {
     )
 
     return (
-        <div style={myStyle}>
-            <NavBar />
-            <Container>
-                <h1>MESSAGE BOARD</h1>
-                <h3>This is a post in the message board.</h3>
-                <h3>Placeholder post</h3>
-                <PostCard data={data} />
-                <SubmitPost />
-            </Container>
-        </div>
+      <div style={myStyle}>
+        <NavBar />
+        <UserInfo />
+        <Container>
+          <h1>MESSAGE BOARD</h1>
+          <h3>This is a post in the message board.</h3>
+          <h3>Placeholder post</h3>
+          <PostCard data={data} />
+          <SubmitPost />
+        </Container>
+      </div>
     );
 }
 export default Dashboard;
