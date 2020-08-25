@@ -12,6 +12,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/public"));
 }
+
 // Add routes, both API and view
 app.use(routes);
 
@@ -19,6 +20,14 @@ app.use(routes);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/openforums", { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("Connected"))
   .catch(err => console.log(err));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+});
+
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/forums");
+
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
