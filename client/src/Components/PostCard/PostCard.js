@@ -10,25 +10,25 @@ const myStyle = {
 export default function PostCard(props) {
     return (
         <div className="post-card" style={myStyle}>
-        {
-            props.data.map(item => (
-                <Card key={item.id}>
-                <CardContent>
-                    <Typography className="alignLeft" color="textSecondary" gutterBottom>
-                        {item.Title}
-                    </Typography>
-                    <Typography className="alignLeft" variant="body2" component="p">
-                        {item.PostBody}
-                    <br />
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Delete</Button>
-                </CardActions>
-            </Card>
-            ))
+            {
+                props.data.map(item => (
+                    <Card key={item.id}>
+                        <CardContent>
+                            <Typography className="alignLeft" color="textSecondary" gutterBottom>
+                                {item.forum_title}
+                            </Typography>
+                            <Typography className="alignLeft" variant="body2" component="p">
+                                {item.forum_description}
+                                <br />
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small">Delete</Button>
+                        </CardActions>
+                    </Card>
+                ))
 
-        }
+            }
         </div>
     );
 }
