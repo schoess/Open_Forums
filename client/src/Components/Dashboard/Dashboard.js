@@ -14,8 +14,7 @@ function Dashboard() {
   const [data, setData] = useState([]);
 
   const deleteForum = (forumId) => {
-    // Remove matching forum using forumId from data
-    // setData(filteredData)
+    // Remove matching forum using forumId from data and then set the filteredData to setData
     const filteredData = filter(data => data._id !== forumId);
     setData(filteredData);
 
