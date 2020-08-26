@@ -14,6 +14,7 @@ const myStyle = {
 
 export default function PostCard(props) {
     return (
+<<<<<<< HEAD
         <div className="post-card" style={myStyle.cardContainer}>
         {
             props.data.map(item => (
@@ -39,8 +40,28 @@ export default function PostCard(props) {
                 </CardActions>
             </Card>
             ))
+=======
+        <div className="post-card" style={myStyle}>
+            {
+                props.data.map(item => (
+                    <Card key={item.id}>
+                        <CardContent>
+                            <Typography className="alignLeft" color="textSecondary" gutterBottom>
+                                {item.forum_title}
+                            </Typography>
+                            <Typography className="alignLeft" variant="body2" component="p">
+                                {item.forum_description}
+                                <br />
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small">Delete</Button>
+                        </CardActions>
+                    </Card>
+                ))
+>>>>>>> 24822e35316b373925eb1c4d4c164ce394619264
 
-        }
+            }
         </div>
     );
 }
