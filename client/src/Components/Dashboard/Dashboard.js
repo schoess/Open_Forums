@@ -15,28 +15,26 @@ function Dashboard() {
 
   const [data, setData] = useState([]);
 
-<<<<<<< HEAD
-    useEffect(
-        () => {
-            // call the database
-            //  get data from database
-            //  take response from database and plug it into our state
-            // setData(res)
-            setData(info);
-        }, []
-    )
+    // useEffect(
+    //     () => {
+    //         // call the database
+    //         //  get data from database
+    //         //  take response from database and plug it into our state
+    //         // setData(res)
+    //         setData(info);
+    //     }, []
+    // )
 
-    return (
-        <div style={myStyle}>
-            <Container>
-            <SubmitPost />
+    // return (
+    //     <div style={myStyle}>
+    //         <Container>
+    //         <SubmitPost />
 
-                <PostCard data={data} />
+    //             <PostCard data={data} />
 
-            </Container>
-        </div>
-    );
-=======
+    //         </Container>
+    //     </div>
+    // );
   useEffect(
     () => {
       loadAllForum()
@@ -62,6 +60,5 @@ function Dashboard() {
       </Container>
     </div>
   );
->>>>>>> 24822e35316b373925eb1c4d4c164ce394619264
 }
 export default Dashboard;
