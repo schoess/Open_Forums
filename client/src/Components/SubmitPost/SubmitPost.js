@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Grid, TextField, Button } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useAuth0 } from "@auth0/auth0-react";
+import AlertDialog from "../AuthenticationModal/AuthenticationModal";
 
 const myStyle = {
   textField: {
@@ -15,7 +16,7 @@ const myStyle = {
 function SubmitPost() {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -30,7 +31,13 @@ function SubmitPost() {
 
   return (
     <div>
-      <Grid container spacing={1} direction="column" justify="center" alignItems="center">
+      <Grid
+        container
+        spacing={1}
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
         <Grid item xs={12}>
           <form onSubmit={onSubmit}>
             <div>
@@ -63,11 +70,25 @@ function SubmitPost() {
             </div>
             <div>
               {(!isAuthenticated && (
-                <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained" onClick={() => loginWithRedirect()}>
-                  Send
+                <Button
+                  style={myStyle.button}
+                  label="submit"
+                  type="submit"
+                  fullWidth
+                  color="primary"
+                  variant="contained"
+                >
+                  <AlertDialog />
                 </Button>
               )) || (
-                <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+                <Button
+                  style={myStyle.button}
+                  label="submit"
+                  type="submit"
+                  fullWidth
+                  color="primary"
+                  variant="contained"
+                >
                   Send
                 </Button>
               )}
