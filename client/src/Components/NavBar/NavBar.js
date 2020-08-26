@@ -1,5 +1,11 @@
 import React from "react";
-import { AppBar, Toolbar, IconButton, Button, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Button,
+  Typography,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../Login/Login";
@@ -31,7 +37,9 @@ function NavBar() {
             Open Forum
           </Typography>
           <Search />
-          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
+          <Button color="inherit">
+            {isAuthenticated ? <UserAccount /> : <Login />}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

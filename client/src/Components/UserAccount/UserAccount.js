@@ -35,6 +35,7 @@ export default function ImageAvatars() {
   };
 
   const handleMyForum = () => {
+    setAnchorEl(null);
     let path = `/forums`;
     history.push(path);
   };
@@ -42,7 +43,13 @@ export default function ImageAvatars() {
   return (
     <div className={classes.root}>
       <div>
-        <Avatar alt="" src={user.picture} aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} />
+        <Avatar
+          alt=""
+          src={user.picture}
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleMenu}
+        />
         <Menu
           id="menu-appbar"
           anchorEl={anchorEl}
