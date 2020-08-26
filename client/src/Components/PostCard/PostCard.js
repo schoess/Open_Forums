@@ -14,10 +14,10 @@ const myStyle = {
 
 export default function PostCard(props) {
     return (
-        <div className="post-card" style={myStyle}>
+        <div className="post-card" style={myStyle.cardContainer}>
             {
                 props.data.map(item => (
-                    <Card key={item.id}>
+                    <Card style={myStyle.cardIndividual} key={item.id}>
                         <CardContent>
                             <Typography className="alignLeft" color="textSecondary" gutterBottom>
                                 {item.forum_title}
@@ -28,7 +28,11 @@ export default function PostCard(props) {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small">Delete</Button>
+                            <Button
+                                color="secondary"
+                                size="small"
+                                variant="contained"
+                                >Delete</Button>
                         </CardActions>
                     </Card>
                 ))
@@ -37,30 +41,3 @@ export default function PostCard(props) {
         </div>
     );
 }
-
-
-        // <div className="post-card" style={myStyle.cardContainer}>
-        // {
-        //     props.data.map(item => (
-        //         <Card style={myStyle.cardIndividual} key={item.id}>
-        //         <CardContent>
-        //             <Typography>{item.User}</Typography>
-        //             <Typography className="alignLeft" color="textSecondary" gutterBottom>
-        //                 {item.Title}
-        //             </Typography>
-        //             <Typography className="alignLeft" variant="body2" component="p">
-        //                 {item.PostBody}
-        //             <br />
-        //             </Typography>
-        //         </CardContent>
-        //         <CardActions>
-        //             <Button
-        //             color="secondary"
-        //             size="small"
-        //             variant="contained"
-        //             >
-        //                 Delete
-        //             </Button>
-        //         </CardActions>
-        //     </Card>
-        //     ))
