@@ -35,6 +35,7 @@ export default function ImageAvatars() {
   };
 
   const handleMyForum = () => {
+    setAnchorEl(null);
     let path = `/forums`;
     history.push(path);
   };
