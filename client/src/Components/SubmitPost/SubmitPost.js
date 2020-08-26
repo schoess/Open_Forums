@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React from "react";
 import { Grid, TextField, Button } from '@material-ui/core';
 import forumApi from '../../utils/forum.api';
 
@@ -81,8 +81,3 @@ function SubmitPost() {
 
 export default SubmitPost;
 
-{/* <TextareaAutosize
-rowsMin={3}
-rowsMax={10}
-placeholder="Say something..."
-/> */}
