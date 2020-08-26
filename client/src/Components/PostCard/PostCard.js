@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
 import "./PostCard.css";
+import forumApi from "../../utils/forum.api";
+
 
 const myStyle = {
     textAlign: "center",
@@ -8,6 +10,14 @@ const myStyle = {
 }
 
 export default function PostCard(props) {
+
+    // Deletes a forum from the database with a given id, then reloads all forums from the db
+    function deleteOnSubmit(id) {
+        forumApi.deleteForum(id)
+            .then(res => props.loadAllForum())
+            .catch(err => console.log(err));
+    }
+
     return (
         <div className="post-card" style={myStyle}>
             {
@@ -23,7 +33,7 @@ export default function PostCard(props) {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small">Delete</Button>
+                            <Button size="small" onClick={deleteOnSubmit}>Delete</Button>
                         </CardActions>
                     </Card>
                 ))
