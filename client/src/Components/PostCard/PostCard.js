@@ -3,16 +3,21 @@ import { Card, CardActions, CardContent, Button, Typography } from '@material-ui
 import "./PostCard.css";
 
 const myStyle = {
-    textAlign: "center",
-    width: "700px"
+    cardContainer: {
+        textAlign: "center",
+        width: "700px"
+    },
+    cardIndividual: {
+        margin: "20px"
+    }
 }
 
 export default function PostCard(props) {
     return (
-        <div className="post-card" style={myStyle}>
+        <div className="post-card" style={myStyle.cardContainer}>
             {
                 props.data.map(item => (
-                    <Card key={item.id}>
+                    <Card style={myStyle.cardIndividual} key={item.id}>
                         <CardContent>
                             <Typography className="alignLeft" color="textSecondary" gutterBottom>
                                 {item.forum_title}
@@ -23,7 +28,11 @@ export default function PostCard(props) {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small">Delete</Button>
+                            <Button
+                                color="secondary"
+                                size="small"
+                                variant="contained"
+                                >Delete</Button>
                         </CardActions>
                     </Card>
                 ))

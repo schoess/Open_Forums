@@ -53,7 +53,8 @@ function SubmitPost() {
                             variant="outlined"
                             margin="normal"
                             multiline
-                            rows={6}
+                            rowsMin={1}
+                            rowsMax={7}
                             fullWidth
                             value={description}
                             onChange={(event) => setDescription(event.target.value)}
@@ -80,9 +81,3 @@ function SubmitPost() {
 }
 
 export default SubmitPost;
-
-{/* <TextareaAutosize
-rowsMin={3}
-rowsMax={10}
-placeholder="Say something..."
-/> */}

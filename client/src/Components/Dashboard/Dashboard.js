@@ -32,11 +32,8 @@ function Dashboard() {
       <NavBar />
       <UserInfo />
       <Container>
-        <h1>MESSAGE BOARD</h1>
-        <h3>This is a post in the message board.</h3>
-        <h3>Placeholder post</h3>
-        <PostCard data={data} />
         <SubmitPost />
+        <PostCard data={data} />
       </Container>
     </div>
   );
