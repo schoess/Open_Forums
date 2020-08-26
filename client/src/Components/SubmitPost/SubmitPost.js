@@ -31,7 +31,13 @@ function SubmitPost() {
 
   return (
     <div>
-      <Grid container spacing={1} direction="column" justify="center" alignItems="center">
+      <Grid
+        container
+        spacing={1}
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
         <Grid item xs={12}>
           <form onSubmit={onSubmit}>
             <div>
@@ -64,11 +70,25 @@ function SubmitPost() {
             </div>
             <div>
               {(!isAuthenticated && (
-                <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+                <Button
+                  style={myStyle.button}
+                  label="submit"
+                  type="submit"
+                  fullWidth
+                  color="primary"
+                  variant="contained"
+                >
                   <AlertDialog />
                 </Button>
               )) || (
-                <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+                <Button
+                  style={myStyle.button}
+                  label="submit"
+                  type="submit"
+                  fullWidth
+                  color="primary"
+                  variant="contained"
+                >
                   Send
                 </Button>
               )}
