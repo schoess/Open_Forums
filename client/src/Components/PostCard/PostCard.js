@@ -1,44 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
 import "./PostCard.css";
 import forumApi from "../../utils/forum.api";
+import Forum from '../../../../models/forum';
 
 
 const myStyle = {
-    textAlign: "center",
-    width: "700px"
+    cardContainer: {
+        textAlign: "center",
+        width: "700px"
+    },
+    cardIndividual: {
+        margin: "20px"
+    }
 }
 
-export default function PostCard(props) {
+function PostCard(props) {
+    const deleteOnClick = () => {
+        forumApi.deleteForum() 
+            
+        
 
-    // Deletes a forum from the database with a given id, then reloads all forums from the db
-    function deleteOnSubmit(id) {
-        forumApi.deleteForum(id)
-            .then(res => props.loadAllForum())
-            .catch(err => console.log(err));
     }
 
-    return (
-        <div className="post-card" style={myStyle}>
-            {
-                props.data.map(item => (
-                    <Card key={item.id}>
-                        <CardContent>
-                            <Typography className="alignLeft" color="textSecondary" gutterBottom>
-                                {item.forum_title}
-                            </Typography>
-                            <Typography className="alignLeft" variant="body2" component="p">
-                                {item.forum_description}
-                                <br />
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small" onClick={deleteOnSubmit}>Delete</Button>
-                        </CardActions>
-                    </Card>
-                ))
+        return (
+            <div className="post-card" style={myStyle.cardContainer}>
+                {
+                    props.data.map(item => (
+                        <Card style={myStyle.cardIndividual} key={item.id}>
+                            <CardContent>
+                                <Typography className="alignLeft" color="textSecondary" gutterBottom>
+                                    {item.forum_title}
+                                </Typography>
+                                <Typography className="alignLeft" variant="body2" component="p">
+                                    {item.forum_description}
+                                    <br />
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button onClick={deleteOnClick()}
+                                    color="secondary"
+                                    size="small"
+                                    variant="contained"
+                                >Delete</Button>
+                            </CardActions>
+                        </Card>
+                    ))
 
-            }
-        </div>
-    );
-}
+                }
+            </div>
+        );
+    }
+    export default PostCard;
