@@ -5,9 +5,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
+  const { loginWithRedirect, Login } = useAuth0();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -15,6 +17,10 @@ export default function AlertDialog() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleLogin = () => {
+    Login();
   };
 
   return (
@@ -28,7 +34,7 @@ export default function AlertDialog() {
           <DialogContentText id="alert-dialog-description">You Have not Logged in yet. Do you want to continue, Please login..</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleLogin} color="primary" onClick={() => loginWithRedirect()}>
             Log in
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
