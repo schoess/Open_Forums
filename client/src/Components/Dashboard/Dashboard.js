@@ -25,11 +25,10 @@ function Dashboard() {
     return (
         <div style={myStyle}>
             <Container>
-                <h1>MESSAGE BOARD</h1>
-                <h3>This is a post in the message board.</h3>
-                <h3>Placeholder post</h3>
+            <SubmitPost />
+
                 <PostCard data={data} />
-                <SubmitPost />
+
             </Container>
         </div>
     );
