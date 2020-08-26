@@ -80,11 +80,3 @@ function SubmitPost() {
 }
 
 export default SubmitPost;
-
-{
-  /* <TextareaAutosize
-rowsMin={3}
-rowsMax={10}
-placeholder="Say something..."
-/> */
-}
