@@ -12,18 +12,13 @@ const myStyle = {
     width: "100px",
   },
   entireForm: {
-    paddingTop: "75px",
+    paddingTop: "250px",
     position: "-webkit-sticky",
     position: "sticky",
-    top: "0"
+    top: "0",
   }
 };
 
-// div.sticky {
-//   position: -webkit-sticky; /* Safari */
-//   position: sticky;
-//   top: 0;
-// }
 
 function SubmitPost() {
   const [title, setTitle] = React.useState("");
@@ -45,7 +40,7 @@ function SubmitPost() {
   };
 
   return (
-    <div >
+    <div>
         <Grid item xs={12} style={myStyle.entireForm}>
           <form onSubmit={onSubmit}>
             <div>

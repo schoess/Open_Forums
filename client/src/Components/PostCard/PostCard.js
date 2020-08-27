@@ -7,7 +7,6 @@ import {
   Typography,
   Grid
 } from "@material-ui/core";
-import "./PostCard.css";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 
@@ -15,14 +14,18 @@ const myStyle = {
   cardContainer: {
         textAlign: "center",
         width: "700px",
-        margin: "0 auto"
+        margin: "0 auto",
+        paddingTop: "90px"
   },
   cardIndividual: {
         margin: "20px"
   },
   cardTitle: {
         textAlign: "left"
-  },    
+  },  
+  cardBody: {
+        textAlign: "left"
+    }
 };
 
 export default function PostCard(props) {
@@ -50,18 +53,18 @@ export default function PostCard(props) {
   }
 
   return (
-    <div className="post-card" style={myStyle.cardContainer}>
+    <div style={myStyle.cardContainer}>
       {forum.map((item) => (
         <Card style={myStyle.cardIndividual} key={item._id}>
           <CardContent>
             <Typography
-              className="alignLeft"
-              color="textSecondary"
+              style={myStyle.cardTitle}
+              color="secondary"
               gutterBottom
             >
               {item.forum_title}
             </Typography>
-            <Typography className="alignLeft" variant="body2" component="p">
+            <Typography style={myStyle.cardBody} variant="body2" component="p">
               {item.forum_description}
               <br />
             </Typography>
