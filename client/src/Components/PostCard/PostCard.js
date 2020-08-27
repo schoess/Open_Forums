@@ -15,7 +15,8 @@ const myStyle = {
     cardContainer: {
         textAlign: "center",
         width: "700px",
-        margin: "0 auto"
+        margin: "0 auto",
+        paddingTop: "90px"
     },
     cardIndividual: {
         margin: "20px"
