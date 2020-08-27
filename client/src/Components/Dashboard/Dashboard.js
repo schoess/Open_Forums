@@ -7,7 +7,9 @@ import forumApi from "../../utils/forum.api";
 import { filter } from 'lodash';
 
 const myStyle = {
-  textAlign: "center",
+  page: {
+    textAlign: "center"
+  }
 };
 
 function Dashboard() {
@@ -32,7 +34,7 @@ function Dashboard() {
   }
 
   return (
-    <div style={myStyle}>
+    <div style={myStyle.page}>
       <NavBar />
       <Container>
         <Grid
@@ -40,7 +42,6 @@ function Dashboard() {
           spacing={1}
           direction="row"
           justify="center"
-          alignItems="center"
         >
           <PostCard
             data={data}
