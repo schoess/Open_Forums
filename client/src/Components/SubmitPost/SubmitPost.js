@@ -34,6 +34,9 @@ function SubmitPost() {
       forum_description: description,
       category: "General",
     });
+
+    setTitle("");
+    setDescription("");
   };
 
   return (

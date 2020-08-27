@@ -44,6 +44,7 @@ export default function AlertDialog() {
           <Button
             onClick={handleLogin}
             color="primary"
+            // eslint-disable-next-line react/jsx-no-duplicate-props
             onClick={() => loginWithRedirect()}
           >
             Log in
