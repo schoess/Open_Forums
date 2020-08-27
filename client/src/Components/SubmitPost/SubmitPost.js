@@ -3,6 +3,7 @@ import { Grid, TextField, Button } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useAuth0 } from "@auth0/auth0-react";
 import AlertDialog from "../AuthenticationModal/AuthenticationModal";
+import { useForumContext } from "../../contexts/ForumContext";
 
 const myStyle = {
   textField: {
@@ -21,6 +22,7 @@ const myStyle = {
 
 
 function SubmitPost() {
+  const { setForum } = useForumContext();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const { isAuthenticated } = useAuth0();
@@ -37,6 +39,15 @@ function SubmitPost() {
 
     setTitle("");
     setDescription("");
+
+    // get all forums 
+    forumApi.getAllForum()
+      .then((res) => {
+        // setForum(result)
+        setForum(res.data);
+      })
+      .catch((err) => console.log(err));
+
   };
 
   return (
@@ -84,17 +95,17 @@ function SubmitPost() {
                   <AlertDialog />
                 </Button>
               )) || (
-                <Button
-                  style={myStyle.button}
-                  label="submit"
-                  type="submit"
-                  fullWidth
-                  color="primary"
-                  variant="contained"
-                >
-                  Send
-                </Button>
-              )}
+                  <Button
+                    style={myStyle.button}
+                    label="submit"
+                    type="submit"
+                    fullWidth
+                    color="primary"
+                    variant="contained"
+                  >
+                    Send
+                  </Button>
+                )}
             </div>
           </form>
         </Grid>

@@ -32,7 +32,7 @@ export default function PostCard(props) {
   const { forum, setForum } = useForumContext();
 
   const deleteOnClick = (item) => () => {
-    console.log("inside delete button clicke event ======");
+    console.log("inside delete button click event ======");
     forumApi.deleteForum(item._id);
     loadAllForum();
   };
