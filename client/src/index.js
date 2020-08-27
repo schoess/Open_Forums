@@ -4,15 +4,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter } from "react-router-dom";
-import { Auth0Provider } from "@auth0/auth0-react";
 import theme from "./theme";
+import Auth0ProviderWithHistory from "./contexts/Auth0ProviderWithHistory";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 ReactDOM.render(
   <BrowserRouter>
-    <Auth0Provider
+    <Auth0ProviderWithHistory
       domain={domain}
       clientId={clientId}
       redirectUri={window.location.origin}
@@ -22,7 +22,7 @@ ReactDOM.render(
           <App />
         </BrowserRouter>
       </ThemeProvider>
-    </Auth0Provider>
+    </Auth0ProviderWithHistory>
   </BrowserRouter>,
   document.getElementById("root")
 );
