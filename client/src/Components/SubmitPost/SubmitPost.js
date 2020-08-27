@@ -11,7 +11,19 @@ const myStyle = {
   button: {
     width: "100px",
   },
+  entireForm: {
+    paddingTop: "75px",
+    position: "-webkit-sticky",
+    position: "sticky",
+    top: "0"
+  }
 };
+
+// div.sticky {
+//   position: -webkit-sticky; /* Safari */
+//   position: sticky;
+//   top: 0;
+// }
 
 function SubmitPost() {
   const [title, setTitle] = React.useState("");
@@ -33,15 +45,8 @@ function SubmitPost() {
   };
 
   return (
-    <div>
-      <Grid
-        container
-        spacing={1}
-        direction="column"
-        justify="center"
-        alignItems="center"
-      >
-        <Grid item xs={12}>
+    <div >
+        <Grid item xs={12} style={myStyle.entireForm}>
           <form onSubmit={onSubmit}>
             <div>
               <TextField
@@ -98,7 +103,6 @@ function SubmitPost() {
             </div>
           </form>
         </Grid>
-      </Grid>
     </div>
   );
 }

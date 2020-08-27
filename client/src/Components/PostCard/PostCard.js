@@ -5,6 +5,7 @@ import {
   CardContent,
   Button,
   Typography,
+  Grid
 } from "@material-ui/core";
 import "./PostCard.css";
 import forumApi from "../../utils/forum.api";
@@ -12,12 +13,16 @@ import { useForumContext } from "../../contexts/ForumContext";
 
 const myStyle = {
   cardContainer: {
-    textAlign: "center",
-    width: "700px",
+        textAlign: "center",
+        width: "700px",
+        margin: "0 auto"
   },
   cardIndividual: {
-    margin: "20px",
+        margin: "20px"
   },
+  cardTitle: {
+        textAlign: "left"
+  },    
 };
 
 export default function PostCard(props) {

@@ -1,20 +1,29 @@
 import React from "react";
 import SubmitPost from "../SubmitPost/SubmitPost.js";
 import PostCard from "../PostCard/PostCard.js";
-import { Container } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 
 const myStyle = {
-  textAlign: "center",
+  page: {
+    textAlign: "center"
+  }
 };
 
 function Dashboard() {
   return (
-    <div style={myStyle}>
+    <div style={myStyle.page}>
       <NavBar />
       <Container>
-        <SubmitPost />
-        <PostCard />
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          justify="center"
+        >
+          <PostCard />
+          <SubmitPost />
+        </Grid>
       </Container>
     </div>
   );
