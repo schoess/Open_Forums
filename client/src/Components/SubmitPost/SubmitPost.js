@@ -57,7 +57,7 @@ function SubmitPost() {
             <div>
               <TextField
                 style={myStyle.textField}
-                id="message"
+                id="title"
                 label="Title"
                 defaultValue=" "
                 variant="outlined"
