@@ -15,15 +15,10 @@ const myStyle = {
     paddingTop: "75px",
     position: "-webkit-sticky",
     position: "sticky",
-    top: "0"
+    top: "0",
   }
 };
 
-// div.sticky {
-//   position: -webkit-sticky; /* Safari */
-//   position: sticky;
-//   top: 0;
-// }
 
 function SubmitPost() {
   const [title, setTitle] = React.useState("");

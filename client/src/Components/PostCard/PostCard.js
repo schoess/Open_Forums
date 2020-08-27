@@ -7,7 +7,6 @@ import {
     Typography,
     Grid
 } from "@material-ui/core";
-import "./PostCard.css";
 import forumApi from "../../utils/forum.api";
 
 
@@ -22,6 +21,9 @@ const myStyle = {
         margin: "20px"
     },
     cardTitle: {
+        textAlign: "left"
+    },
+    cardBody: {
         textAlign: "left"
     }
 };
@@ -45,9 +47,13 @@ export default function PostCard(props) {
                             >
                                 {item.forum_title}
                             </Typography>
-                            <Typography className="alignLeft" variant="body2" component="p">
+                            <Typography
+                                style={myStyle.cardBody}
+                                variant="body2"
+                                component="p"
+                            >
                                 {item.forum_description}
-                                <br />
+                            <br />
                             </Typography>
                         </CardContent>
                         <CardActions>
