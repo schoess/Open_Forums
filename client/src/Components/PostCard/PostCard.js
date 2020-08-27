@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
+import moment from "moment";
 
 const myStyle = {
   cardContainer: {
@@ -65,6 +66,10 @@ export default function PostCard(props) {
             </Typography>
             <Typography style={myStyle.cardBody} variant="body2" component="p">
               {item.forum_description}
+              <br />
+            </Typography>
+            <Typography style={myStyle.cardBody} variant="body2" component="p">
+              {moment(item.date).format('MM-DD-YYYY')}
               <br />
             </Typography>
           </CardContent>
