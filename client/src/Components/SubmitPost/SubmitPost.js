@@ -3,7 +3,6 @@ import { Grid, TextField, Button } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useAuth0 } from "@auth0/auth0-react";
 import AlertDialog from "../AuthenticationModal/AuthenticationModal";
-import Dashboard from "../Dashboard/Dashboard";
 
 const myStyle = {
   textField: {

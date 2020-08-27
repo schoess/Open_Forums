@@ -12,7 +12,11 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 ReactDOM.render(
   <BrowserRouter>
-    <Auth0ProviderWithHistory domain={domain} clientId={clientId} redirectUri={window.location.origin}>
+    <Auth0ProviderWithHistory
+      domain={domain}
+      clientId={clientId}
+      redirectUri={window.location.origin}
+    >
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <App />

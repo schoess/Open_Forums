@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { Card, CardActions, CardContent, Button, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+} from "@material-ui/core";
 import "./PostCard.css";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
@@ -43,7 +49,11 @@ export default function PostCard(props) {
       {forum.map((item) => (
         <Card style={myStyle.cardIndividual} key={item._id}>
           <CardContent>
-            <Typography className="alignLeft" color="textSecondary" gutterBottom>
+            <Typography
+              className="alignLeft"
+              color="textSecondary"
+              gutterBottom
+            >
               {item.forum_title}
             </Typography>
             <Typography className="alignLeft" variant="body2" component="p">
@@ -52,7 +62,12 @@ export default function PostCard(props) {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={deleteOnClick(item)} color="secondary" size="small" variant="contained">
+            <Button
+              onClick={deleteOnClick(item)}
+              color="secondary"
+              size="small"
+              variant="contained"
+            >
               Delete
             </Button>
           </CardActions>
