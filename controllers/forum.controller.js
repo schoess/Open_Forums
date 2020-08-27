@@ -11,17 +11,17 @@ module.exports = {
         res.json(err);
       });
   },
-  findAll: (req, res) => {
+  findAll: async (req, res) => {
     Forum.find(req.query)
       .then((dbForums) => res.json(dbForums))
       .catch((err) => res.status(422).json(err));
   },
-  findById: (req, res) => {
+  findById: async (req, res) => {
     Forum.findById(req.params.forumId)
       .then((dbForum) => res.json(dbForum))
       .catch((err) => res.status(422).json(err));
   },
-  deleteById: (req, res) => {
+  deleteById: async (req, res) => {
     Forum.findByIdAndDelete(req.params.forumId)
       .then((dbForum) => res.json(dbForum))
       .catch((err) => res.status(422).json(err));
