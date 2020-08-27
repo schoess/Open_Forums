@@ -5,7 +5,6 @@ import {
   CardContent,
   Button,
   Typography,
-  Grid
 } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
