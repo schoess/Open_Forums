@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// eslint-disable-next-line import/no-unresolved
 const db = require("../models/Forum");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Forum", {
