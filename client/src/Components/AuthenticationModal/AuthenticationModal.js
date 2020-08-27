@@ -28,22 +28,16 @@ export default function AlertDialog() {
       <Button color="inherit" onClick={handleClickOpen}>
         Send
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
+      <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
         <DialogTitle id="alert-dialog-title">{"Open Forum"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            You Have not Logged in yet. Do you want to continue, Please login..
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">You Have not Logged in yet. Do you want to continue, Please login..</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button
             onClick={handleLogin}
             color="primary"
+            // eslint-disable-next-line react/jsx-no-duplicate-props
             onClick={() => loginWithRedirect()}
           >
             Log in
