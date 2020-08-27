@@ -12,7 +12,7 @@ const myStyle = {
     width: "100px",
   },
   entireForm: {
-    paddingTop: "75px",
+    paddingTop: "250px",
     position: "-webkit-sticky",
     position: "sticky",
     top: "0",
@@ -37,7 +37,7 @@ function SubmitPost() {
   };
 
   return (
-    <div >
+    <div>
         <Grid item xs={12} style={myStyle.entireForm}>
           <form onSubmit={onSubmit}>
             <div>
