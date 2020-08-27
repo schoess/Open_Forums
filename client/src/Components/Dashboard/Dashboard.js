@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SubmitPost from "../SubmitPost/SubmitPost.js";
 import PostCard from "../PostCard/PostCard.js";
-import { Container } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import forumApi from "../../utils/forum.api";
 import { filter } from 'lodash';
@@ -35,10 +35,18 @@ function Dashboard() {
     <div style={myStyle}>
       <NavBar />
       <Container>
-        <SubmitPost />
-        <PostCard
-          data={data}
-          deleteForum={deleteForum} />
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <PostCard
+            data={data}
+            deleteForum={deleteForum} />
+          <SubmitPost />
+        </Grid>
       </Container>
     </div>
   );
