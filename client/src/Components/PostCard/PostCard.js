@@ -1,63 +1,83 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
-    Card,
-    CardActions,
-    CardContent,
-    Button,
-    Typography,
-    Grid
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  Grid
 } from "@material-ui/core";
 import "./PostCard.css";
 import forumApi from "../../utils/forum.api";
-
-
+import { useForumContext } from "../../contexts/ForumContext";
 
 const myStyle = {
-    cardContainer: {
+  cardContainer: {
         textAlign: "center",
         width: "700px",
         margin: "0 auto"
-    },
-    cardIndividual: {
+  },
+  cardIndividual: {
         margin: "20px"
-    },
-    cardTitle: {
+  },
+  cardTitle: {
         textAlign: "left"
-    }
+  },    
 };
 
 export default function PostCard(props) {
+  const { forum, setForum } = useForumContext();
 
-    const deleteOnClick = (item) => () => {
-        forumApi.deleteForum(item._id)
-        props.deleteForum(item._id)
-    }
-    return (
-        <div style={myStyle.cardContainer}>
-            {props.data.map((item) => (
-                <Grid item xs={12}>
-                    <Card style={myStyle.cardIndividual} key={item._id}>
-                        <CardContent>
-                            <Typography
-                                style={myStyle.cardTitle}
-                                color="secondary"
-                                gutterBottom
-                            >
-                                {item.forum_title}
-                            </Typography>
-                            <Typography className="alignLeft" variant="body2" component="p">
-                                {item.forum_description}
-                                <br />
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button onClick={deleteOnClick(item)} color="secondary" size="small" variant="contained">
-                                Delete
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-            ))}
-        </div>
-    );
+  const deleteOnClick = (item) => () => {
+    console.log("inside delete button clicke event ======");
+    forumApi.deleteForum(item._id);
+    loadAllForum();
+  };
+
+  useEffect(() => {
+    loadAllForum();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Loads all forums and sets them to data
+  function loadAllForum() {
+    forumApi
+      .getAllForum()
+      .then((res) => {
+        setForum(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  return (
+    <div className="post-card" style={myStyle.cardContainer}>
+      {forum.map((item) => (
+        <Card style={myStyle.cardIndividual} key={item._id}>
+          <CardContent>
+            <Typography
+              className="alignLeft"
+              color="textSecondary"
+              gutterBottom
+            >
+              {item.forum_title}
+            </Typography>
+            <Typography className="alignLeft" variant="body2" component="p">
+              {item.forum_description}
+              <br />
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button
+              onClick={deleteOnClick(item)}
+              color="secondary"
+              size="small"
+              variant="contained"
+            >
+              Delete
+            </Button>
+          </CardActions>
+        </Card>
+      ))}
+    </div>
+  );
 }
