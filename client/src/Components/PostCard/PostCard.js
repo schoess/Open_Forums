@@ -69,7 +69,7 @@ export default function PostCard(props) {
               <br />
             </Typography>
             <Typography style={myStyle.cardBody} variant="body2" component="p">
-              {moment(item.date).format('MM-DD-YYYY')}
+              {moment(item.date).format('lll')}
               <br />
             </Typography>
           </CardContent>
