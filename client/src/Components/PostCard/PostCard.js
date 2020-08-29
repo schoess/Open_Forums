@@ -15,7 +15,8 @@ const myStyle = {
         textAlign: "center",
         width: "700px",
         margin: "0 auto",
-        paddingTop: "90px"
+        paddingTop: "90px",
+        opacity: "75%"
   },
   cardIndividual: {
         margin: "20px"
