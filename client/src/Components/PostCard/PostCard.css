@@ -18,7 +18,19 @@
     text-align: left;
 }
 
+.likeDislikeBtns {
+    margin-right: auto;
+}
+
+.likeBtn {
+    color: #43AA8B;
+}
+
+.dislikeBtn {
+    color: #EF3054;
+}
+
 .deleteBtn {
-    color: #bc477b;
+    color: #888098;
     margin-left: auto;
 }

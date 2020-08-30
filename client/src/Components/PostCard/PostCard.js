@@ -6,7 +6,9 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
@@ -60,14 +62,20 @@ export default function PostCard(props) {
             </Typography>
           </CardContent>
           <CardActions>
+            <div className="likeDislikeBtns">
+            <ThumbUpAltIcon
+              className="likeBtn"
+              size="small"/>
+            <ThumbDownAltIcon
+              className="dislikeBtn"
+              size="small"/>
+              </div>
             <DeleteIcon
               className="deleteBtn"
               onClick={deleteOnClick(item)}
               size="small"
               variant="contained"
-            >
-              Delete
-            </DeleteIcon>
+            />
           </CardActions>
         </Card>
       ))}
