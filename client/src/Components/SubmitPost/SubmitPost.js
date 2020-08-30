@@ -8,15 +8,17 @@ import { useForumContext } from "../../contexts/ForumContext";
 const myStyle = {
   textField: {
     width: "500px",
+    backgroundColor: "white",
+    opacity: "80%"
   },
   button: {
-    width: "100px",
+    width: "100px"
   },
   entireForm: {
     paddingTop: "250px",
     position: "-webkit-sticky",
     position: "sticky",
-    top: "0",
+    top: "0"
   }
 };
 

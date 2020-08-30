@@ -13,7 +13,7 @@ module.exports = {
   },
   findAll: async (req, res) => {
     Forum.find(req.query)
-      .then((dbForums) => res.json(dbForums))
+      .then((dbForums) => res.json(dbForums.reverse()))
       .catch((err) => res.status(422).json(err));
   },
   findById: async (req, res) => {

@@ -6,27 +6,15 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
+import "./PostCard.css"
 
-const myStyle = {
-  cardContainer: {
-        textAlign: "center",
-        width: "700px",
-        margin: "0 auto",
-        paddingTop: "90px"
-  },
-  cardIndividual: {
-        margin: "20px"
-  },
-  cardTitle: {
-        textAlign: "left"
-  },  
-  cardBody: {
-        textAlign: "left"
-    }
-};
+// BV: switched to css file for style in order to style hover effects easier
 
 export default function PostCard(props) {
   const { forum, setForum } = useForumContext();
@@ -53,35 +41,41 @@ export default function PostCard(props) {
   }
 
   return (
-    <div style={myStyle.cardContainer}>
+    <div className="cardContainer">
       {forum.map((item) => (
-        <Card style={myStyle.cardIndividual} key={item._id}>
+        <Card className="cardIndividual" key={item._id}>
           <CardContent>
             <Typography
-              style={myStyle.cardTitle}
+              className="cardTitle"
               color="secondary"
               gutterBottom
             >
               {item.forum_title}
             </Typography>
-            <Typography style={myStyle.cardBody} variant="body2" component="p">
+            <Typography className="cardBody" variant="body2" component="p">
               {item.forum_description}
               <br />
             </Typography>
-            <Typography style={myStyle.cardBody} variant="body2" component="p">
-              {moment(item.date).format('MM-DD-YYYY')}
+            <Typography className="cardBody" variant="body2" component="p">
+              {moment(item.date).format('lll')}
               <br />
             </Typography>
           </CardContent>
           <CardActions>
-            <Button
+            <div className="likeDislikeBtns">
+            <ThumbUpAltIcon
+              className="likeBtn"
+              size="small"/>
+            <ThumbDownAltIcon
+              className="dislikeBtn"
+              size="small"/>
+              </div>
+            <DeleteIcon
+              className="deleteBtn"
               onClick={deleteOnClick(item)}
-              color="secondary"
               size="small"
               variant="contained"
-            >
-              Delete
-            </Button>
+            />
           </CardActions>
         </Card>
       ))}
