@@ -1,0 +1,24 @@
+.cardContainer {
+    text-align: center;
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 90px;
+}
+
+.cardIndividual {
+    margin: 20px;
+    opacity: 85%
+}
+
+.cardIndividual:hover {
+    opacity: 100%;
+}
+
+.cardTitle, .cardBody {
+    text-align: left;
+}
+
+.deleteBtn {
+    color: #bc477b;
+    margin-left: auto;
+}
