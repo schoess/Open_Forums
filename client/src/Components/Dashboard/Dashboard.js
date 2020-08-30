@@ -17,7 +17,7 @@ function Dashboard() {
           //"row-reverse"
           justify="center"
         >
-          <PostCard />
+          <PostCard className="postCard"/>
           <SubmitPost />
         </Grid>
       </Container>

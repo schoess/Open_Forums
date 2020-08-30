@@ -9,7 +9,7 @@ const myStyle = {
   textField: {
     width: "500px",
     backgroundColor: "white",
-    opacity: "85%"
+    opacity: "80%"
   },
   button: {
     width: "100px"
