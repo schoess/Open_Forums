@@ -3,16 +3,11 @@ import SubmitPost from "../SubmitPost/SubmitPost.js";
 import PostCard from "../PostCard/PostCard.js";
 import { Container, Grid } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
-
-const myStyle = {
-  page: {
-    textAlign: "center"
-  }
-};
+import "./Dashboard.css";
 
 function Dashboard() {
   return (
-    <div style={myStyle.page}>
+    <div>
       <NavBar />
       <Container>
         <Grid
@@ -22,7 +17,7 @@ function Dashboard() {
           //"row-reverse"
           justify="center"
         >
-          <PostCard />
+          <PostCard className="postCard"/>
           <SubmitPost />
         </Grid>
       </Container>
