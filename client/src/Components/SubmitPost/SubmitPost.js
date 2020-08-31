@@ -15,7 +15,6 @@ const myStyle = {
   entireForm: {
     paddingTop: "250px",
     position: "-webkit-sticky",
-    position: "sticky",
     top: "0",
   }
 };
@@ -59,7 +58,6 @@ function SubmitPost() {
                 style={myStyle.textField}
                 id="title"
                 label="Title"
-                defaultValue=" "
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -72,7 +70,6 @@ function SubmitPost() {
                 style={myStyle.textField}
                 id="message"
                 label="Message"
-                defaultValue=" "
                 variant="outlined"
                 margin="normal"
                 multiline
@@ -84,16 +81,7 @@ function SubmitPost() {
             </div>
             <div>
               {(!isAuthenticated && (
-                <Button
-                  style={myStyle.button}
-                  label="submit"
-                  type="submit"
-                  fullWidth
-                  color="primary"
-                  variant="contained"
-                >
-                  <AlertDialog />
-                </Button>
+                <AlertDialog />
               )) || (
                   <Button
                     style={myStyle.button}

@@ -4,11 +4,12 @@ import {
   CardActions,
   CardContent,
   Button,
-  Typography,
+  Typography
 } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
+import { Link } from 'react-router-dom';
 
 const myStyle = {
   cardContainer: {
@@ -30,12 +31,12 @@ const myStyle = {
 
 export default function PostCard(props) {
   const { forum, setForum } = useForumContext();
-
   const deleteOnClick = (item) => () => {
     console.log("inside delete button click event ======");
     forumApi.deleteForum(item._id);
     loadAllForum();
   };
+  
 
   useEffect(() => {
     loadAllForum();
@@ -51,18 +52,17 @@ export default function PostCard(props) {
       })
       .catch((err) => console.log(err));
   }
-
   return (
     <div style={myStyle.cardContainer}>
       {forum.map((item) => (
         <Card style={myStyle.cardIndividual} key={item._id}>
           <CardContent>
-            <Typography
+            <Typography 
               style={myStyle.cardTitle}
               color="secondary"
               gutterBottom
             >
-              {item.forum_title}
+              <Link to={`/forums/${item._id}`}>{item.forum_title}</Link>
             </Typography>
             <Typography style={myStyle.cardBody} variant="body2" component="p">
               {item.forum_description}
@@ -75,6 +75,7 @@ export default function PostCard(props) {
           </CardContent>
           <CardActions>
             <Button
+            
               onClick={deleteOnClick(item)}
               color="secondary"
               size="small"
