@@ -26,7 +26,7 @@ function SubmitPost() {
   const { setForum } = useForumContext();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -36,6 +36,11 @@ function SubmitPost() {
       forum_title: title,
       forum_description: description,
       category: "General",
+      user: {
+        id: user.sub,
+        name: user.name,
+        picture: user.picture,
+      },
     });
 
     setTitle("");
