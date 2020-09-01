@@ -1,7 +1,7 @@
 const Forum = require("../models/forum");
 
 module.exports = {
-  create: (req, res) => {
+  create: async (req, res) => {
     const forum = new Forum(req.body);
     Forum.create(forum)
       .then((createdForum) => {
