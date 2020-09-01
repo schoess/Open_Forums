@@ -15,5 +15,8 @@ export default {
   },
   getById: function(forumId) {
     return axios.get("/api/forums/" + forumId);
+  },
+  createReplyToForum: function(forumId) {
+    return axios.post("/api/forums/"+ forumId + "/replies");
   }
 };
