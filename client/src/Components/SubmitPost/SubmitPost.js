@@ -59,7 +59,6 @@ function SubmitPost() {
                 style={myStyle.textField}
                 id="title"
                 label="Title"
-                defaultValue=" "
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -72,7 +71,6 @@ function SubmitPost() {
                 style={myStyle.textField}
                 id="message"
                 label="Message"
-                defaultValue=" "
                 variant="outlined"
                 margin="normal"
                 multiline
