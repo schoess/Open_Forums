@@ -9,19 +9,18 @@ const myStyle = {
   textField: {
     width: "500px",
     backgroundColor: "white",
-    opacity: "80%"
+    opacity: "80%",
   },
   button: {
-    width: "100px"
+    width: "100px",
   },
   entireForm: {
     paddingTop: "250px",
     position: "-webkit-sticky",
     position: "sticky",
-    top: "0"
-  }
+    top: "0",
+  },
 };
-
 
 function SubmitPost() {
   const { setForum } = useForumContext();
@@ -29,11 +28,11 @@ function SubmitPost() {
   const [description, setDescription] = React.useState("");
   const { isAuthenticated } = useAuth0();
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
     // API
-    forumApi.createForum({
+    await forumApi.createForum({
       forum_title: title,
       forum_description: description,
       category: "General",
@@ -42,75 +41,61 @@ function SubmitPost() {
     setTitle("");
     setDescription("");
 
-    // get all forums 
-    forumApi.getAllForum()
+    // get all forums
+    await forumApi
+      .getAllForum()
       .then((res) => {
         // setForum(result)
         setForum(res.data);
       })
       .catch((err) => console.log(err));
-
   };
 
   return (
     <div>
-        <Grid item xs={12} style={myStyle.entireForm}>
-          <form onSubmit={onSubmit}>
-            <div>
-              <TextField
-                style={myStyle.textField}
-                id="title"
-                label="Title"
-                defaultValue=" "
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-              />
-            </div>
-            <div>
-              <TextField
-                style={myStyle.textField}
-                id="message"
-                label="Message"
-                defaultValue=" "
-                variant="outlined"
-                margin="normal"
-                multiline
-                rows={6}
-                fullWidth
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-              />
-            </div>
-            <div>
-              {(!isAuthenticated && (
-                <Button
-                  style={myStyle.button}
-                  label="submit"
-                  type="submit"
-                  fullWidth
-                  color="primary"
-                  variant="contained"
-                >
-                  <AlertDialog />
-                </Button>
-              )) || (
-                  <Button
-                    style={myStyle.button}
-                    label="submit"
-                    type="submit"
-                    fullWidth
-                    color="primary"
-                    variant="contained"
-                  >
-                    Send
-                  </Button>
-                )}
-            </div>
-          </form>
-        </Grid>
+      <Grid item xs={12} style={myStyle.entireForm}>
+        <form onSubmit={onSubmit}>
+          <div>
+            <TextField
+              style={myStyle.textField}
+              id="title"
+              label="Title"
+              defaultValue=" "
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            />
+          </div>
+          <div>
+            <TextField
+              style={myStyle.textField}
+              id="message"
+              label="Message"
+              defaultValue=" "
+              variant="outlined"
+              margin="normal"
+              multiline
+              rows={6}
+              fullWidth
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </div>
+          <div>
+            {(!isAuthenticated && (
+              <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+                <AlertDialog />
+              </Button>
+            )) || (
+              <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+                Send
+              </Button>
+            )}
+          </div>
+        </form>
+      </Grid>
     </div>
   );
 }
