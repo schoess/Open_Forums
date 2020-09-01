@@ -1,0 +1,36 @@
+.cardContainer {
+    text-align: center;
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 90px;
+}
+
+.cardIndividual {
+    margin: 20px;
+    opacity: 80%
+}
+
+.cardIndividual:hover {
+    opacity: 100%;
+}
+
+.cardTitle, .cardBody {
+    text-align: left;
+}
+
+.likeDislikeBtns {
+    margin-right: auto;
+}
+
+.likeBtn {
+    color: #43AA8B;
+}
+
+.dislikeBtn {
+    color: #EF3054;
+}
+
+.deleteBtn {
+    color: #888098;
+    margin-left: auto;
+}

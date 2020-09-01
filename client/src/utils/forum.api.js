@@ -13,4 +13,7 @@ export default {
   deleteForum: function (forumId) {
     return axios.delete("/api/forums/" + forumId);
   },
+  getById: function(forumId) {
+    return axios.get("/api/forums/" + forumId);
+  }
 };
