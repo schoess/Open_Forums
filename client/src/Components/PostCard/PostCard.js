@@ -1,18 +1,12 @@
 import React, { useEffect } from "react";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { Card, CardActions, CardContent, Typography } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
-import "./PostCard.css"
+import "./PostCard.css";
 
 // BV: switched to css file for style in order to style hover effects easier
 
@@ -45,11 +39,7 @@ export default function PostCard(props) {
       {forum.map((item) => (
         <Card className="cardIndividual" key={item._id}>
           <CardContent>
-            <Typography
-              className="cardTitle"
-              color="secondary"
-              gutterBottom
-            >
+            <Typography className="cardTitle" color="secondary" gutterBottom>
               {item.forum_title}
             </Typography>
             <Typography className="cardBody" variant="body2" component="p">
@@ -57,25 +47,16 @@ export default function PostCard(props) {
               <br />
             </Typography>
             <Typography className="cardBody" variant="body2" component="p">
-              {moment(item.date).format('lll')}
+              {moment(item.date).format("lll")}
               <br />
             </Typography>
           </CardContent>
           <CardActions>
             <div className="likeDislikeBtns">
-            <ThumbUpAltIcon
-              className="likeBtn"
-              size="small"/>
-            <ThumbDownAltIcon
-              className="dislikeBtn"
-              size="small"/>
-              </div>
-            <DeleteIcon
-              className="deleteBtn"
-              onClick={deleteOnClick(item)}
-              size="small"
-              variant="contained"
-            />
+              <ThumbUpAltIcon className="likeBtn" size="small" />
+              <ThumbDownAltIcon className="dislikeBtn" size="small" />
+            </div>
+            <DeleteIcon className="deleteBtn" onClick={deleteOnClick(item)} size="small" variant="contained" />
           </CardActions>
         </Card>
       ))}
