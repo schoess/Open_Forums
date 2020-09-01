@@ -63,7 +63,11 @@ const Search = () => {
     forumApi
       .getAllForum()
       .then((res) => {
-        const filtered = res.data.filter((forum) => forum.forum_title.toLowerCase().includes(searchTerm) || forum.forum_description.toLowerCase().includes(searchTerm));
+        const filtered = res.data.filter(
+          (forum) =>
+            forum.forum_title.toLowerCase().includes(searchTerm) ||
+            forum.forum_description.toLowerCase().includes(searchTerm)
+        );
         setForum(filtered);
       })
       .catch((err) => console.log(err));

@@ -90,11 +90,25 @@ function SubmitPost() {
           </div>
           <div>
             {(!isAuthenticated && (
-              <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+              <Button
+                style={myStyle.button}
+                label="submit"
+                type="submit"
+                fullWidth
+                color="primary"
+                variant="contained"
+              >
                 <AlertDialog />
               </Button>
             )) || (
-              <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+              <Button
+                style={myStyle.button}
+                label="submit"
+                type="submit"
+                fullWidth
+                color="primary"
+                variant="contained"
+              >
                 Send
               </Button>
             )}
