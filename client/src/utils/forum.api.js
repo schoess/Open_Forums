@@ -3,15 +3,15 @@ import axios from "axios";
 export default {
   // Create forum
 
-  createForum: function (forum) {
-    return axios.post("/api/forums", forum);
+  createForum: async function (forum) {
+    return await axios.post("/api/forums", forum);
   },
   //get all forums from db
-  getAllForum: function () {
-    return axios.get("/api/forums");
+  getAllForum: async function () {
+    return await axios.get("/api/forums");
   },
-  deleteForum: function (forumId) {
-    return axios.delete("/api/forums/" + forumId);
+  deleteForum: async function (forumId) {
+    return await axios.delete("/api/forums/" + forumId);
   },
   getById: function(forumId) {
     return axios.get("/api/forums/" + forumId);
