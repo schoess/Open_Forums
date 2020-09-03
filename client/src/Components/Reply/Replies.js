@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import forumApi from "../../utils/forum.api";
-import { Card, Typography, CardContent, CardActions, Button, TextField,Divider } from "@material-ui/core";
+import {
+    Card, Typography, CardContent,
+    CardActions, Button, TextField,
+    Divider
+} from "@material-ui/core";
+import { 
+    ThumbUpAlt as ThumbUpAltIcon, 
+    ThumbDownAlt as ThumbDownAltIcon, 
+    Delete as DeleteIcon
+} from "@material-ui/icons";
 import moment from "moment";
 
 const myStyle = {
@@ -52,8 +61,24 @@ export default function ReplyCard(props) {
                         {moment(reply.date).format("lll")}
                     </Typography>
                 </CardContent>
+                <CardActions>
+                    <div className="likeDislikeBtns">
+                        <ThumbUpAltIcon
+                            className="likeBtn"
+                            size="small" />
+                        <ThumbDownAltIcon
+                            className="dislikeBtn"
+                            size="small" />
+                    </div>
+                    <DeleteIcon
+                    className="deleteBtn"
+                    size="small"
+                    variant="contained"
+                />
+                </CardActions>
+               
             </Card>
-        })}<Divider /><Divider />
+        })}<Divider />
         <div style={myStyle.replyCardContainer}>
             <form onSubmit={replyToForum}>
                 <div style={myStyle.replyCardContainer}></div>
