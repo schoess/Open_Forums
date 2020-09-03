@@ -3,8 +3,10 @@ import {
   Card,
   CardActions,
   CardContent,
+  CardHeader,
   Button,
-  Typography
+  Typography,
+  Avatar
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
@@ -18,9 +20,9 @@ import "./PostCard.css"
 // BV: switched to css file for style in order to style hover effects easier
 
 export default function PostCard(props) {
+  // const classes = useStyles();
   const { forum, setForum } = useForumContext();
   const deleteOnClick = (item) => () => {
-    console.log("inside delete button click event ======");
     forumApi.deleteForum(item._id);
     loadAllForum();
   };
@@ -44,6 +46,16 @@ export default function PostCard(props) {
     <div className="cardContainer">
       {forum.map((item) => (
         <Card className="cardIndividual" key={item._id}>
+          <CardHeader
+            // className={classes.cardAction}
+            avatar={
+              <Avatar
+                alt={item.user && item.user.name}
+                src={item.user && item.user.picture}
+              />
+            }
+            subheader={moment(item.date).format("lll")}
+          />
           <CardContent>
             <Typography
               className="cardTitle"
@@ -54,10 +66,6 @@ export default function PostCard(props) {
             </Typography>
             <Typography className="cardBody" variant="body2" component="p">
               {item.forum_description}
-              <br />
-            </Typography>
-            <Typography className="cardBody" variant="body2" component="p">
-              {moment(item.date).format('lll')}
               <br />
             </Typography>
           </CardContent>

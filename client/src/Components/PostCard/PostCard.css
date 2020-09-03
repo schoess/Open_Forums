@@ -1,36 +1,37 @@
 .cardContainer {
-    text-align: center;
-    width: 700px;
-    margin: 0 auto;
-    padding-top: 90px;
+  text-align: center;
+  width: 700px;
+  margin: 0 auto;
+  padding-top: 90px;
 }
 
 .cardIndividual {
-    margin: 20px;
-    opacity: 80%
+  margin: 20px;
+  opacity: 80%;
 }
 
 .cardIndividual:hover {
-    opacity: 100%;
+  opacity: 100%;
 }
 
-.cardTitle, .cardBody {
-    text-align: left;
+.cardTitle,
+.cardBody {
+  text-align: left;
 }
 
 .likeDislikeBtns {
-    margin-right: auto;
+  margin-right: auto;
 }
 
 .likeBtn {
-    color: #43AA8B;
+  color: #43aa8b;
 }
 
 .dislikeBtn {
-    color: #EF3054;
+  color: #ef3054;
 }
 
 .deleteBtn {
-    color: #888098;
-    margin-left: auto;
+  color: #888098;
+  margin-left: auto;
 }

@@ -2,6 +2,8 @@ import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+import { useForumContext } from "../../contexts/ForumContext";
+import forumApi from "../../utils/forum.api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +53,25 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = () => {
   const classes = useStyles();
+  const { setForum } = useForumContext();
+
+  const handleChange = (event) => {
+    searchForum(event.target.value);
+  };
+
+  function searchForum(searchTerm) {
+    forumApi
+      .getAllForum()
+      .then((res) => {
+        const filtered = res.data.filter(
+          (forum) =>
+            forum.forum_title.toLowerCase().includes(searchTerm) ||
+            forum.forum_description.toLowerCase().includes(searchTerm)
+        );
+        setForum(filtered);
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div className={classes.search}>
@@ -64,6 +85,7 @@ const Search = () => {
           input: classes.inputInput,
         }}
         inputProps={{ "aria-label": "search" }}
+        onChange={handleChange}
       />
     </div>
   );
