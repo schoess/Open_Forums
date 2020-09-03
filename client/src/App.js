@@ -19,6 +19,7 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/forums" component={Dashboard} />
           <Route path="/forums/:forumId" component={Forum} />
+          <Route path ="/forums/:forumId/replies" component ={Forum} />
         </Switch>
       </ForumContextProvider>
     </React.Fragment>

@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { Card, CardContent, Typography, CardActions, Button } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
+import ReplyCard from "../Reply/Replies";
 
 const myStyle = {
     cardContainer: {
@@ -10,11 +11,18 @@ const myStyle = {
         margin: "0 auto",
         paddingTop: "90px"
     },
+    replyCardContainer: {
+        textAlign: "center",
+        width: "600px",
+        height: "200px",
+        margin: "0 auto",
+    },
     cardIndividual: {
         margin: "20px"
     },
     cardTitle: {
-        textAlign: "left"
+        textAlign: "left",
+        fontWeight: "500px"
     },
     cardBody: {
         textAlign: "left"
@@ -22,12 +30,12 @@ const myStyle = {
 };
 export default function (props) {
     const { forum, setForum } = useForumContext();
+
     useEffect(() => {
         forumApi
             .getById(props.match.params.forumId)
             .then((res) => {
                 setForum(res.data);
-                console.log(res.data);
             })
             .catch((err) => console.log(err));
 
@@ -39,17 +47,13 @@ export default function (props) {
                     <Typography style={myStyle.cardBody} variant="body2" component="p">{forum.forum_title}</Typography>
                     <Typography style={myStyle.cardBody} variant="body2" component="p">{forum.forum_description}</Typography>
                 </CardContent>
-                <CardActions>
-                    <Button
-                        color="secondary"
-                        size="small"
-                        variant="contained"
-                    >
-                       Comments
-                    </Button>
-                </CardActions>
             </Card>
-        </div>
 
-    )
+            <ReplyCard forumId={props.match.params.forumId} />
+        </div>
+    );
+
 }
+
+
+

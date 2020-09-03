@@ -3,8 +3,10 @@ import {
   Card,
   CardActions,
   CardContent,
-  Button,
-  Typography
+  Typography,
+  Avatar,
+  CardHeader,
+  makeStyles,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
@@ -14,13 +16,24 @@ import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
 import { Link } from 'react-router-dom';
 import "./PostCard.css"
+import "./PostCard.css";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const useStyles = makeStyles((theme) => ({
+  cardAction: {
+    paddingTop: 5,
+    paddingBottom: 0,
+  },
+}));
 
 // BV: switched to css file for style in order to style hover effects easier
 
 export default function PostCard(props) {
+  const classes = useStyles();
   const { forum, setForum } = useForumContext();
+  const { user } = useAuth0();
+
   const deleteOnClick = (item) => () => {
-    console.log("inside delete button click event ======");
     forumApi.deleteForum(item._id);
     loadAllForum();
   };
@@ -44,6 +57,16 @@ export default function PostCard(props) {
     <div className="cardContainer">
       {forum.map((item) => (
         <Card className="cardIndividual" key={item._id}>
+          <CardHeader
+            className={classes.cardAction}
+            avatar={
+              <Avatar
+                alt={item.user && item.user.name}
+                src={item.user && item.user.picture}
+              />
+            }
+            subheader={moment(item.date).format("lll")}
+          />
           <CardContent>
             <Typography
               className="cardTitle"
@@ -51,14 +74,10 @@ export default function PostCard(props) {
               gutterBottom
             >
               <Link to={`/forums/${item._id}`}>{item.forum_title}</Link>
-            </Typography>
-            <Typography className="cardBody" variant="body2" component="p">
-              {item.forum_description}
-              <br />
-            </Typography>
-            <Typography className="cardBody" variant="body2" component="p">
-              {moment(item.date).format('lll')}
-              <br />
+              <Typography className="cardBody" variant="body2" component="p">
+                {item.forum_description}
+                <br />
+              </Typography>
             </Typography>
           </CardContent>
           <CardActions>
@@ -76,6 +95,17 @@ export default function PostCard(props) {
               size="small"
               variant="contained"
             />
+            <ThumbUpAltIcon className="likeBtn" size="small" />
+            <ThumbDownAltIcon className="dislikeBtn" size="small" />
+            {/* show delete button only for the user who posted the forum */}
+            {item.user && item.user.id === user.sub && (
+              <DeleteIcon
+                className="deleteBtn"
+                onClick={deleteOnClick(item)}
+                size="small"
+                variant="contained"
+              />
+            )}
           </CardActions>
         </Card>
       ))}

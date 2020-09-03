@@ -25,5 +25,6 @@ module.exports = {
     Forum.findByIdAndDelete(req.params.forumId)
       .then((dbForum) => res.json(dbForum))
       .catch((err) => res.status(422).json(err));
-  },
+
+ }
 };
