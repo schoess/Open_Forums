@@ -1,6 +1,7 @@
 import React from "react";
 import SubmitPost from "../SubmitPost/SubmitPost.js";
 import PostCard from "../PostCard/PostCard.js";
+import ReplyCard from "../Reply/Replies.js";
 import { Container, Grid } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
