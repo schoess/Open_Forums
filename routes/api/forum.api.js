@@ -9,6 +9,6 @@ router
   .get(ForumController.findById)
   .delete(ForumController.deleteById);
 
-router.route("/:forumId/replies").post(ReplyController.create);
+router.route("/:forumId/replies").post(ReplyController.create).get(ReplyController.getReplies);
 
 module.exports = router;

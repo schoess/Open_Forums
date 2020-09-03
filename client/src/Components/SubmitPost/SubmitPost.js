@@ -9,47 +9,51 @@ const myStyle = {
   textField: {
     width: "500px",
     backgroundColor: "white",
-    opacity: "80%"
+    opacity: "80%",
   },
   button: {
-    width: "100px"
+    width: "100px",
   },
   entireForm: {
     paddingTop: "250px",
     position: "-webkit-sticky",
     position: "sticky",
-    top: "0"
-  }
+    top: "0",
+  },
 };
-
 
 function SubmitPost() {
   const { setForum } = useForumContext();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
     // API
-    forumApi.createForum({
+    await forumApi.createForum({
       forum_title: title,
       forum_description: description,
       category: "General",
+      user: {
+        id: user.sub,
+        name: user.name,
+        picture: user.picture,
+      },
     });
 
     setTitle("");
     setDescription("");
 
-    // get all forums 
-    forumApi.getAllForum()
+    // get all forums
+    await forumApi
+      .getAllForum()
       .then((res) => {
         // setForum(result)
         setForum(res.data);
       })
       .catch((err) => console.log(err));
-
   };
 
   return (

@@ -22,7 +22,12 @@ const ForumSchema = new Schema({
   replies: [{
     type: Schema.Types.ObjectId,
     ref: "ReplyToForum"
-  }]
+  }],
+  user: {
+    id: { type: String },
+    name: { type: String },
+    picture: { type: String },
+  },
 });
 
 const Forum = mongoose.model("Forum", ForumSchema);

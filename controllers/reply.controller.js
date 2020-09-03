@@ -8,13 +8,17 @@ module.exports = {
             forum: req.params.forumId
         });
         await reply.save();
-
         const forum = await Forum.findById(req.params.forumId);
-
         forum.replies.push(reply);
         await forum.save();
-
         return res.json(reply);
 
+    },
+    getReplies: async (req, res) => {
+        const replies = await Forum.findById(req.params.forumId).populate('replies');
+        res.json(replies);
     }
+
+
+
 }
