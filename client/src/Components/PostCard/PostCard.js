@@ -90,14 +90,6 @@ export default function PostCard(props) {
                 className="dislikeBtn"
                 size="small" />
             </div>
-            <DeleteIcon
-              className="deleteBtn"
-              onClick={deleteOnClick(item)}
-              size="small"
-              variant="contained"
-            />
-            <ThumbUpAltIcon className="likeBtn" size="small" />
-            <ThumbDownAltIcon className="dislikeBtn" size="small" />
             {/* show delete button only for the user who posted the forum */}
             {item.user && item.user.id === user.sub && (
               <DeleteIcon
