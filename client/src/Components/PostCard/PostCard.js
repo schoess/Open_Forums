@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 5,
     paddingBottom: 0,
   },
+  
 }));
 
 // BV: switched to css file for style in order to style hover effects easier
@@ -73,7 +74,7 @@ export default function PostCard(props) {
               color="secondary"
               gutterBottom
             >
-              <Link to={`/forums/${item._id}`}>{item.forum_title}</Link>
+              <Link to={`/forums/${item._id}`} >{item.forum_title}</Link>
               <Typography className="cardBody" variant="body2" component="p">
                 {item.forum_description}
                 <br />

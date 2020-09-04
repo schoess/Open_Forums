@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { Card, CardContent, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography, Avatar } from "@material-ui/core";
 import ReplyCard from "../Reply/Replies";
+import NavBar from "../NavBar/NavBar";
 
 const myStyle = {
     cardContainer: {
@@ -11,21 +12,20 @@ const myStyle = {
         margin: "0 auto",
         paddingTop: "90px"
     },
-    replyCardContainer: {
-        textAlign: "center",
-        width: "600px",
-        height: "200px",
-        margin: "0 auto",
-    },
     cardIndividual: {
         margin: "20px"
     },
-    cardTitle: {
+    titleCardBody: {
         textAlign: "left",
-        fontWeight: "500px"
+        fontWeight: 700,
+        fontSize: "20px",
+        fontFamily: 'Raleway'
     },
-    cardBody: {
-        textAlign: "left"
+    descCardBody: {
+        textAlign: "left",
+        fontFamily: 'Raleway',
+        fontSize: '18px',
+        paddingBottom: 10
     }
 };
 export default function (props) {
@@ -41,11 +41,13 @@ export default function (props) {
 
     }, [])
     return (
+
         <div style={myStyle.cardContainer}>
+            <NavBar />
             <Card style={myStyle.cardIndividual}>
                 <CardContent>
-                    <Typography style={myStyle.cardBody} variant="body2" component="p">{forum.forum_title}</Typography>
-                    <Typography style={myStyle.cardBody} variant="body2" component="p">{forum.forum_description}</Typography>
+                    <Typography style={myStyle.titleCardBody} variant="body2" component="p">{forum.forum_title}</Typography>
+                    <Typography style={myStyle.descCardBody} variant="body2" component="p">{forum.forum_description}</Typography>
                 </CardContent>
             </Card>
 
