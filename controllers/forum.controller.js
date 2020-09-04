@@ -36,6 +36,8 @@ module.exports = {
         return;
       }
 
+      // BV: Above is the hackey way to check if a user has already clicked a like/dislike button. Below is the better way but it's not quite right. Any help would be appreciated if anyone has the time.
+
       // Forum.findByIdAndUpdate({ $and: [{ _id: req.params.forumId }, { votingUsers: { "$ne": req.params.forumId } }] }, req.body)
       Forum.findByIdAndUpdate(req.params.forumId, req.body)
         .then((dbForum) => res.json(dbForum))
