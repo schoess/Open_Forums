@@ -65,6 +65,7 @@ export default function PostCard(props) {
                 src={item.user && item.user.picture}
               />
             }
+            title={item.user && item.user.name}
             subheader={moment(item.date).format("lll")}
           />
           <CardContent>
