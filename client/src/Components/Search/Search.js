@@ -57,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = () => {
   const classes = useStyles();
-  const { setForum } = useForumContext();
-  const [searchCriteria, setSearchCriteria, prevSearchCriteria] = React.useState({
+  const { setForums } = useForumContext();
+  const [searchCriteria, setSearchCriteria] = React.useState({
     category: "All",
     text: "",
   });
@@ -82,7 +82,7 @@ const Search = () => {
           const filtered = res.data.filter(
             (forum) => forum.forum_title.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase()) || forum.forum_description.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase())
           );
-          setForum(filtered);
+          setForums(filtered);
         } else {
           const filteredByCategory = res.data.filter((forum) => forum.category.toLowerCase().includes(searchCriteria.category.toLocaleLowerCase()));
           const filtered = filteredByCategory.filter(
@@ -90,7 +90,7 @@ const Search = () => {
               filteredCategory.forum_title.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase()) ||
               filteredCategory.forum_description.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase())
           );
-          setForum(filtered);
+          setForums(filtered);
         }
       })
       .catch((err) => console.log(err));
