@@ -3,7 +3,6 @@ import forumApi from "../../utils/forum.api";
 import {
     Card, Typography, CardContent,
     CardActions, Button, TextField,
-    Avatar
 } from "@material-ui/core";
 import {
     ThumbUpAlt as ThumbUpAltIcon,

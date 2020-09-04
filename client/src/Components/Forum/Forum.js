@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { Card, CardContent, Typography, Avatar } from "@material-ui/core";
+import { Card, CardContent, Typography,Avatar } from "@material-ui/core";
 import ReplyCard from "../Reply/Replies";
 import NavBar from "../NavBar/NavBar";
 
@@ -29,7 +29,7 @@ const myStyle = {
     }
 };
 export default function (props) {
-    const { forum, setForum } = useForumContext();
+    const [forum, setForum] = React.useState({});
 
     useEffect(() => {
         forumApi
@@ -41,9 +41,9 @@ export default function (props) {
 
     }, [])
     return (
-
+        
         <div style={myStyle.cardContainer}>
-            <NavBar />
+            
             <Card style={myStyle.cardIndividual}>
                 <CardContent>
                     <Typography style={myStyle.titleCardBody} variant="body2" component="p">{forum.forum_title}</Typography>

@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = () => {
   const classes = useStyles();
-  const { setForum } = useForumContext();
+  const { setForums } = useForumContext();
   const [category, setCategory] = React.useState({});
 
   const handleCategoryChange = (event) => {
@@ -81,7 +81,7 @@ const Search = () => {
             forum.forum_title.toLowerCase().includes(searchTerm) ||
             forum.forum_description.toLowerCase().includes(searchTerm)
         );
-        setForum(filtered);
+        setForums(filtered);
       })
       .catch((err) => console.log(err));
   }
