@@ -7,8 +7,12 @@ router.route("/").post(ForumController.create).get(ForumController.findAll);
 router
   .route("/:forumId")
   .get(ForumController.findById)
-  .delete(ForumController.deleteById);
+  .delete(ForumController.deleteById)
+  .put(ForumController.updateById);
 
-router.route("/:forumId/replies").post(ReplyController.create).get(ReplyController.getReplies);
+router
+  .route("/:forumId/replies")
+  .post(ReplyController.create)
+  .get(ReplyController.getReplies);
 
 module.exports = router;

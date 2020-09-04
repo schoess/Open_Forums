@@ -1,4 +1,5 @@
 const Forum = require("../models/forum");
+// const { db } = require("../models/forum");
 
 module.exports = {
   create: (req, res) => {
@@ -25,6 +26,20 @@ module.exports = {
     Forum.findByIdAndDelete(req.params.forumId)
       .then((dbForum) => res.json(dbForum))
       .catch((err) => res.status(422).json(err));
+  },
+  updateById: (req, res) => {
+    Forum.findById(req.params.forumId).then((dbForumOne) => {
+      if (
+        dbForumOne.likedUsers.includes(req.params.forumId) ||
+        dbForumOne.dislikedUsers.includes(req.params.forumId)
+      ) {
+        return;
+      }
 
- }
+      // Forum.findByIdAndUpdate({ $and: [{ _id: req.params.forumId }, { votingUsers: { "$ne": req.params.forumId } }] }, req.body)
+      Forum.findByIdAndUpdate(req.params.forumId, req.body)
+        .then((dbForum) => res.json(dbForum))
+        .catch((err) => res.status(422).json(err));
+    });
+  },
 };

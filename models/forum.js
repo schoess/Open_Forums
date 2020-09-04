@@ -30,6 +30,26 @@ const ForumSchema = new Schema({
     name: { type: String },
     picture: { type: String },
   },
+  likes: {
+    type: Number,
+    default: 0,
+  },
+  dislikes: {
+    type: Number,
+    default: 0,
+  },
+  likedUsers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  dislikedUsers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 const Forum = mongoose.model("Forum", ForumSchema);

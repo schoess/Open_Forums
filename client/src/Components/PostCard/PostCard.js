@@ -38,15 +38,15 @@ export default function PostCard(props) {
     loadAllForum();
   };
 
-  const [likeDislikeState, setLikeDislikeState] = useState({
-    like: 0,
-    dislike: 0
-    // liked: false
-    // disliked: false
-  })
+  const likeButtonOnClick = (item) => {
+    const updatedItem = {...item, likes: item.likes + 1, likedUsers: [...item.likedUsers, item._id]};
+    forumApi.updateForum(item._id, updatedItem);
+  }
 
-  const likeButtonOnClick = () => setLikeDislikeState({ ...likeDislikeState, like: (likeDislikeState.like + 1) });
-  const dislikeButtonOnClick = () => setLikeDislikeState({ ...likeDislikeState, dislike: (likeDislikeState.dislike + 1) });
+  const dislikeButtonOnClick = (item) => {
+    const updatedItem = {...item, dislikes: item.dislikes + 1, dislikedUsers: [...item.dislikedUsers, item._id]};
+    forumApi.updateForum(item._id, updatedItem);
+  }
 
   useEffect(() => {
     loadAllForum();
@@ -92,10 +92,10 @@ export default function PostCard(props) {
           </CardContent>
           <CardActions>
             <div className="likeDislikeBtns">
-              <span className="likeCount">{likeDislikeState.like}</span>
-              <ThumbUpAltIcon className="likeBtn" onClick={likeButtonOnClick} size="small" />
-              <ThumbDownAltIcon className="dislikeBtn" onClick={dislikeButtonOnClick} size="small" />
-              <span className="dislikeCount">{likeDislikeState.dislike}</span>
+              <span className="likeCount">{item.likes}</span>
+              <ThumbUpAltIcon className="likeBtn" onClick={() => likeButtonOnClick(item)} size="small" />
+              <ThumbDownAltIcon className="dislikeBtn" onClick={() => dislikeButtonOnClick(item)} size="small" />
+              <span className="dislikeCount">{item.dislikes}</span>
               {/* show delete button only for the user who posted the forum */}
               {item.user && item.user.id === user.sub && (
                 <DeleteIcon
