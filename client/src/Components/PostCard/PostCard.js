@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardActions,
@@ -38,6 +38,15 @@ export default function PostCard(props) {
     loadAllForum();
   };
 
+  const likeButtonOnClick = (item) => {
+    const updatedItem = {...item, likes: item.likes + 1, likedUsers: [...item.likedUsers, item._id]};
+    forumApi.updateForum(item._id, updatedItem);
+  }
+
+  const dislikeButtonOnClick = (item) => {
+    const updatedItem = {...item, dislikes: item.dislikes + 1, dislikedUsers: [...item.dislikedUsers, item._id]};
+    forumApi.updateForum(item._id, updatedItem);
+  }
 
   useEffect(() => {
     loadAllForum();
@@ -83,30 +92,20 @@ export default function PostCard(props) {
           </CardContent>
           <CardActions>
             <div className="likeDislikeBtns">
-              <ThumbUpAltIcon
-                className="likeBtn"
-                size="small" />
-              <ThumbDownAltIcon
-                className="dislikeBtn"
-                size="small" />
+              <span className="likeCount">{item.likes}</span>
+              <ThumbUpAltIcon className="likeBtn" onClick={() => likeButtonOnClick(item)} size="small" />
+              <ThumbDownAltIcon className="dislikeBtn" onClick={() => dislikeButtonOnClick(item)} size="small" />
+              <span className="dislikeCount">{item.dislikes}</span>
+              {/* show delete button only for the user who posted the forum */}
+              {item.user && item.user.id === user.sub && (
+                <DeleteIcon
+                  className="deleteBtn"
+                  onClick={deleteOnClick(item)}
+                  size="small"
+                  variant="contained"
+                />
+              )}
             </div>
-            <DeleteIcon
-              className="deleteBtn"
-              onClick={deleteOnClick(item)}
-              size="small"
-              variant="contained"
-            />
-            <ThumbUpAltIcon className="likeBtn" size="small" />
-            <ThumbDownAltIcon className="dislikeBtn" size="small" />
-            {/* show delete button only for the user who posted the forum */}
-            {item.user && item.user.id === user.sub && (
-              <DeleteIcon
-                className="deleteBtn"
-                onClick={deleteOnClick(item)}
-                size="small"
-                variant="contained"
-              />
-            )}
           </CardActions>
         </Card>
       ))}
