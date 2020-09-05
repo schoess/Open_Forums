@@ -29,7 +29,8 @@ const ForumSchema = new Schema({
     id: { type: String },
     name: { type: String },
     picture: { type: String },
-  },
+  }
+  
 });
 
 const Forum = mongoose.model("Forum", ForumSchema);

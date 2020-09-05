@@ -17,8 +17,5 @@ module.exports = {
     getReplies: async (req, res) => {
         const replies = await Forum.findById(req.params.forumId).populate('replies');
         res.json(replies);
-    }
-
-
-
+   }
 }
