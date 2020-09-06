@@ -107,15 +107,6 @@ export default function PostCard(props) {
               className="dislikeBtn" />
               </IconButton>
               <span className="dislikeCount">{forum.dislikes}</span>
-              {/* show delete button only for the user who posted the forum */}
-              {forum.user && forum.user.id === user.sub && (
-                <DeleteIcon
-                  className="deleteBtn"
-                  onClick={deleteOnClick(forum)}
-                  size="small"
-                  variant="contained"
-                />
-              )}
             </div>
             {/* show delete button only for the user who posted the forum */}
             {forum.user && forum.user.id === user.sub && (
