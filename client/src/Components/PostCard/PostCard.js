@@ -40,25 +40,6 @@ export default function PostCard(props) {
     loadAllForum();
   };
 
-<<<<<<< HEAD
-  const likeButtonOnClick = (item) => {
-    const updatedItem = {
-      ...item,
-      likes: item.likes + 1,
-      likedUsers: [...item.likedUsers, item._id],
-    };
-    forumApi.updateForum(item._id, updatedItem);
-  };
-
-  const dislikeButtonOnClick = (item) => {
-    const updatedItem = {
-      ...item,
-      dislikes: item.dislikes + 1,
-      dislikedUsers: [...item.dislikedUsers, item._id],
-    };
-    forumApi.updateForum(item._id, updatedItem);
-  };
-=======
   const likeButtonOnClick = async (forum) => {
     const updatedForum = {...forum, likes: forum.likes + 1, likedUsers: [...forum.likedUsers, forum._id]};
     await forumApi.updateForum(forum._id, updatedForum);
@@ -70,7 +51,6 @@ export default function PostCard(props) {
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   }
->>>>>>> d305374d11251ad356dc2f524e96983d58456321
 
   useEffect(() => {
     loadAllForum();
@@ -102,17 +82,12 @@ export default function PostCard(props) {
             subheader={moment(forum.date).format("lll")}
           />
           <CardContent>
-<<<<<<< HEAD
-            <Typography className="cardTitle" color="secondary" gutterBottom>
-              <Link to={`/forums/${item._id}`}>{item.forum_title}</Link>
-=======
             <Typography
               className="cardTitle"
               color="secondary"
               gutterBottom
             >
               <Link to={`/forums/${forum._id}`} >{forum.forum_title}</Link>
->>>>>>> d305374d11251ad356dc2f524e96983d58456321
               <Typography className="cardBody" variant="body2" component="p">
                 {forum.forum_description}
                 <br />
@@ -121,20 +96,6 @@ export default function PostCard(props) {
           </CardContent>
           <CardActions>
             <div className="likeDislikeBtns">
-<<<<<<< HEAD
-              <span className="likeCount">{item.likes}</span>
-              <ThumbUpAltIcon
-                className="likeBtn"
-                onClick={() => likeButtonOnClick(item)}
-                size="small"
-              />
-              <ThumbDownAltIcon
-                className="dislikeBtn"
-                onClick={() => dislikeButtonOnClick(item)}
-                size="small"
-              />
-              <span className="dislikeCount">{item.dislikes}</span>
-=======
               <span className="likeCount">{forum.likes}</span>
               <IconButton onClick={() => likeButtonOnClick(forum)} size="small">
                 <ThumbUpAltIcon 
@@ -146,7 +107,6 @@ export default function PostCard(props) {
               className="dislikeBtn" />
               </IconButton>
               <span className="dislikeCount">{forum.dislikes}</span>
->>>>>>> d305374d11251ad356dc2f524e96983d58456321
               {/* show delete button only for the user who posted the forum */}
               {forum.user && forum.user.id === user.sub && (
                 <DeleteIcon
