@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { Card, CardContent, Typography, Avatar } from "@material-ui/core";
+import { Card, CardContent, Typography,IconButton } from "@material-ui/core";
 import ReplyCard from "../Reply/Replies";
-import NavBar from "../NavBar/NavBar";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 
 const myStyle = {
     cardContainer: {
@@ -32,6 +33,7 @@ const myStyle = {
 export default function (props) {
     const [forum, setForum] = React.useState({});
 
+
     useEffect(() => {
         forumApi
             .getById(props.match.params.forumId)
@@ -41,6 +43,7 @@ export default function (props) {
             .catch((err) => console.log(err));
 
     }, [])
+
     return (
         
         <div style={myStyle.cardContainer}>
@@ -49,6 +52,15 @@ export default function (props) {
                 <CardContent>
                     <Typography style={myStyle.titleCardBody} variant="body2" component="p">{forum.forum_title}</Typography>
                     <Typography style={myStyle.descCardBody} variant="body2" component="p">{forum.forum_description}</Typography>
+                    <IconButton >
+                        <ThumbUpAltIcon 
+                        className="likeBtn"  
+                        size="small" />{forum.likes}
+                    </IconButton>
+                    <IconButton >
+                        <ThumbDownAltIcon 
+                  className="dislikeBtn"  
+                  size="small" />{forum.dislikes}</IconButton>
                 </CardContent>
             </Card>
 
