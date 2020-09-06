@@ -17,5 +17,12 @@ module.exports = {
     getReplies: async (req, res) => {
         const replies = await Forum.findById(req.params.forumId).populate('replies');
         res.json(replies);
-   }
+   },
+   deleteByReplyId: async (req, res) => {
+       const replyDelete=await Forum.findByIdAndDelete(req.params.forumId).populate('replies');
+       console.log(replyDelete);
+       res.json(replyDelete);
+    }
+
 }
+   

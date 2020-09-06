@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import forumApi from "../../utils/forum.api";
 import {
     Card, Typography, CardContent,
-    CardActions, Button, TextField,
+    CardActions, Button, TextField, IconButton,
 } from "@material-ui/core";
 import {
     ThumbUpAlt as ThumbUpAltIcon,
@@ -62,6 +62,10 @@ export default function ReplyCard(props) {
             })
             .catch((err) => console.log(err));
     }
+    const deleteOnClick = (reply) => () => {
+        forumApi.deleteReply(reply._id);
+        loadAllReplyForum();
+      };
 
     return <div>
         {replies.map((reply) => {
@@ -76,14 +80,20 @@ export default function ReplyCard(props) {
                 </CardContent>
                 <CardActions>
                     <div className="likeDislikeBtns">
-                        <ThumbUpAltIcon
+                        <IconButton><ThumbUpAltIcon
                             className="likeBtn"
                             size="small" />
-                        <ThumbDownAltIcon
-                            className="dislikeBtn"
-                            size="small" />
+                        </IconButton>
+                        <IconButton>
+                            <ThumbDownAltIcon
+                                className="dislikeBtn"
+                                size="small" />
+                        </IconButton>
+
                     </div>
+                    
                     <DeleteIcon
+                    onClick={deleteOnClick(reply)}
                         className="deleteBtn"
                         size="small"
                         variant="contained"
