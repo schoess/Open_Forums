@@ -18,10 +18,10 @@ module.exports = {
         const replies = await Forum.findById(req.params.forumId).populate('replies');
         res.json(replies);
    },
-   deleteByReplyId: async (req, res) => {
-       const replyDelete=await Forum.findByIdAndDelete(req.params.forumId).populate('replies');
-       console.log(replyDelete);
-       res.json(replyDelete);
+    deleteByReplyId: async (req, res) => {
+        console.log('dasdasd');
+       const deleteReply= await Reply.findByIdAndRemove(req.params.replyId);
+        res.json(deleteReply);
     }
 
 }

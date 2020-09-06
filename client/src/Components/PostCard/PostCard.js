@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardActions,
@@ -15,8 +15,8 @@ import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
-import { Link } from 'react-router-dom';
-import "./PostCard.css"
+import { Link } from "react-router-dom";
+import "./PostCard.css";
 import "./PostCard.css";
 import { useAuth0 } from "@auth0/auth0-react";
 

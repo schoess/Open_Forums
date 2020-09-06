@@ -13,7 +13,7 @@ export default {
   deleteForum: async function (forumId) {
     return await axios.delete("/api/forums/" + forumId);
   },
-  getById: async function(forumId) {
+  getById: async function (forumId) {
     return await axios.get("/api/forums/" + forumId);
   },
   updateForum: async function (forumId, body) {
@@ -25,8 +25,8 @@ export default {
   getAllReply: async function (forumId) {
     return await axios.get("/api/forums/" + forumId + "/replies");
   },
-  deleteReply: async function (forumId,replyId) {
-    return await axios.get("/api/forums/" + forumId + "/replies/"+replyId);
+  deleteReply: async function (replyId) {
+    return await axios.delete("/api/replies/"+replyId);
   }
   
 };
