@@ -13,16 +13,16 @@ export default {
   deleteForum: async function (forumId) {
     return await axios.delete("/api/forums/" + forumId);
   },
-  getById: async function(forumId) {
+  getById: async function (forumId) {
     return await axios.get("/api/forums/" + forumId);
   },
-  createReplyToForum: async function(forumId, body) {
+  createReplyToForum: async function (forumId, body) {
     return await axios.post("/api/forums/" + forumId + "/replies", body);
   },
   getAllReply: async function (forumId) {
     return await axios.get("/api/forums/" + forumId + "/replies");
   },
   updateForum: async function (forumId, body) {
-    return await axios.put("/api/forums/" + forumId, body)
+    return await axios.put("/api/forums/" + forumId, body);
   },
 };

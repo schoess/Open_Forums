@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardActions,
@@ -14,8 +14,8 @@ import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
-import { Link } from 'react-router-dom';
-import "./PostCard.css"
+import { Link } from "react-router-dom";
+import "./PostCard.css";
 import "./PostCard.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -39,14 +39,22 @@ export default function PostCard(props) {
   };
 
   const likeButtonOnClick = (item) => {
-    const updatedItem = {...item, likes: item.likes + 1, likedUsers: [...item.likedUsers, item._id]};
+    const updatedItem = {
+      ...item,
+      likes: item.likes + 1,
+      likedUsers: [...item.likedUsers, item._id],
+    };
     forumApi.updateForum(item._id, updatedItem);
-  }
+  };
 
   const dislikeButtonOnClick = (item) => {
-    const updatedItem = {...item, dislikes: item.dislikes + 1, dislikedUsers: [...item.dislikedUsers, item._id]};
+    const updatedItem = {
+      ...item,
+      dislikes: item.dislikes + 1,
+      dislikedUsers: [...item.dislikedUsers, item._id],
+    };
     forumApi.updateForum(item._id, updatedItem);
-  }
+  };
 
   useEffect(() => {
     loadAllForum();
@@ -78,11 +86,7 @@ export default function PostCard(props) {
             subheader={moment(item.date).format("lll")}
           />
           <CardContent>
-            <Typography
-              className="cardTitle"
-              color="secondary"
-              gutterBottom
-            >
+            <Typography className="cardTitle" color="secondary" gutterBottom>
               <Link to={`/forums/${item._id}`}>{item.forum_title}</Link>
               <Typography className="cardBody" variant="body2" component="p">
                 {item.forum_description}
@@ -93,8 +97,16 @@ export default function PostCard(props) {
           <CardActions>
             <div className="likeDislikeBtns">
               <span className="likeCount">{item.likes}</span>
-              <ThumbUpAltIcon className="likeBtn" onClick={() => likeButtonOnClick(item)} size="small" />
-              <ThumbDownAltIcon className="dislikeBtn" onClick={() => dislikeButtonOnClick(item)} size="small" />
+              <ThumbUpAltIcon
+                className="likeBtn"
+                onClick={() => likeButtonOnClick(item)}
+                size="small"
+              />
+              <ThumbDownAltIcon
+                className="dislikeBtn"
+                onClick={() => dislikeButtonOnClick(item)}
+                size="small"
+              />
               <span className="dislikeCount">{item.dislikes}</span>
               {/* show delete button only for the user who posted the forum */}
               {item.user && item.user.id === user.sub && (
