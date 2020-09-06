@@ -30,7 +30,7 @@ const myStyle = {
 };
 
 function SubmitPost() {
-  const { setForum } = useForumContext();
+  const { setForums } = useForumContext();
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const { isAuthenticated, user } = useAuth0();
@@ -72,8 +72,7 @@ function SubmitPost() {
     await forumApi
       .getAllForum()
       .then((res) => {
-        // setForum(result)
-        setForum(res.data);
+        setForums(res.data);
       })
       .catch((err) => console.log(err));
   };
