@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { Card, CardContent, Typography,Avatar } from "@material-ui/core";
+import { Card, CardContent, Typography, Avatar } from "@material-ui/core";
 import ReplyCard from "../Reply/Replies";
 import NavBar from "../NavBar/NavBar";
 
@@ -9,16 +9,17 @@ const myStyle = {
     cardContainer: {
         textAlign: "center",
         width: "700px",
-        margin: "0 auto",
+        margin: "auto",
         paddingTop: "90px"
     },
     cardIndividual: {
-        margin: "20px"
+        margin: "20px",
+        marginTop: "30px"
     },
     titleCardBody: {
         textAlign: "left",
         fontWeight: 700,
-        fontSize: "20px",
+        fontSize: "22px",
         fontFamily: 'Raleway'
     },
     descCardBody: {
@@ -56,6 +57,3 @@ export default function (props) {
     );
 
 }
-
-
-

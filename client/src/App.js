@@ -19,7 +19,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/forums/:forumId" component={Forum} />
-          <Route path ="/forums/:forumId/replies" component ={Forum} />
+          <Route path="/forums/:forumId/replies" component={Forum} />
         </Switch>
     </ForumContextProvider>
   );

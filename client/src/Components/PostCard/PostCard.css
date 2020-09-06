@@ -20,7 +20,7 @@
 }
 
 .likeDislikeBtns {
-  margin-right: auto;
+  margin-left: auto;
 }
 
 .likeBtn {
@@ -33,5 +33,62 @@
 
 .deleteBtn {
   color: #888098;
-  margin-left: auto;
+}
+
+/* referenced cssdeck.com for CSS on like/dislike count below */
+
+.likeCount {
+  background-color: #fff;
+  border: solid 1px #a5b1bd;
+  border-radius: 3px;
+  /* add in vendor rules */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  /* add in vendor rules */
+  color: #424a4d;
+  float: left;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 2px 4px;
+  position: relative;
+  text-align: center;
+}
+
+.likeCount:before,
+.likeCount:after {
+  content: "";
+  display: block;
+  height: 0;
+  top: 50%;
+  position: absolute;
+  right: -14px;
+  width: 0;
+  margin-top: -6px;
+}
+
+.likeCount:before {
+  border: solid 7px transparent;
+  border-color: transparent transparent transparent #a5b1bd;
+}
+
+.likeCount:after {
+  border: solid 6px transparent;
+  border-color: transparent transparent transparent #fff;
+  right: -12px;
+  margin-top: -5px;
+}
+
+.dislikeCount {
+  background-color: #fff;
+  border: solid 1px #a5b1bd;
+  border-radius: 3px;
+  /* add in vendor rules */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  /* add in vendor rules */
+  color: #424a4d;
+  float: right;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 2px 4px;
+  position: relative;
+  text-align: center;
 }
