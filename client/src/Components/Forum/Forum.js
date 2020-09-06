@@ -9,16 +9,17 @@ const myStyle = {
     cardContainer: {
         textAlign: "center",
         width: "700px",
-        margin: "0 auto",
+        margin: "auto",
         paddingTop: "90px"
     },
     cardIndividual: {
-        margin: "20px"
+        margin: "20px",
+        marginTop: "30px"
     },
     titleCardBody: {
         textAlign: "left",
         fontWeight: 700,
-        fontSize: "20px",
+        fontSize: "22px",
         fontFamily: 'Raleway'
     },
     descCardBody: {

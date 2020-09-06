@@ -11,24 +11,30 @@ import {
 } from "@material-ui/icons";
 import moment from "moment";
 
+
+// "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
-  cardContainer: {
-    textAlign: "center",
-    width: "700px",
-    margin: "0 auto",
-    paddingTop: 50,
-    paddigBottom: 50
+  // cardContainer: {
+  //   textAlign: "center",
+  //   width: "700px",
+  //   margin: "0 auto",
+  //   paddingTop: 50,
+  //   paddigBottom: 50
+  // },
+  replyContainer: {
+    fontSize: "18px",
+    marginTop: "70px",
   },
-  replyCardContainer: {
-    marginTop: 50,
-    fontWeight: 700,
-    fontSize: "18px"
-
-  },
-  replyCardBody: {
+  replyText: {
     fontSize: "16px",
-    textAlign: "left"
+    textAlign: "left",
+  },
+  replyCard: {
+    padding: "0px 10px"
+  },
 
+  repliesCards: {
+    margin: "20px 50px"
   }
 
 
@@ -64,12 +70,12 @@ export default function ReplyCard(props) {
       })
       .catch((err) => console.log(err));
   }
-  
+
   return <div>
     {replies.map((reply) => {
-      return <Card key={reply._id}>
-        <CardContent style={myStyle.replyCardBody}>
-          <Typography style={myStyle.replyCardBody} variant="body2" component="p">
+      return <Card style={myStyle.repliesCards} key={reply._id}>
+        <CardContent style={myStyle.replyText}>
+          <Typography style={myStyle.replyText} variant="body2" component="p">
             {reply.reply_description}
           </Typography>
           <Typography variant="body2" component="p">
@@ -94,11 +100,11 @@ export default function ReplyCard(props) {
 
       </Card>
     })}
-    <div style={myStyle.replyCardContainer}>
+    <div style={myStyle.replyContainer}>
       <form onSubmit={replyToForum}>
-        <Card style={myStyle.cardIndividual}>
+        <Card style={myStyle.replyCard}>
           <CardContent>
-            <Typography style={myStyle.replyCardBody}
+            <Typography style={myStyle.replyText}
               variant="body2"
               component="p"
               value={forumTitle}
@@ -107,6 +113,7 @@ export default function ReplyCard(props) {
 
           </CardContent>
           <TextField
+            styel={myStyle.replyTextField}
             id="message"
             label="Message"
             variant="outlined"
@@ -124,8 +131,8 @@ export default function ReplyCard(props) {
               size="small"
               variant="contained"
             >
-              Post your Reply
-                    </Button>
+            Reply
+            </Button>
           </CardActions>
         </Card>
       </form>
