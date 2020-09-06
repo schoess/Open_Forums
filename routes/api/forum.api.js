@@ -10,9 +10,8 @@ router
   .delete(ForumController.deleteById)
   .put(ForumController.updateById);
 
-router
-  .route("/:forumId/replies")
-  .post(ReplyController.create)
-  .get(ReplyController.getReplies);
+router.route("/:forumId/replies").post(ReplyController.create).get(ReplyController.getReplies);
+router.route("/:forumId/replies/:replyId/like").put();
+router.route("/:forumId/replies/:replyId/dislike").put();
 
 module.exports = router;
