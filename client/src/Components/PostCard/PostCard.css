@@ -8,16 +8,18 @@
 .cardIndividual {
   margin: 2px;
   opacity: 80%;
+  padding: 10px;
 }
 
 .cardIndividual:hover {
   opacity: 100%;
 }
 
-.cardTitle,
-.cardBody {
+.cardTitle {
   text-align: left;
-  padding-left: 75px;
+  padding-left: 50px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .likeDislikeBtns {
@@ -34,6 +36,11 @@
 
 .deleteBtn {
   color: #888098;
+}
+
+.padding-delete {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
 }
 
 .cardContent {
@@ -96,3 +103,7 @@
 	position: relative;
 	text-align: center;
 }
+
+a:link {
+	text-decoration: none ;
+  }
