@@ -14,7 +14,10 @@ router
   .route("/:forumId/replies")
   .post(ReplyController.create)
   .get(ReplyController.getReplies);
+<<<<<<< HEAD
 router.route("/:forumId/replies/:replyId/like").put();
 router.route("/:forumId/replies/:replyId/dislike").put();
+=======
+>>>>>>> 929a94e84ab7e129c9a78522ecef9303f1e32331
 
 module.exports = router;

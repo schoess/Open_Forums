@@ -19,4 +19,8 @@ module.exports = {
     );
     res.json(replies);
   },
+  deleteByReplyId: async (req, res) => {
+    const deleteReply = await Reply.findByIdAndRemove(req.params.replyId);
+    res.json(deleteReply);
+  },
 };

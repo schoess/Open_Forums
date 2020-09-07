@@ -11,6 +11,7 @@ import forumApi from "../../utils/forum.api";
 import { useAuth0 } from "@auth0/auth0-react";
 import AlertDialog from "../AuthenticationModal/AuthenticationModal";
 import { useForumContext } from "../../contexts/ForumContext";
+import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
 
 const myStyle = {
   textField: {
@@ -22,7 +23,7 @@ const myStyle = {
     width: "100px",
   },
   entireForm: {
-    paddingTop: "250px",
+    paddingTop: "50px",
     position: "-webkit-sticky",
     position: "sticky",
     top: "0",
@@ -35,6 +36,7 @@ function SubmitPost() {
   const [description, setDescription] = React.useState("");
   const { isAuthenticated, user } = useAuth0();
   const [category, setCategory] = React.useState({});
+  const { setShowSubmitPostModal } = useSubmitPostModalContext();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -75,6 +77,8 @@ function SubmitPost() {
         setForums(res.data);
       })
       .catch((err) => console.log(err));
+
+    setShowSubmitPostModal(false);
   };
 
   return (
