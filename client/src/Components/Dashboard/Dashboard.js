@@ -1,10 +1,9 @@
 import React from "react";
-import SubmitPost from "../SubmitPost/SubmitPost.js";
 import PostCard from "../PostCard/PostCard.js";
-import ReplyCard from "../Reply/Replies.js";
 import { Container, Grid } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
+import CreatePost from "../CreatePost/CreatePost";
 
 function Dashboard() {
   return (
@@ -12,7 +11,16 @@ function Dashboard() {
       <NavBar />
       <SubmitPost />
       <Container>
-      <PostCard className="postCard" />
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          //"row-reverse"
+          justify="center"
+        >
+          <PostCard className="postCard" />
+          <CreatePost />
+        </Grid>
       </Container>
     </div>
   );

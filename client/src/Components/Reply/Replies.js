@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import forumApi from "../../utils/forum.api";
 import {
-    Card, Typography, CardContent,
-    CardActions, Button, TextField,
+    Card,
+    Typography,
+    CardContent,
+    CardActions,
+    IconButton,
 } from "@material-ui/core";
 import {
     ThumbUpAlt as ThumbUpAltIcon,
@@ -10,44 +13,28 @@ import {
     Delete as DeleteIcon
 } from "@material-ui/icons";
 import moment from "moment";
+import PostReply from "./PostReply";
+import { useAuth0 } from '@auth0/auth0-react';
+import * as _ from 'lodash';
 
+// "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
-    cardContainer: {
-        textAlign: "center",
-        width: "700px",
-        margin: "0 auto",
-        paddingTop: 50,
-        paddigBottom: 50
-    },
-    replyCardContainer: {
-        marginTop: 50,
-        fontWeight: 700,
-        fontSize: "18px"
-
-    },
-    replyCardBody: {
-        fontSize: "16px",
-        textAlign: "left"
-
-    }
-
+    // cardContainer: {
+    //   textAlign: "center",
+    //   width: "700px",
+    //   margin: "0 auto",
+    //   paddingTop: 50,
+    //   paddigBottom: 50
+    // },
 
 }
-export default function ReplyCard(props) {
-    const [replies, setReplies] = useState([]);
-    //const [replyOpen, setReplyOpen] = useState(false);
-    const [forumTitle, setForumTitle] = useState("");
-    const [replyToDescription, setReplyToDescription] = useState("");
 
-    const replyToForum = async (event) => {
-        event.preventDefault();
-        //API call for posting reply
-        await forumApi.createReplyToForum(props.forumId, {
-            reply_description: replyToDescription
-        });
-        setReplyToDescription("");
-        loadAllReplyForum();
-    }
+export default function Replies(props) {
+    const [replies, setReplies] = useState([]);
+    const {
+        isAuthenticated,
+        user,
+    } = useAuth0();
 
     // get all replies
     useEffect(() => {
@@ -56,78 +43,107 @@ export default function ReplyCard(props) {
 
     // Loads all replies and sets them to data
     function loadAllReplyForum() {
-        forumApi.getAllReply(props.forumId)
+        forumApi
+            .getAllReply(props.forumId)
             .then((res) => {
                 setReplies(res.data.replies);
             })
             .catch((err) => console.log(err));
     }
+    const deleteOnClick = (reply) => () => {
+        forumApi.deleteReply(reply._id);
+        loadAllReplyForum();
+    }
 
-    return <div>
-        {replies.map((reply) => {
-            return <Card key={reply._id}>
-                <CardContent style={myStyle.replyCardBody}>
-                    <Typography style={myStyle.replyCardBody} variant="body2" component="p">
-                        {reply.reply_description}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        {moment(reply.date).format("lll")}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <div className="likeDislikeBtns">
+    const likeButtonOnClick = (reply) => async () => {
+        const currentUserId = user.sub;
+        if (!_.includes(reply.likedUsers, currentUserId)) {
+            const hasUserDislikedBefore = _.includes(reply.dislikedUsers, currentUserId);
+            let dislikes = reply.dislikes;
+            if (hasUserDislikedBefore) {
+                dislikes = dislikes - 1;
+            }
+            const dislikedUsers = _.filter(reply.dislikedUsers,
+                (dislikedUser) => dislikedUser !== currentUserId);
+
+            const updatedReply = {
+                ...reply,
+                likes: reply.likes + 1,
+                likedUsers: [...reply.likedUsers, currentUserId],
+                dislikes,
+                dislikedUsers
+            };
+
+            await forumApi.updateReply(reply._id, updatedReply);
+            await loadAllReplyForum();
+        }
+
+    }
+    const dislikeButtonOnClick = (reply) => async () => {
+        const currentUserId = user.sub;
+        if (!_.includes(reply.dislikedUsers, currentUserId)) {
+            const hasUserLikedBefore = _.includes(reply.likedUsers, currentUserId);
+            let likes = reply.likes;
+            if (hasUserLikedBefore) {
+                likes = likes - 1;
+            }
+            const likedUsers = _.filter(reply.likedUsers,
+                (likedUser) => likedUser !== currentUserId);
+
+            const updatedReply = {
+                ...reply,
+                dislikes: reply.dislikes + 1,
+                dislikedUsers: [...reply.dislikedUsers, currentUserId],
+                likes,
+                likedUsers
+            };
+            await forumApi.updateReply(reply._id, updatedReply);
+            await loadAllReplyForum();
+
+        }
+
+    }
+
+return <div>
+    {replies.map((reply) => {
+        return <Card key={reply._id}>
+            <CardContent style={myStyle.replyCardBody}>
+                <Typography style={myStyle.replyCardBody} variant="body2" component="p">
+                    {reply.reply_description}
+                </Typography>
+                <Typography variant="body2" component="p">
+                    {moment(reply.date).format("lll")}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <div className="likeDislikeBtns">
+                    <span className="likeCount">{reply.likes}</span>
+                    <IconButton
+                        onClick={likeButtonOnClick(reply)}
+                        size="small" >
                         <ThumbUpAltIcon
                             className="likeBtn"
                             size="small" />
+                    </IconButton>
+                    <IconButton onClick={dislikeButtonOnClick(reply)} size="small">
                         <ThumbDownAltIcon
-                            className="dislikeBtn"
-                            size="small" />
-                    </div>
-                    <DeleteIcon
-                        className="deleteBtn"
-                        size="small"
-                        variant="contained"
-                    />
-                </CardActions>
+                            className="dislikeBtn" />
+                    </IconButton>
+                    <span className="dislikeCount">{reply.dislikes}</span>
+                </div>
+                <DeleteIcon
+                    onClick={deleteOnClick(reply)}
+                    className="deleteBtn"
+                    size="small"
+                    variant="contained"
+                />
 
-            </Card>
-        })}
-        <div style={myStyle.replyCardContainer}>
-            <form onSubmit={replyToForum}>
-                <Card style={myStyle.cardIndividual}>
-                    <CardContent>
-                        <Typography style={myStyle.replyCardBody}
-                            variant="body2"
-                            component="p"
-                            value={forumTitle}
-                            onChange={(event) => setForumTitle(event.target.value)}>Reply Card
-                        </Typography>
+            </CardActions>
 
-                    </CardContent>
-                    <TextField
-                        id="message"
-                        label="Message"
-                        variant="outlined"
-                        margin="normal"
-                        multiline
-                        rows={6}
-                        fullWidth
-                        value={replyToDescription}
-                        onChange={(event) => setReplyToDescription(event.target.value)}
-                    />
-                    <CardActions>
-                        <Button
-                            type="submit"
-                            color="secondary"
-                            size="small"
-                            variant="contained"
-                        >
-                            Post your Reply
-                    </Button>
-                    </CardActions>
-                </Card>
-            </form>
-        </div>
-    </div>
+        </Card>
+    })}
 
+    <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />
+</div>
 }
+

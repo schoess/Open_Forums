@@ -27,6 +27,9 @@ mongoose
   .then(() => console.log("Connected"))
   .catch((err) => console.log(err));
 
+// below allows the findByIdAndDelete mongoose call to be used
+mongoose.set("useFindAndModify", false);
+
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
