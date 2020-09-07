@@ -22,10 +22,11 @@ const myStyle = {
     width: "100px",
   },
   entireForm: {
-    paddingTop: "250px",
+    paddingTop: "100px",
     position: "-webkit-sticky",
     position: "sticky",
     top: "0",
+    margin: "0 auto",
   },
 };
 
@@ -79,7 +80,7 @@ function SubmitPost() {
 
   return (
     <div>
-      <Grid item xs={12} style={myStyle.entireForm}>
+      <Grid item xs={6} style={myStyle.entireForm}>
         <form onSubmit={onSubmit}>
           <div>
             <FormControl style={myStyle.textField}>
