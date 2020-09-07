@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import forumApi from "../../utils/forum.api";
 import {
-    Card, Typography, CardContent,
-    CardActions, Button, TextField, IconButton,
+    Card,
+    Typography,
+    CardContent,
+    CardActions,
+    IconButton,
 } from "@material-ui/core";
 import {
     ThumbUpAlt as ThumbUpAltIcon,
@@ -10,8 +13,9 @@ import {
     Delete as DeleteIcon
 } from "@material-ui/icons";
 import moment from "moment";
-import PostReply from './PostReply';
-
+import PostReply from "./PostReply";
+import { useAuth0 } from '@auth0/auth0-react';
+import * as _ from 'lodash';
 
 // "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
@@ -25,10 +29,12 @@ const myStyle = {
 
 }
 
-export default function ReplyCard(props) {
+export default function Replies(props) {
     const [replies, setReplies] = useState([]);
-    //const [replyOpen, setReplyOpen] = useState(false);
-    const [replyCount, setReplyCount] = useState(0);
+    const {
+        isAuthenticated,
+        user,
+    } = useAuth0();
 
     // get all replies
     useEffect(() => {
@@ -37,91 +43,107 @@ export default function ReplyCard(props) {
 
     // Loads all replies and sets them to data
     function loadAllReplyForum() {
-        forumApi.getAllReply(props.forumId)
+        forumApi
+            .getAllReply(props.forumId)
             .then((res) => {
                 setReplies(res.data.replies);
             })
             .catch((err) => console.log(err));
     }
-    const deleteOnClick = (reply) => {
-        return () => {
-            forumApi.deleteReply(reply._id);
-            loadAllReplyForum();
-        };
-    };
-    /*const likeButtonOnClick = async (reply) => {
+    const deleteOnClick = (reply) => () => {
+        forumApi.deleteReply(reply._id);
+        loadAllReplyForum();
+    }
 
-        console.log("likes");
-        if (reply.likes >= 0) {
-            const likes = reply.likes + 1;
-            console.log(likes);
+    const likeButtonOnClick = (reply) => async () => {
+        const currentUserId = user.sub;
+        if (!_.includes(reply.likedUsers, currentUserId)) {
+            const hasUserDislikedBefore = _.includes(reply.dislikedUsers, currentUserId);
+            let dislikes = reply.dislikes;
+            if (hasUserDislikedBefore) {
+                dislikes = dislikes - 1;
+            }
+            const dislikedUsers = _.filter(reply.dislikedUsers,
+                (dislikedUser) => dislikedUser !== currentUserId);
+
+            const updatedReply = {
+                ...reply,
+                likes: reply.likes + 1,
+                likedUsers: [...reply.likedUsers, currentUserId],
+                dislikes,
+                dislikedUsers
+            };
+
+            await forumApi.updateReply(reply._id, updatedReply);
+            await loadAllReplyForum();
         }
 
-    }*/
+    }
+    const dislikeButtonOnClick = (reply) => async () => {
+        const currentUserId = user.sub;
+        if (!_.includes(reply.dislikedUsers, currentUserId)) {
+            const hasUserLikedBefore = _.includes(reply.likedUsers, currentUserId);
+            let likes = reply.likes;
+            if (hasUserLikedBefore) {
+                likes = likes - 1;
+            }
+            const likedUsers = _.filter(reply.likedUsers,
+                (likedUser) => likedUser !== currentUserId);
 
-    const likeButtonOnClick = async (reply) => {
-        const updatedForum = {...reply, likes: reply.likes + 1, likedUsers: [...reply.likedUsers, reply._id]};
-        console.log(updatedForum);
-        console.log(reply.likes);
-        const result = reply.likedUsers.includes(reply._id);
-        if(result)
-        return;
-        await forumApi.updateReply(reply._id, updatedForum);
-       loadAllReplyForum();
-        
-      }
-      const dislikeButtonOnClick = async (reply) => {
-        const updatedForum = {...reply, dislikes: reply.dislikes + 1, dislikedUsers: [...reply.dislikedUsers, reply._id]};
-        console.log(updatedForum);
+            const updatedReply = {
+                ...reply,
+                dislikes: reply.dislikes + 1,
+                dislikedUsers: [...reply.dislikedUsers, currentUserId],
+                likes,
+                likedUsers
+            };
+            await forumApi.updateReply(reply._id, updatedReply);
+            await loadAllReplyForum();
 
-        const result = reply.dislikedUsers.includes(reply._id);
-        if(result)
-        return;
-        await forumApi.updateReply(reply._id, updatedForum);
-        loadAllReplyForum();
-        
-      }
-    
+        }
 
-    return <div>
-        {replies.map((reply) => {
-            return <Card key={reply._id}>
-                <CardContent style={myStyle.replyCardBody}>
-                    <Typography style={myStyle.replyCardBody} variant="body2" component="p">
-                        {reply.reply_description}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        {moment(reply.date).format("lll")}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <div className="likeDislikeBtns">
-                        <span className="likeCount">{reply.likes}</span>
-                        <IconButton
-                            onClick={() => likeButtonOnClick(reply)}
-                            size="small" >
-                            <ThumbUpAltIcon
-                                className="likeBtn"
-                                size="small" />
-                        </IconButton>
-                        <IconButton onClick={() => dislikeButtonOnClick(reply)} size="small">
-                            <ThumbDownAltIcon
-                                className="dislikeBtn" />
-                        </IconButton>
-                        <span className="dislikeCount">{reply.dislikes}</span>
-                    </div>
-                    <DeleteIcon
-                        onClick={deleteOnClick(reply)}
-                        className="deleteBtn"
-                        size="small"
-                        variant="contained"
-                    />
+    }
 
-                </CardActions>
+return <div>
+    {replies.map((reply) => {
+        return <Card key={reply._id}>
+            <CardContent style={myStyle.replyCardBody}>
+                <Typography style={myStyle.replyCardBody} variant="body2" component="p">
+                    {reply.reply_description}
+                </Typography>
+                <Typography variant="body2" component="p">
+                    {moment(reply.date).format("lll")}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <div className="likeDislikeBtns">
+                    <span className="likeCount">{reply.likes}</span>
+                    <IconButton
+                        onClick={likeButtonOnClick(reply)}
+                        size="small" >
+                        <ThumbUpAltIcon
+                            className="likeBtn"
+                            size="small" />
+                    </IconButton>
+                    <IconButton onClick={dislikeButtonOnClick(reply)} size="small">
+                        <ThumbDownAltIcon
+                            className="dislikeBtn" />
+                    </IconButton>
+                    <span className="dislikeCount">{reply.dislikes}</span>
+                </div>
+                <DeleteIcon
+                    onClick={deleteOnClick(reply)}
+                    className="deleteBtn"
+                    size="small"
+                    variant="contained"
+                />
 
-            </Card>
-        })}
+            </CardActions>
 
-        <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />
-    </div>
-};
+        </Card>
+    })}
+
+    <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />
+</div>
+}
+

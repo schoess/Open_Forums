@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
@@ -80,15 +80,29 @@ const Search = () => {
       .then((res) => {
         if (searchCriteria.category === "All") {
           const filtered = res.data.filter(
-            (forum) => forum.forum_title.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase()) || forum.forum_description.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase())
+            (forum) =>
+              forum.forum_title
+                .toLowerCase()
+                .includes(searchCriteria.text.toLocaleLowerCase()) ||
+              forum.forum_description
+                .toLowerCase()
+                .includes(searchCriteria.text.toLocaleLowerCase())
           );
           setForums(filtered);
         } else {
-          const filteredByCategory = res.data.filter((forum) => forum.category.toLowerCase().includes(searchCriteria.category.toLocaleLowerCase()));
+          const filteredByCategory = res.data.filter((forum) =>
+            forum.category
+              .toLowerCase()
+              .includes(searchCriteria.category.toLocaleLowerCase())
+          );
           const filtered = filteredByCategory.filter(
             (filteredCategory) =>
-              filteredCategory.forum_title.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase()) ||
-              filteredCategory.forum_description.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase())
+              filteredCategory.forum_title
+                .toLowerCase()
+                .includes(searchCriteria.text.toLocaleLowerCase()) ||
+              filteredCategory.forum_description
+                .toLowerCase()
+                .includes(searchCriteria.text.toLocaleLowerCase())
           );
           setForums(filtered);
         }

@@ -17,19 +17,16 @@ module.exports = {
     getReplies: async (req, res) => {
         const replies = await Forum.findById(req.params.forumId).populate('replies');
         res.json(replies);
-   },
+    },
     deleteByReplyId: async (req, res) => {
-       const deleteReply= await Reply.findByIdAndRemove(req.params.replyId);
+        const deleteReply = await Reply.findByIdAndRemove(req.params.replyId);
         res.json(deleteReply);
     },
-    updateByReplyId: (req, res) => {
-        Reply.findByIdAndUpdate(req.params.replyId, req.body)
-              .then((dbReply) => res.json(dbReply))
-              .catch((err) => res.status(422).json(err));
-       
+    updateByReplyId: async (req, res) => {
+        console.log(req.body);
+        const updateReply = await Reply.findByIdAndUpdate(req.params.replyId, req.body); 
+        res.json(updateReply);
     }
-    
-        
 
 }
-   
+
