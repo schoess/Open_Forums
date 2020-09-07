@@ -31,10 +31,7 @@ const myStyle = {
 
 export default function Replies(props) {
     const [replies, setReplies] = useState([]);
-    const {
-        isAuthenticated,
-        user,
-    } = useAuth0();
+    const {isAuthenticated, user } = useAuth0();
 
     // get all replies
     useEffect(() => {
@@ -115,7 +112,7 @@ return <div>
                     {moment(reply.date).format("lll")}
                 </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions> 
                 <div className="likeDislikeBtns">
                     <span className="likeCount">{reply.likes}</span>
                     <IconButton
@@ -137,8 +134,7 @@ return <div>
                     size="small"
                     variant="contained"
                 />
-
-            </CardActions>
+                </CardActions>
 
         </Card>
     })}

@@ -1,3 +1,4 @@
+// SubmitPostModalContext
 import React, { useState, createContext } from "react";
 
 export const SubmitPostModalContext = createContext();

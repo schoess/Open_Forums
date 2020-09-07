@@ -40,14 +40,14 @@ export default function PostCard(props) {
   };
 
   const likeButtonOnClick = async (forum) => {
-    const updatedForum = {...forum, likes: forum.likes + 1, likedUsers: [...forum.likedUsers, forum._id]};
+    const updatedForum = { ...forum, likes: forum.likes + 1, likedUsers: [...forum.likedUsers, forum._id] };
     console.log(updatedForum);
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   };
 
   const dislikeButtonOnClick = async (forum) => {
-    const updatedForum = {...forum, dislikes: forum.dislikes + 1, dislikedUsers: [...forum.dislikedUsers, forum._id]};
+    const updatedForum = { ...forum, dislikes: forum.dislikes + 1, dislikedUsers: [...forum.dislikedUsers, forum._id] };
     console.log(updatedForum);
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
@@ -84,26 +84,26 @@ export default function PostCard(props) {
             subheader={moment(forum.date).format("lll")}
           />
           <Link to={`/forums/${forum._id}`} >
-          <CardContent className="padding-delete">
-            <Typography
-              className="cardTitle padding-delete cardContent"
-              color="secondary"
-            >
-              <h2 className="cardTitle">{forum.forum_title}</h2>
-            </Typography>
-          </CardContent>
+            <CardContent className="padding-delete">
+              <Typography
+                className="cardTitle padding-delete cardContent"
+                color="secondary"
+              >
+                <h2 className="cardTitle">{forum.forum_title}</h2>
+              </Typography>
+            </CardContent>
           </Link>
           <CardActions className="padding-delete">
             <div className="likeDislikeBtns">
               <span className="likeCount">{forum.likes}</span>
               <IconButton onClick={() => likeButtonOnClick(forum)} size="small">
-                <ThumbUpAltIcon 
-                  className="likeBtn"  
+                <ThumbUpAltIcon
+                  className="likeBtn"
                   size="small" />
               </IconButton>
               <IconButton onClick={() => dislikeButtonOnClick(forum)} size="small">
-              <ThumbDownAltIcon 
-              className="dislikeBtn" />
+                <ThumbDownAltIcon
+                  className="dislikeBtn" />
               </IconButton>
               <span className="dislikeCount">{forum.dislikes}</span>
             </div>
