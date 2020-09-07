@@ -4,12 +4,12 @@ import { Container, Grid } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
 import CreatePost from "../CreatePost/CreatePost";
+import SubmitPost from "../SubmitPost/SubmitPost.js";
 
 function Dashboard() {
   return (
     <div>
       <NavBar />
-      <SubmitPost />
       <Container>
         <Grid
           container
@@ -19,10 +19,12 @@ function Dashboard() {
           justify="center"
         >
           <PostCard className="postCard" />
-          <CreatePost />
+          <SubmitPost />
+          <CreatePost/>
         </Grid>
       </Container>
     </div>
   );
+  
 }
 export default Dashboard;

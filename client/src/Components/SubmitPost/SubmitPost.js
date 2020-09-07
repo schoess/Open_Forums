@@ -1,3 +1,4 @@
+//Submit Post
 import React from "react";
 import {
   Grid,
@@ -23,7 +24,7 @@ const myStyle = {
     width: "100px",
   },
   entireForm: {
-    paddingTop: "50px",
+    paddingTop: "100px",
     position: "-webkit-sticky",
     position: "sticky",
     top: "0",
