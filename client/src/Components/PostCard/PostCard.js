@@ -70,58 +70,70 @@ export default function PostCard(props) {
   return (
     <div className="cardContainer">
       {forums.map((forum) => {
-        return (
-          <Card className="cardIndividual" key={forum._id}>
-            <CardHeader
-              className={classes.cardAction}
-              avatar={
-                <Avatar
-                  alt={forum.user && forum.user.name}
-                  src={forum.user && forum.user.picture}
-                />
-              }
-              title={forum.user && forum.user.name}
-              subheader={moment(forum.date).format("lll")}
-            />
-            <CardContent>
-              <Typography className="cardTitle" color="secondary" gutterBottom>
-                <Link to={`/forums/${forum._id}`}>{forum.forum_title}</Link>
-                <Typography className="cardBody" variant="body2" component="p">
-                  {forum.forum_description}
-                  <br />
-                </Typography>
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <div className="likeDislikeBtns">
-                <span className="likeCount">{forum.likes}</span>
-                <IconButton
-                  onClick={() => likeButtonOnClick(forum)}
-                  size="small"
-                >
-                  <ThumbUpAltIcon className="likeBtn" size="small" />
-                </IconButton>
-                <IconButton
-                  onClick={() => dislikeButtonOnClick(forum)}
-                  size="small"
-                >
-                  <ThumbDownAltIcon className="dislikeBtn" />
-                </IconButton>
-                <span className="dislikeCount">{forum.dislikes}</span>
-              </div>
-              {/* show delete button only for the user who posted the forum */}
-              {forum.user && forum.user.id === user.sub && (
-                <DeleteIcon
-                  className="deleteBtn"
-                  onClick={deleteOnClick(forum)}
-                  size="small"
-                  variant="contained"
-                />
-              )}
-            </CardActions>
-          </Card>
-        );
+        return <Card className="cardIndividual" key={forum._id}>
+          <CardHeader
+            // className={classes.cardAction}
+            className="padding-delete"
+            avatar={
+              <Avatar
+                alt={forum.user && forum.user.name}
+                src={forum.user && forum.user.picture}
+              />
+            }
+            title={forum.user && forum.user.name}
+            subheader={moment(forum.date).format("lll")}
+          />
+          <Link to={`/forums/${forum._id}`} >
+          <CardContent className="padding-delete">
+            <Typography
+              className="cardTitle padding-delete cardContent"
+              color="secondary"
+            >
+              <h2 className="cardTitle">{forum.forum_title}</h2>
+            </Typography>
+          </CardContent>
+          </Link>
+          <CardActions className="padding-delete">
+            <div className="likeDislikeBtns">
+              <span className="likeCount">{forum.likes}</span>
+              <IconButton onClick={() => likeButtonOnClick(forum)} size="small">
+                <ThumbUpAltIcon 
+                  className="likeBtn"  
+                  size="small" />
+              </IconButton>
+              <IconButton onClick={() => dislikeButtonOnClick(forum)} size="small">
+              <ThumbDownAltIcon 
+              className="dislikeBtn" />
+              </IconButton>
+              <span className="dislikeCount">{forum.dislikes}</span>
+            </div>
+            {/* show delete button only for the user who posted the forum */}
+            {forum.user && forum.user.id === user.sub && (
+              <DeleteIcon
+                className="deleteBtn"
+                onClick={deleteOnClick(forum)}
+                size="small"
+                variant="contained"
+              />
+            )}
+          </CardActions>
+        </Card>
       })}
     </div>
   );
 }
+
+
+{/* <CardContent className="cardContent">
+            <Typography className="cardTitle" color="secondary" gutterBottom>
+              {item.forum_title}
+            </Typography>
+            <Typography className="cardBody" variant="body2" component="p">
+              {item.forum_description}
+              <br />
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <div className="likeDislikeBtns">
+              <ThumbUpAltIcon className="likeBtn" size="small" />
+              <ThumbDownAltIcon className="dislikeBtn" size="small" /> */}
