@@ -24,11 +24,10 @@ const myStyle = {
     width: "100px",
   },
   entireForm: {
-    paddingTop: "100px",
+    paddingTop: "50px",
     position: "-webkit-sticky",
     position: "sticky",
     top: "0",
-    margin: "0 auto",
   },
 };
 
