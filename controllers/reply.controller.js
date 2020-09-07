@@ -5,7 +5,8 @@ module.exports = {
     create: async (req, res) => {
         const reply = await Reply.create({
             reply_description: req.body.reply_description,
-            forum: req.params.forumId
+            forum: req.params.forumId,
+            user: req.body.user
         });
         await reply.save();
         const forum = await Forum.findById(req.params.forumId);

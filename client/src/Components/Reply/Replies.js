@@ -6,6 +6,8 @@ import {
     CardContent,
     CardActions,
     IconButton,
+    CardHeader,
+    Avatar
 } from "@material-ui/core";
 import {
     ThumbUpAlt as ThumbUpAltIcon,
@@ -31,7 +33,7 @@ const myStyle = {
 
 export default function Replies(props) {
     const [replies, setReplies] = useState([]);
-    const {isAuthenticated, user } = useAuth0();
+    const { isAuthenticated, user } = useAuth0();
 
     // get all replies
     useEffect(() => {
@@ -101,45 +103,52 @@ export default function Replies(props) {
 
     }
 
-return <div>
-    {replies.map((reply) => {
-        return <Card key={reply._id}>
-            <CardContent style={myStyle.replyCardBody}>
-                <Typography style={myStyle.replyCardBody} variant="body2" component="p">
-                    {reply.reply_description}
-                </Typography>
-                <Typography variant="body2" component="p">
-                    {moment(reply.date).format("lll")}
-                </Typography>
-            </CardContent>
-            <CardActions> 
-                <div className="likeDislikeBtns">
-                    <span className="likeCount">{reply.likes}</span>
-                    <IconButton
-                        onClick={likeButtonOnClick(reply)}
-                        size="small" >
-                        <ThumbUpAltIcon
-                            className="likeBtn"
-                            size="small" />
-                    </IconButton>
-                    <IconButton onClick={dislikeButtonOnClick(reply)} size="small">
-                        <ThumbDownAltIcon
-                            className="dislikeBtn" />
-                    </IconButton>
-                    <span className="dislikeCount">{reply.dislikes}</span>
-                </div>
-                <DeleteIcon
-                    onClick={deleteOnClick(reply)}
-                    className="deleteBtn"
-                    size="small"
-                    variant="contained"
+    return <div>
+        {replies.map((reply) => {
+            return <Card key={reply._id}>
+                <CardHeader avatar={
+                    <Avatar
+                        alt={_.get(reply, 'user.name')}
+                        src={_.get(reply, 'user.picture')}
+                    />}
+                    title={_.get(reply, 'user.name')}
+                    subheader={moment(reply.date).format("lll")}    
                 />
+                <CardContent style={myStyle.replyCardBody}>
+                    <Typography style={myStyle.replyCardBody} variant="body2" component="p">
+                        {reply.reply_description}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <div className="likeDislikeBtns">
+                        <span className="likeCount">{reply.likes}</span>
+                        <IconButton disabled={!isAuthenticated}
+                            onClick={likeButtonOnClick(reply)}
+                            size="small" >
+                            <ThumbUpAltIcon
+                                className="likeBtn"
+                                size="small" />
+                        </IconButton>
+                        <IconButton disabled={!isAuthenticated}
+                            onClick={dislikeButtonOnClick(reply)} size="small">
+                            <ThumbDownAltIcon
+                                className="dislikeBtn" />
+                        </IconButton>
+                        <span className="dislikeCount">{reply.dislikes}</span>
+                    </div>
+                    {isAuthenticated && user.sub === _.get(reply, 'user.id') && <DeleteIcon
+                        onClick={deleteOnClick(reply)}
+                        className="deleteBtn"
+                        size="small"
+                        variant="contained"
+                    />}
+
                 </CardActions>
 
-        </Card>
-    })}
+            </Card>
+        })}
+        {isAuthenticated && <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />}
 
-    <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />
-</div>
+    </div>
 }
 
