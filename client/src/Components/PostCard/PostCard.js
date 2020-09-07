@@ -42,12 +42,14 @@ export default function PostCard(props) {
 
   const likeButtonOnClick = async (forum) => {
     const updatedForum = {...forum, likes: forum.likes + 1, likedUsers: [...forum.likedUsers, forum._id]};
+    console.log(updatedForum);
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   }
 
   const dislikeButtonOnClick = async (forum) => {
     const updatedForum = {...forum, dislikes: forum.dislikes + 1, dislikedUsers: [...forum.dislikedUsers, forum._id]};
+    console.log(updatedForum);
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   }

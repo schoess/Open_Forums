@@ -19,10 +19,17 @@ module.exports = {
         res.json(replies);
    },
     deleteByReplyId: async (req, res) => {
-        console.log('dasdasd');
        const deleteReply= await Reply.findByIdAndRemove(req.params.replyId);
         res.json(deleteReply);
+    },
+    updateByReplyId: (req, res) => {
+        Reply.findByIdAndUpdate(req.params.replyId, req.body)
+              .then((dbReply) => res.json(dbReply))
+              .catch((err) => res.status(422).json(err));
+       
     }
+    
+        
 
 }
    
