@@ -66,6 +66,7 @@ const Search = () => {
   const handleChange = (event) => {
     const eventName = event.target.name;
     setSearchCriteria({ ...searchCriteria, [eventName]: event.target.value });
+    handleSearch();
   };
 
   const handleKeyPress = (event) => {
