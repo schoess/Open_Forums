@@ -2,11 +2,11 @@ import React from "react";
 import {
   AppBar,
   Toolbar,
-  IconButton,
   Button,
-  Typography,
+  Typography
+ 
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import   { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../Login/Login";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,12 +30,8 @@ function NavBar() {
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title} align="left">
-            Open Forum
-          </Typography>
+          <Link to="/" variant="h6" className={classes.title} align="left" >Open Forum                 
+          </Link>
           <Search />
           <Button color="inherit">
             {isAuthenticated ? <UserAccount /> : <Login />}

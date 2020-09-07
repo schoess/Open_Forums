@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
+import { FormControl, InputLabel, Select, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  category: {
+    color: "inherit",
+  },
   inputRoot: {
     color: "inherit",
   },
@@ -53,41 +57,99 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = () => {
   const classes = useStyles();
-  const { setForum } = useForumContext();
+  const { setForums } = useForumContext();
+  const [searchCriteria, setSearchCriteria] = React.useState({
+    category: "All",
+    text: "",
+  });
 
   const handleChange = (event) => {
-    searchForum(event.target.value);
+    const eventName = event.target.name;
+    setSearchCriteria({ ...searchCriteria, [eventName]: event.target.value });
   };
 
-  function searchForum(searchTerm) {
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleSearch = () => {
     forumApi
       .getAllForum()
       .then((res) => {
-        const filtered = res.data.filter(
-          (forum) =>
-            forum.forum_title.toLowerCase().includes(searchTerm) ||
-            forum.forum_description.toLowerCase().includes(searchTerm)
-        );
-        setForum(filtered);
+        if (searchCriteria.category === "All") {
+          const filtered = res.data.filter(
+            (forum) => forum.forum_title.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase()) || forum.forum_description.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase())
+          );
+          setForums(filtered);
+        } else {
+          const filteredByCategory = res.data.filter((forum) => forum.category.toLowerCase().includes(searchCriteria.category.toLocaleLowerCase()));
+          const filtered = filteredByCategory.filter(
+            (filteredCategory) =>
+              filteredCategory.forum_title.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase()) ||
+              filteredCategory.forum_description.toLowerCase().includes(searchCriteria.text.toLocaleLowerCase())
+          );
+          setForums(filtered);
+        }
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   return (
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
+    <>
+      <div>
+        <FormControl>
+          <InputLabel htmlFor="age-native-simple" className={classes.category}>
+            Categories
+          </InputLabel>
+          <Select
+            native
+            value={searchCriteria.category}
+            onChange={handleChange}
+            className={classes.category}
+            inputProps={{
+              name: "category",
+              id: "age-native-simple",
+            }}
+          >
+            <option>All</option>
+            <option>General</option>
+            <option>Sports</option>
+            <option>Food</option>
+            <option>Technology</option>
+            <option>Kids</option>
+            <option>Health/Fitness</option>
+            <option>Art</option>
+            <option>Business</option>
+            <option>Entertainment</option>
+          </Select>
+        </FormControl>
       </div>
-      <InputBase
-        placeholder="Search…"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        inputProps={{ "aria-label": "search" }}
-        onChange={handleChange}
-      />
-    </div>
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
+        </div>
+        <InputBase
+          placeholder="Search…"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{
+            name: "text",
+            id: "aria-label",
+          }}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+        />
+      </div>
+      <div>
+        <Button onClick={handleSearch} className={classes.category}>
+          search
+        </Button>
+      </div>
+    </>
   );
 };
 
