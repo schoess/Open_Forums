@@ -26,10 +26,6 @@ export default {
     return await axios.get("/api/forums/" + forumId + "/replies");
   },
   deleteReply: async function (replyId) {
-    return await axios.delete("/api/replies/"+replyId);
+    return await axios.delete("/api/replies/" + replyId);
   },
-  updateReply: async function (replyId, body) {
-    return await axios.put("/api/replies/" +replyId, body);
-  }
-  
 };

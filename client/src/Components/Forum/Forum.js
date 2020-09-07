@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import forumApi from "../../utils/forum.api";
 import { Card, CardContent, Typography, IconButton } from "@material-ui/core";
-import Replies from "../Reply/Replies";
+import ReplyCard from "../Reply/Replies";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 
@@ -70,7 +70,7 @@ export default function (props) {
         </CardContent>
       </Card>
 
-      <Replies forumId={props.match.params.forumId} />
+      <ReplyCard forumId={props.match.params.forumId} />
     </div>
   );
 }

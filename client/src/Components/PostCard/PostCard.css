@@ -1,25 +1,22 @@
 .cardContainer {
   text-align: center;
-  width: 100%;
+  width: 700px;
   margin: 0 auto;
   padding-top: 90px;
 }
 
 .cardIndividual {
-  margin: 2px;
+  margin: 20px;
   opacity: 80%;
-  padding: 10px;
 }
 
 .cardIndividual:hover {
   opacity: 100%;
 }
 
-.cardTitle {
+.cardTitle,
+.cardBody {
   text-align: left;
-  padding-left: 50px;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .likeDislikeBtns {
@@ -38,15 +35,6 @@
   color: #888098;
 }
 
-.padding-delete {
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
-}
-
-.cardContent {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-}
 /* referenced cssdeck.com for CSS on like/dislike count below */
 
 .likeCount {
@@ -101,11 +89,6 @@
   font-weight: bold;
   margin-right: 10px;
   padding: 2px 4px;
-	position: relative;
-	text-align: center;
+  position: relative;
+  text-align: center;
 }
-
-a:link {
-	text-decoration: none ;
-  }
-

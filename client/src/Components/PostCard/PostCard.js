@@ -40,15 +40,21 @@ export default function PostCard(props) {
   };
 
   const likeButtonOnClick = async (forum) => {
-    const updatedForum = {...forum, likes: forum.likes + 1, likedUsers: [...forum.likedUsers, forum._id]};
-    console.log(updatedForum);
+    const updatedForum = {
+      ...forum,
+      likes: forum.likes + 1,
+      likedUsers: [...forum.likedUsers, forum._id],
+    };
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   };
 
   const dislikeButtonOnClick = async (forum) => {
-    const updatedForum = {...forum, dislikes: forum.dislikes + 1, dislikedUsers: [...forum.dislikedUsers, forum._id]};
-    console.log(updatedForum);
+    const updatedForum = {
+      ...forum,
+      dislikes: forum.dislikes + 1,
+      dislikedUsers: [...forum.dislikedUsers, forum._id],
+    };
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   };
@@ -125,18 +131,3 @@ export default function PostCard(props) {
     </div>
   );
 }
-
-
-{/* <CardContent className="cardContent">
-            <Typography className="cardTitle" color="secondary" gutterBottom>
-              {item.forum_title}
-            </Typography>
-            <Typography className="cardBody" variant="body2" component="p">
-              {item.forum_description}
-              <br />
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <div className="likeDislikeBtns">
-              <ThumbUpAltIcon className="likeBtn" size="small" />
-              <ThumbDownAltIcon className="dislikeBtn" size="small" /> */}
