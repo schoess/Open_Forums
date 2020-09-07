@@ -17,16 +17,15 @@ export default {
     return await axios.get("/api/forums/" + forumId);
   },
   updateForum: async function (forumId, body) {
-    return await axios.put("/api/forums/" + forumId, body)
+    return await axios.put("/api/forums/" + forumId, body);
   },
-  createReplyToForum: async function(forumId, body) {
+  createReplyToForum: async function (forumId, body) {
     return await axios.post("/api/forums/" + forumId + "/replies", body);
   },
   getAllReply: async function (forumId) {
     return await axios.get("/api/forums/" + forumId + "/replies");
   },
   deleteReply: async function (replyId) {
-    return await axios.delete("/api/replies/"+replyId);
-  }
-  
+    return await axios.delete("/api/replies/" + replyId);
+  },
 };
