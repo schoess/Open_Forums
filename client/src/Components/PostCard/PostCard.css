@@ -39,8 +39,8 @@
 }
 
 .padding-delete {
-	padding-top: 0px !important;
-	padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 .cardContent {
@@ -101,10 +101,10 @@
   font-weight: bold;
   margin-right: 10px;
   padding: 2px 4px;
-	position: relative;
-	text-align: center;
+  position: relative;
+  text-align: center;
 }
 
 a:link {
-	text-decoration: none ;
-  }
+  text-decoration: none;
+}

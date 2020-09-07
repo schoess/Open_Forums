@@ -24,7 +24,7 @@ const ReplyForumSchema = new Schema({
     default: 0,
   },
   likedUsers: [String],
-  dislikedUsers: [String]
+  dislikedUsers: [String],
 });
 
 const ReplyToForum = mongoose.model("ReplyToForum", ReplyForumSchema);
