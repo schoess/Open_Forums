@@ -125,3 +125,18 @@ export default function PostCard(props) {
     </div>
   );
 }
+
+
+{/* <CardContent className="cardContent">
+            <Typography className="cardTitle" color="secondary" gutterBottom>
+              {item.forum_title}
+            </Typography>
+            <Typography className="cardBody" variant="body2" component="p">
+              {item.forum_description}
+              <br />
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <div className="likeDislikeBtns">
+              <ThumbUpAltIcon className="likeBtn" size="small" />
+              <ThumbDownAltIcon className="dislikeBtn" size="small" /> */}
