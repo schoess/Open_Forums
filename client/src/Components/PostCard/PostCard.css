@@ -1,12 +1,12 @@
 .cardContainer {
   text-align: center;
-  width: 700px;
+  width: 100%;
   margin: 0 auto;
   padding-top: 90px;
 }
 
 .cardIndividual {
-  margin: 20px;
+  margin: 2px;
   opacity: 80%;
 }
 
@@ -17,6 +17,7 @@
 .cardTitle,
 .cardBody {
   text-align: left;
+  padding-left: 75px;
 }
 
 .likeDislikeBtns {
@@ -34,4 +35,9 @@
 .deleteBtn {
   color: #888098;
   margin-left: auto;
+}
+
+.cardContent {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }

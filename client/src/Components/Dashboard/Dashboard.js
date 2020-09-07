@@ -9,17 +9,9 @@ function Dashboard() {
   return (
     <div>
       <NavBar />
+      <SubmitPost />
       <Container>
-        <Grid
-          container
-          spacing={1}
-          direction="row"
-          //"row-reverse"
-          justify="center"
-        >
-          <PostCard className="postCard" />
-          <SubmitPost />
-        </Grid>
+      <PostCard className="postCard" />
       </Container>
     </div>
   );

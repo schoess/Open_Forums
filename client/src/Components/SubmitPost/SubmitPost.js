@@ -15,10 +15,11 @@ const myStyle = {
     width: "100px",
   },
   entireForm: {
-    paddingTop: "250px",
+    paddingTop: "100px",
     position: "-webkit-sticky",
     position: "sticky",
     top: "0",
+    margin: "0 auto",
   },
 };
 
@@ -58,55 +59,7 @@ function SubmitPost() {
 
   return (
     <div>
-<<<<<<< HEAD
-        <Grid item xs={12} style={myStyle.entireForm}>
-          <form onSubmit={onSubmit}>
-            <div>
-              <TextField
-                style={myStyle.textField}
-                id="title"
-                label="Title"
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-              />
-            </div>
-            <div>
-              <TextField
-                style={myStyle.textField}
-                id="message"
-                label="Message"
-                variant="outlined"
-                margin="normal"
-                multiline
-                rows={6}
-                fullWidth
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-              />
-            </div>
-            <div>
-              {(!isAuthenticated && (
-                <AlertDialog />
-              )) || (
-                  <Button
-                    style={myStyle.button}
-                    label="submit"
-                    type="submit"
-                    fullWidth
-                    color="primary"
-                    variant="contained"
-                  >
-                    Send
-                  </Button>
-                )}
-            </div>
-          </form>
-        </Grid>
-=======
-      <Grid item xs={12} style={myStyle.entireForm}>
+      <Grid item xs={6} style={myStyle.entireForm}>
         <form onSubmit={onSubmit}>
           <div>
             <TextField
@@ -163,7 +116,6 @@ function SubmitPost() {
           </div>
         </form>
       </Grid>
->>>>>>> e86c373dc4d67c12f96ffb0a60f17d15ae642fe3
     </div>
   );
 }
