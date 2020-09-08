@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../Login/Login";
@@ -25,7 +25,7 @@ function NavBar() {
       <AppBar position="fixed">
         <Toolbar>
           <Link to="/" variant="h6" className={classes.title} align="left">
-            Open Forum
+            <Typography variant="h5">Open Forum</Typography>
           </Link>
           <Search />
           <Button color="inherit">

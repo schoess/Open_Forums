@@ -4,7 +4,6 @@ import { Container, Grid } from "@material-ui/core";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
 import CreatePost from "../CreatePost/CreatePost";
-import SubmitPost from "../SubmitPost/SubmitPost.js";
 
 function Dashboard() {
   return (
@@ -18,13 +17,11 @@ function Dashboard() {
           //"row-reverse"
           justify="center"
         >
+          <CreatePost />
           <PostCard className="postCard" />
-          <SubmitPost />
-          <CreatePost/>
         </Grid>
       </Container>
     </div>
   );
-  
 }
 export default Dashboard;
