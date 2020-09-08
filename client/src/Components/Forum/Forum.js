@@ -1,32 +1,41 @@
 import React, { useEffect } from "react";
 import forumApi from "../../utils/forum.api";
-import { Card, CardContent, Typography, IconButton } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  Typography,
+  IconButton,
+  CardHeader,
+  Avatar,
+} from "@material-ui/core";
 import Replies from "../Reply/Replies";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import moment from "moment";
 
 const myStyle = {
   cardContainer: {
     textAlign: "center",
-    width: "700px",
+    width: "1200px",
     margin: "auto",
     paddingTop: "90px",
   },
   cardIndividual: {
     margin: "20px",
-    marginTop: "30px",
+    marginTop: "40px",
   },
   titleCardBody: {
     textAlign: "left",
     fontWeight: 700,
     fontSize: "22px",
-    fontFamily: "Raleway",
   },
   descCardBody: {
     textAlign: "left",
-    fontFamily: "Raleway",
     fontSize: "18px",
     paddingBottom: 10,
+  },
+  cardHeader: {
+    marginTop: "20px",
   },
 };
 export default function (props) {
@@ -44,6 +53,19 @@ export default function (props) {
   return (
     <div style={myStyle.cardContainer}>
       <Card style={myStyle.cardIndividual}>
+        <CardHeader
+          style={myStyle.cardHeader}
+          // className={classes.cardAction}
+          className="padding-delete"
+          avatar={
+            <Avatar
+              alt={forum.user && forum.user.name}
+              src={forum.user && forum.user.picture}
+            />
+          }
+          title={forum.user && forum.user.name}
+          subheader={moment(forum.date).format("lll")}
+        />
         <CardContent>
           <Typography
             style={myStyle.titleCardBody}
@@ -69,7 +91,9 @@ export default function (props) {
           </IconButton>
         </CardContent>
       </Card>
-
+      <Typography variant="h6" component="p">
+        Replies{" "}
+      </Typography>
       <Replies forumId={props.match.params.forumId} />
     </div>
   );
