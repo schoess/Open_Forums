@@ -5,7 +5,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
 import { FormControl, InputLabel, Select, Button } from "@material-ui/core";
-import * as _ from 'lodash';
+import * as _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,10 +98,9 @@ const Search = () => {
                   .toLowerCase()
                   .includes(text.toLocaleLowerCase())
             );
-          } 
+          }
 
           setForums(filtered);
-
         } else {
           let filtered;
 
