@@ -38,18 +38,8 @@ const ForumSchema = new Schema({
     type: Number,
     default: 0,
   },
-  likedUsers: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
-  dislikedUsers: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  likedUsers: [String],
+  dislikedUsers: [String],
 });
 
 const Forum = mongoose.model("Forum", ForumSchema);
