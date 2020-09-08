@@ -15,6 +15,21 @@ const ReplyForumSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Forum",
   },
+  user: {
+    id: { type: String },
+    name: { type: String },
+    picture: { type: String },
+  },
+  likes: {
+    type: Number,
+    default: 0,
+  },
+  dislikes: {
+    type: Number,
+    default: 0,
+  },
+  likedUsers: [String],
+  dislikedUsers: [String],
 });
 
 const ReplyToForum = mongoose.model("ReplyToForum", ReplyForumSchema);

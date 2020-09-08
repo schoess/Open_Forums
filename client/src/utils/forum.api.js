@@ -28,4 +28,7 @@ export default {
   deleteReply: async function (replyId) {
     return await axios.delete("/api/replies/" + replyId);
   },
+  updateReply: async function (replyId, body) {
+    return await axios.put("/api/replies/" + replyId, body);
+  },
 };

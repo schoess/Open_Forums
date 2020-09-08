@@ -1,3 +1,4 @@
+//Submit Post
 import React from "react";
 import {
   Grid,
@@ -83,7 +84,7 @@ function SubmitPost() {
 
   return (
     <div>
-      <Grid item xs={12} style={myStyle.entireForm}>
+      <Grid item xs={6} style={myStyle.entireForm}>
         <form onSubmit={onSubmit}>
           <div>
             <FormControl style={myStyle.textField}>

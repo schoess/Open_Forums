@@ -44,6 +44,7 @@ export default function PostCard(props) {
       likes: forum.likes + 1,
       likedUsers: [...forum.likedUsers, forum._id],
     };
+    console.log(updatedForum);
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   };
@@ -54,6 +55,7 @@ export default function PostCard(props) {
       dislikes: forum.dislikes + 1,
       dislikedUsers: [...forum.dislikedUsers, forum._id],
     };
+    console.log(updatedForum);
     await forumApi.updateForum(forum._id, updatedForum);
     await loadAllForum();
   };
@@ -78,7 +80,8 @@ export default function PostCard(props) {
         return (
           <Card className="cardIndividual" key={forum._id}>
             <CardHeader
-              className={classes.cardAction}
+              // className={classes.cardAction}
+              className="padding-delete"
               avatar={
                 <Avatar
                   alt={forum.user && forum.user.name}
@@ -88,16 +91,17 @@ export default function PostCard(props) {
               title={forum.user && forum.user.name}
               subheader={moment(forum.date).format("lll")}
             />
-            <CardContent>
-              <Typography className="cardTitle" color="secondary" gutterBottom>
-                <Link to={`/forums/${forum._id}`}>{forum.forum_title}</Link>
-                <Typography className="cardBody" variant="body2" component="p">
-                  {forum.forum_description}
-                  <br />
+            <Link to={`/forums/${forum._id}`}>
+              <CardContent className="padding-delete">
+                <Typography
+                  className="cardTitle padding-delete cardContent"
+                  color="secondary"
+                >
+                  <h2 className="cardTitle">{forum.forum_title}</h2>
                 </Typography>
-              </Typography>
-            </CardContent>
-            <CardActions>
+              </CardContent>
+            </Link>
+            <CardActions className="padding-delete">
               <div className="likeDislikeBtns">
                 <span className="likeCount">{forum.likes}</span>
                 <IconButton
@@ -129,4 +133,20 @@ export default function PostCard(props) {
       })}
     </div>
   );
+}
+
+{
+  /* <CardContent className="cardContent">
+            <Typography className="cardTitle" color="secondary" gutterBottom>
+              {item.forum_title}
+            </Typography>
+            <Typography className="cardBody" variant="body2" component="p">
+              {item.forum_description}
+              <br />
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <div className="likeDislikeBtns">
+              <ThumbUpAltIcon className="likeBtn" size="small" />
+              <ThumbDownAltIcon className="dislikeBtn" size="small" /> */
 }
