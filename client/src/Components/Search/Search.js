@@ -5,6 +5,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
 import { FormControl, InputLabel, Select, Button } from "@material-ui/core";
+import * as _ from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,46 +65,66 @@ const Search = () => {
   });
 
   const handleChange = (event) => {
-    const eventName = event.target.name;
-    setSearchCriteria({ ...searchCriteria, [eventName]: event.target.value });
+    setSearchCriteria({ ...searchCriteria, text: event.target.value });
+    handleSearch(searchCriteria.category, event.target.value);
+  };
+
+  const onCategoryChange = (event) => {
+    setSearchCriteria({ category: event.target.value });
+    handleSearch(event.target.value, searchCriteria.text);
   };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      handleSearch();
+      handleSearch(searchCriteria.category, searchCriteria.text);
     }
   };
 
-  const handleSearch = () => {
+  const handleSearch = (category, text) => {
     forumApi
       .getAllForum()
       .then((res) => {
-        if (searchCriteria.category === "All") {
-          const filtered = res.data.filter(
-            (forum) =>
-              forum.forum_title
-                .toLowerCase()
-                .includes(searchCriteria.text.toLocaleLowerCase()) ||
-              forum.forum_description
-                .toLowerCase()
-                .includes(searchCriteria.text.toLocaleLowerCase())
-          );
+        if (category === "All") {
+          let filtered = res.data;
+          debugger;
+
+          if (text) {
+            filtered = res.data.filter(
+              (forum) =>
+                forum.forum_title
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase()) ||
+                forum.forum_description
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase())
+            );
+          } 
+
           setForums(filtered);
+
         } else {
-          const filteredByCategory = res.data.filter((forum) =>
-            forum.category
-              .toLowerCase()
-              .includes(searchCriteria.category.toLocaleLowerCase())
-          );
-          const filtered = filteredByCategory.filter(
-            (filteredCategory) =>
-              filteredCategory.forum_title
+          let filtered;
+
+          if (category) {
+            filtered = res.data.filter((forum) =>
+              forum.category
                 .toLowerCase()
-                .includes(searchCriteria.text.toLocaleLowerCase()) ||
-              filteredCategory.forum_description
-                .toLowerCase()
-                .includes(searchCriteria.text.toLocaleLowerCase())
-          );
+                .includes(category.toLocaleLowerCase())
+            );
+          }
+
+          if (text) {
+            filtered = filtered.filter(
+              (filteredCategory) =>
+                filteredCategory.forum_title
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase()) ||
+                filteredCategory.forum_description
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase())
+            );
+          }
+
           setForums(filtered);
         }
       })
@@ -120,7 +141,7 @@ const Search = () => {
           <Select
             native
             value={searchCriteria.category}
-            onChange={handleChange}
+            onChange={onCategoryChange}
             className={classes.category}
             inputProps={{
               name: "category",
@@ -157,11 +178,6 @@ const Search = () => {
           onChange={handleChange}
           onKeyPress={handleKeyPress}
         />
-      </div>
-      <div>
-        <Button onClick={handleSearch} className={classes.category}>
-          search
-        </Button>
       </div>
     </>
   );
