@@ -15,6 +15,11 @@ const ReplyForumSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Forum",
   },
+  user: {
+    id: { type: String },
+    name: { type: String },
+    picture: { type: String },
+  },
   likes: {
     type: Number,
     default: 0,

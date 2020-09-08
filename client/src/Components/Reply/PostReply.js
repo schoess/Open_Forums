@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth0 } from '@auth0/auth0-react';
 import forumApi from "../../utils/forum.api";
 import {
   Card,
@@ -34,11 +35,18 @@ const myStyle = {
 function PostReply(props) {
   const [forumTitle, setForumTitle] = useState("");
   const [replyToDescription, setReplyToDescription] = useState("");
+  const {isAuthenticated, user } = useAuth0();
 
   const replyToForum = async (event) => {
     event.preventDefault();
+    console.log(user);
     //API call for posting reply
     await forumApi.createReplyToForum(props.forumId, {
+      user : {
+        id: user.sub,
+        name: user.name,
+        picture: user.picture
+      },
       reply_description: replyToDescription,
     });
     setReplyToDescription("");
