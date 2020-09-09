@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import forumApi from "../../utils/forum.api";
 import {
   Card,
   CardActions,
@@ -13,12 +12,13 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
-import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./PostCard.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import * as _ from "lodash";
+import { useForumContext } from "../../contexts/ForumContext";
+import forumApi from "../../utils/forum.api";
 
 const useStyles = makeStyles((theme) => ({
   cardAction: {
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 // BV: switched to css file for style in order to style hover effects easier
 
-export default function PostCard(props) {
-  const classes = useStyles();
+export default function PostCard() {
+  // const classes = useStyles();
   const { forums, setForums } = useForumContext();
   const { isAuthenticated, user } = useAuth0();
 

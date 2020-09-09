@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import forumApi from "../../utils/forum.api";
 import {
   Card,
   Typography,
@@ -15,9 +14,10 @@ import {
   Delete as DeleteIcon,
 } from "@material-ui/icons";
 import moment from "moment";
-import PostReply from "./PostReply";
 import { useAuth0 } from "@auth0/auth0-react";
 import * as _ from "lodash";
+import forumApi from "../../utils/forum.api";
+import PostReply from "./PostReply";
 
 // "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
@@ -34,10 +34,7 @@ export default function Replies(props) {
   const [replies, setReplies] = useState([]);
   const { isAuthenticated, user } = useAuth0();
 
-  // get all replies
-  useEffect(() => {
-    loadAllReplyForum();
-  }, []);
+  
 
   // Loads all replies and sets them to data
   function loadAllReplyForum() {
@@ -48,6 +45,10 @@ export default function Replies(props) {
       })
       .catch((err) => console.log(err));
   }
+  // get all replies
+  useEffect(() => {
+    loadAllReplyForum();
+  }, []);
   const deleteOnClick = (reply) => () => {
     forumApi.deleteReply(reply._id);
     loadAllReplyForum();
