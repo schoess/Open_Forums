@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import forumApi from "../../utils/forum.api";
 import {
   Card,
   CardActions,
@@ -12,12 +13,12 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
-import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./PostCard.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import * as _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   cardAction: {
@@ -31,33 +32,65 @@ const useStyles = makeStyles((theme) => ({
 export default function PostCard(props) {
   const classes = useStyles();
   const { forums, setForums } = useForumContext();
-  const { user } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   const deleteOnClick = (forum) => () => {
     forumApi.deleteForum(forum._id);
     loadAllForum();
   };
 
-  const likeButtonOnClick = async (forum) => {
-    const updatedForum = {
-      ...forum,
-      likes: forum.likes + 1,
-      likedUsers: [...forum.likedUsers, forum._id],
-    };
-    console.log(updatedForum);
-    await forumApi.updateForum(forum._id, updatedForum);
-    await loadAllForum();
+  const likeButtonOnClick = (forum) => async () => {
+    const currentUserId = user.sub;
+    if (!_.includes(forum.likedUsers, currentUserId)) {
+      const hasUserDislikedBefore = _.includes(
+        forum.dislikedUsers,
+        currentUserId
+      );
+      let dislikes = forum.dislikes;
+      if (hasUserDislikedBefore) {
+        dislikes = dislikes - 1;
+      }
+      const dislikedUsers = _.filter(
+        forum.dislikedUsers,
+        (dislikedUser) => dislikedUser !== currentUserId
+      );
+      const updatedForum = {
+        ...forum,
+        likes: forum.likes + 1,
+        likedUsers: [...forum.likedUsers, currentUserId],
+        dislikes,
+        dislikedUsers,
+      };
+
+      await forumApi.updateForum(forum._id, updatedForum);
+      await loadAllForum();
+    }
   };
 
-  const dislikeButtonOnClick = async (forum) => {
-    const updatedForum = {
-      ...forum,
-      dislikes: forum.dislikes + 1,
-      dislikedUsers: [...forum.dislikedUsers, forum._id],
-    };
-    console.log(updatedForum);
-    await forumApi.updateForum(forum._id, updatedForum);
-    await loadAllForum();
+  const dislikeButtonOnClick = (forum) => async () => {
+    const currentUserId = user.sub;
+    if (!_.includes(forum.dislikedUsers, currentUserId)) {
+      const hasUserLikedBefore = _.includes(forum.likedUsers, currentUserId);
+      let likes = forum.likes;
+      if (hasUserLikedBefore) {
+        likes = likes - 1;
+      }
+      const likedUsers = _.filter(
+        forum.likedUsers,
+        (likedUser) => likedUser !== currentUserId
+      );
+
+      const updatedForum = {
+        ...forum,
+        dislikes: forum.dislikes + 1,
+        dislikedUsers: [...forum.dislikedUsers, currentUserId],
+        likes,
+        likedUsers,
+      };
+
+      await forumApi.updateForum(forum._id, updatedForum);
+      await loadAllForum();
+    }
   };
 
   useEffect(() => {
@@ -105,13 +138,15 @@ export default function PostCard(props) {
               <div className="likeDislikeBtns">
                 <span className="likeCount">{forum.likes}</span>
                 <IconButton
-                  onClick={() => likeButtonOnClick(forum)}
+                  disabled={!isAuthenticated}
+                  onClick={likeButtonOnClick(forum)}
                   size="small"
                 >
                   <ThumbUpAltIcon className="likeBtn" size="small" />
                 </IconButton>
                 <IconButton
-                  onClick={() => dislikeButtonOnClick(forum)}
+                  disabled={!isAuthenticated}
+                  onClick={dislikeButtonOnClick(forum)}
                   size="small"
                 >
                   <ThumbDownAltIcon className="dislikeBtn" />
@@ -133,20 +168,4 @@ export default function PostCard(props) {
       })}
     </div>
   );
-}
-
-{
-  /* <CardContent className="cardContent">
-            <Typography className="cardTitle" color="secondary" gutterBottom>
-              {item.forum_title}
-            </Typography>
-            <Typography className="cardBody" variant="body2" component="p">
-              {item.forum_description}
-              <br />
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <div className="likeDislikeBtns">
-              <ThumbUpAltIcon className="likeBtn" size="small" />
-              <ThumbDownAltIcon className="dislikeBtn" size="small" /> */
 }
