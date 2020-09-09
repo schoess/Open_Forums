@@ -8,6 +8,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import SubmitPost from "../SubmitPost/SubmitPost";
 import CreateIcon from "@material-ui/icons/Create";
 import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
+import { useAuth0 } from "@auth0/auth0-react";
+import AlertDialog from "../AuthenticationModal/AuthenticationModal";
 
 const myStyle = {
   CreatePostButton: {
@@ -23,6 +25,7 @@ export default function CreatePost() {
     showSubmitPostModal,
     setShowSubmitPostModal,
   } = useSubmitPostModalContext();
+  const { isAuthenticated } = useAuth0();
 
   const handleClickOpen = () => {
     setShowSubmitPostModal(true);
@@ -34,10 +37,13 @@ export default function CreatePost() {
 
   return (
     <div style={myStyle.CreatePostButton}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        <CreateIcon />
-        Create Post
-      </Button>
+      {(isAuthenticated && (
+        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          <CreateIcon />
+          Create Post
+        </Button>
+      )) || <AlertDialog />}
+
       <Dialog
         open={showSubmitPostModal}
         onClose={handleClose}
