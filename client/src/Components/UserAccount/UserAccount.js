@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -35,9 +36,13 @@ export default function ImageAvatars() {
     logout();
   };
 
+  const DirectChat = () => {
+    
+  }
+
   const handleMyForum = () => {
     setAnchorEl(null);
-    let path = `/forums`;
+    const path = "/forums";
     history.push(path);
   };
 
@@ -68,7 +73,7 @@ export default function ImageAvatars() {
         >
           <MenuItem onClick={handleMyForum}>My Forum</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          <MenuItem onClick={SetUsername}>Set Username</MenuItem>
+          <MenuItem onClick={DirectChat}>Direct Chat</MenuItem>
         </Menu>
       </div>
     </div>
