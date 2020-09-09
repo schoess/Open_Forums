@@ -36,9 +36,7 @@ export default function ImageAvatars() {
     logout();
   };
 
-  const DirectChat = () => {
-    
-  }
+  const DirectChat = () => {};
 
   const handleMyForum = () => {
     setAnchorEl(null);

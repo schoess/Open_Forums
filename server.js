@@ -31,7 +31,8 @@ app.use(routes);
 // // below allows the findByIdAndDelete mongoose call to be used
 // mongoose.set("useFindAndModify", false);
 
-const connection = "mongodb+srv://forumGuy:x44ChTJmQysK3kwQ@cluster0.rmtku.mongodb.net/Open_Forums?retryWrites=true&w=majority";
+const connection =
+  "mongodb+srv://forumGuy:x44ChTJmQysK3kwQ@cluster0.rmtku.mongodb.net/Open_Forums?retryWrites=true&w=majority";
 mongoose
   .connect(connection, {
     useNewUrlParser: true,

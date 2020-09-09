@@ -86,7 +86,6 @@ const Search = () => {
       .then((res) => {
         if (category === "All") {
           let filtered = res.data;
-          debugger;
 
           if (text) {
             filtered = res.data.filter(
