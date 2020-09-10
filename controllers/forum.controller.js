@@ -17,6 +17,11 @@ module.exports = {
       .then((dbForums) => res.json(dbForums.reverse()))
       .catch((err) => res.status(422).json(err));
   },
+  /*findAll: (req, res) => {
+  Forum.find(req.query)
+      .then((dbForums) => res.json(dbForums.sort({date: -1}))
+      .catch((err) => res.status(422).json(err))
+  },*/
   findById: (req, res) => {
     Forum.findById(req.params.forumId)
       .then((dbForum) => res.json(dbForum))
