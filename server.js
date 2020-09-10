@@ -3,7 +3,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const routes = require("./routes");
 
@@ -31,7 +31,8 @@ app.use(routes);
 // // below allows the findByIdAndDelete mongoose call to be used
 // mongoose.set("useFindAndModify", false);
 
-const connection = "mongodb+srv://forumGuy:x44ChTJmQysK3kwQ@cluster0.rmtku.mongodb.net/Open_Forums?retryWrites=true&w=majority";
+const connection =
+  "mongodb+srv://forumGuy:x44ChTJmQysK3kwQ@cluster0.rmtku.mongodb.net/Open_Forums?retryWrites=true&w=majority";
 mongoose
   .connect(connection, {
     useNewUrlParser: true,
