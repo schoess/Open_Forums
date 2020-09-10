@@ -1,11 +1,13 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from "react";
-import Dashboard from "./Components/Dashboard/Dashboard";
 import { CssBaseline } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import Dashboard from "./Components/Dashboard/Dashboard";
 import { ForumContextProvider } from "./contexts/ForumContext";
 import Forum from "./Components/Forum/Forum";
 import NavBar from "./Components/NavBar/NavBar";
+import DirectChat from "./Components/DirectChat/DirectChat";
 import { SubmitPostModalContextProvider } from "./contexts/SubmitPostModalContext";
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/forums/:forumId" component={Forum} />
+          <Route path="/directchat" component={DirectChat} />
         </Switch>
       </SubmitPostModalContextProvider>
     </ForumContextProvider>
