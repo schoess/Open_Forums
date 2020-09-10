@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// BV: switched to css file for style in order to style hover effects easier
-
 export default function PostCard(props) {
   const classes = useStyles();
   const { forums, setForums } = useForumContext();
@@ -133,20 +131,4 @@ export default function PostCard(props) {
       })}
     </div>
   );
-}
-
-{
-  /* <CardContent className="cardContent">
-            <Typography className="cardTitle" color="secondary" gutterBottom>
-              {item.forum_title}
-            </Typography>
-            <Typography className="cardBody" variant="body2" component="p">
-              {item.forum_description}
-              <br />
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <div className="likeDislikeBtns">
-              <ThumbUpAltIcon className="likeBtn" size="small" />
-              <ThumbDownAltIcon className="dislikeBtn" size="small" /> */
 }

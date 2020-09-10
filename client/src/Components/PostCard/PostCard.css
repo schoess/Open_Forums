@@ -108,3 +108,10 @@
 a:link {
   text-decoration: none;
 }
+
+@media only screen and (max-width: 800px) {
+  /* For mobile phones: */
+  [class*="cardIndividual"] {
+    margin: 7px 10px;
+  }
+}

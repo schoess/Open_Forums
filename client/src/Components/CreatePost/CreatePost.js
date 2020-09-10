@@ -11,10 +11,11 @@ import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext
 
 const myStyle = {
   CreatePostButton: {
-    backgroundColor: "primary",
-    paddingTop: "100px",
+    backgroundColor: "white",
+    marginTop: "100px",
     position: "sticky",
-    top: "0",
+    top: "100px",
+    zIndex: "1"
   },
 };
 
