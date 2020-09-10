@@ -1,15 +1,6 @@
 import React, { useEffect } from "react";
 import forumApi from "../../utils/forum.api";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-  Avatar,
-  CardHeader,
-  makeStyles,
-  IconButton,
-} from "@material-ui/core";
+import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
@@ -20,17 +11,17 @@ import "./PostCard.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import * as _ from "lodash";
 
-const useStyles = makeStyles((theme) => ({
-  cardAction: {
-    paddingTop: 5,
-    paddingBottom: 0,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   cardAction: {
+//     paddingTop: 5,
+//     paddingBottom: 0,
+//   },
+// }));
 
 // BV: switched to css file for style in order to style hover effects easier
 
 export default function PostCard(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const { forums, setForums } = useForumContext();
   const { isAuthenticated, user } = useAuth0();
 
@@ -42,18 +33,12 @@ export default function PostCard(props) {
   const likeButtonOnClick = (forum) => async () => {
     const currentUserId = user.sub;
     if (!_.includes(forum.likedUsers, currentUserId)) {
-      const hasUserDislikedBefore = _.includes(
-        forum.dislikedUsers,
-        currentUserId
-      );
+      const hasUserDislikedBefore = _.includes(forum.dislikedUsers, currentUserId);
       let dislikes = forum.dislikes;
       if (hasUserDislikedBefore) {
         dislikes = dislikes - 1;
       }
-      const dislikedUsers = _.filter(
-        forum.dislikedUsers,
-        (dislikedUser) => dislikedUser !== currentUserId
-      );
+      const dislikedUsers = _.filter(forum.dislikedUsers, (dislikedUser) => dislikedUser !== currentUserId);
       const updatedForum = {
         ...forum,
         likes: forum.likes + 1,
@@ -75,10 +60,7 @@ export default function PostCard(props) {
       if (hasUserLikedBefore) {
         likes = likes - 1;
       }
-      const likedUsers = _.filter(
-        forum.likedUsers,
-        (likedUser) => likedUser !== currentUserId
-      );
+      const likedUsers = _.filter(forum.likedUsers, (likedUser) => likedUser !== currentUserId);
 
       const updatedForum = {
         ...forum,
@@ -103,7 +85,14 @@ export default function PostCard(props) {
     forumApi
       .getAllForum()
       .then((res) => {
-        setForums(res.data);
+        if (props.myForum) {
+          let personalForum = res.data.filter((forum) => {
+            return forum.user && forum.user.id === user.sub;
+          });
+          setForums(personalForum);
+        } else {
+          setForums(res.data);
+        }
       })
       .catch((err) => console.log(err));
   }
@@ -115,21 +104,13 @@ export default function PostCard(props) {
             <CardHeader
               // className={classes.cardAction}
               className="padding-delete"
-              avatar={
-                <Avatar
-                  alt={forum.user && forum.user.name}
-                  src={forum.user && forum.user.picture}
-                />
-              }
+              avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
               title={forum.user && forum.user.name}
               subheader={moment(forum.date).format("lll")}
             />
             <Link to={`/forums/${forum._id}`}>
               <CardContent className="padding-delete">
-                <Typography
-                  className="cardTitle padding-delete cardContent"
-                  color="secondary"
-                >
+                <Typography className="cardTitle padding-delete cardContent" color="secondary">
                   <h2 className="cardTitle">{forum.forum_title}</h2>
                 </Typography>
               </CardContent>
@@ -137,31 +118,16 @@ export default function PostCard(props) {
             <CardActions className="padding-delete">
               <div className="likeDislikeBtns">
                 <span className="likeCount">{forum.likes}</span>
-                <IconButton
-                  disabled={!isAuthenticated}
-                  onClick={likeButtonOnClick(forum)}
-                  size="small"
-                >
+                <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
                   <ThumbUpAltIcon className="likeBtn" size="small" />
                 </IconButton>
-                <IconButton
-                  disabled={!isAuthenticated}
-                  onClick={dislikeButtonOnClick(forum)}
-                  size="small"
-                >
+                <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
                   <ThumbDownAltIcon className="dislikeBtn" />
                 </IconButton>
                 <span className="dislikeCount">{forum.dislikes}</span>
               </div>
               {/* show delete button only for the user who posted the forum */}
-              {forum.user && forum.user.id === user.sub && (
-                <DeleteIcon
-                  className="deleteBtn"
-                  onClick={deleteOnClick(forum)}
-                  size="small"
-                  variant="contained"
-                />
-              )}
+              {forum.user && forum.user.id === user.sub && <DeleteIcon className="deleteBtn" onClick={deleteOnClick(forum)} size="small" variant="contained" />}
             </CardActions>
           </Card>
         );
