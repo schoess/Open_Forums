@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NavBar() {
+function NavBar(props) {
   const { isAuthenticated } = useAuth0();
   const classes = useStyles();
 
@@ -28,10 +28,8 @@ function NavBar() {
           <Link to="/" variant="h6" className={classes.title} align="left">
             <Typography variant="h5">Open Forum</Typography>
           </Link>
-          <Search />
-          <Button color="inherit">
-            {isAuthenticated ? <UserAccount /> : <Login />}
-          </Button>
+          {props.isSearchEnable && <Search />}
+          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
         </Toolbar>
       </AppBar>
     </div>

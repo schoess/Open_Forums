@@ -4,8 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { FormControl, InputLabel, Select, Button } from "@material-ui/core";
-import * as _ from "lodash";
+import { FormControl, InputLabel, Select } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,15 +87,7 @@ const Search = () => {
           let filtered = res.data;
 
           if (text) {
-            filtered = res.data.filter(
-              (forum) =>
-                forum.forum_title
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase()) ||
-                forum.forum_description
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase())
-            );
+            filtered = res.data.filter((forum) => forum.forum_title.toLowerCase().includes(text.toLocaleLowerCase()) || forum.forum_description.toLowerCase().includes(text.toLocaleLowerCase()));
           }
 
           setForums(filtered);
@@ -104,22 +95,12 @@ const Search = () => {
           let filtered;
 
           if (category) {
-            filtered = res.data.filter((forum) =>
-              forum.category
-                .toLowerCase()
-                .includes(category.toLocaleLowerCase())
-            );
+            filtered = res.data.filter((forum) => forum.category.toLowerCase().includes(category.toLocaleLowerCase()));
           }
 
           if (text) {
             filtered = filtered.filter(
-              (filteredCategory) =>
-                filteredCategory.forum_title
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase()) ||
-                filteredCategory.forum_description
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase())
+              (filteredCategory) => filteredCategory.forum_title.toLowerCase().includes(text.toLocaleLowerCase()) || filteredCategory.forum_description.toLowerCase().includes(text.toLocaleLowerCase())
             );
           }
 
