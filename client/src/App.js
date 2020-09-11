@@ -9,6 +9,7 @@ import Forum from "./Components/Forum/Forum";
 import DirectChat from "./Components/DirectChat/DirectChat";
 import { SubmitPostModalContextProvider } from "./contexts/SubmitPostModalContext";
 import MyForum from "./Components/MyForum/MyForum";
+import NavBar from "./Components/NavBar/NavBar";
 
 function App() {
   const { isLoading } = useAuth0();
@@ -18,6 +19,7 @@ function App() {
   return (
     <ForumContextProvider>
       <SubmitPostModalContextProvider>
+        <NavBar />
         <CssBaseline />
         <Switch>
           <Route exact path="/" component={Dashboard} />
