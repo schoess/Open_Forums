@@ -1,9 +1,9 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 import theme from "./theme";
 import Auth0ProviderWithHistory from "./contexts/Auth0ProviderWithHistory";
 
@@ -26,5 +26,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
-
-serviceWorker.unregister();

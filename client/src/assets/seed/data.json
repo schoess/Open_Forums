@@ -1,20 +1,74 @@
 [
   {
     "id": 1,
-    "User": "BridKid",
-    "Title": "How to make Cereal",
-    "PostBody": "Get milk, get a bowl, get a spoon and choose your favorite cereal. Pour the milk into the box, put the bowl on your head and throw the spoon at your little brother while screaming."
+    "User": "Nick Schoess",
+    "Initials": "NS",
+    "Date": "September 9th, 2020"
   },
   {
     "id": 2,
-    "User": "Val.Ann031",
-    "Title": "Have you guys ever seen Napolean Dynamite?",
-    "PostBody": "I just watched it and it was hilarious haha"
+    "User": "Anitha Venkatesan",
+    "Initials": "AV",
+    "Date": "September 8th, 2020"
   },
   {
     "id": 3,
-    "User": "dudeGUY14",
-    "Title": "I have a problem with people who don't use their blinker!!!",
-    "PostBody": "Who do they think they are?! It's dangerous and dumb and stupid and I hate it when they then act like YOU'RE the one in the wrong and not them. Like WTF is that??? Dont @ me"
+    "User": "Sathya Guru",
+    "Initials": "SG",
+    "Date": "September 7th, 2020"
+  },
+  {
+    "id": 4,
+    "User": "Ben Vasko",
+    "Initials": "BV",
+    "Date": "September 5th, 2020"
+  },
+  {
+    "id": 5,
+    "User": "Charlie Werness",
+    "Initials": "CW",
+    "Date": "September 3rd, 2020"
+  },
+  {
+    "id": 6,
+    "User": "Valerie Schoess",
+    "Initials": "VS",
+    "Date": "August 23rd, 2020"
+  },
+  {
+    "id": 7,
+    "User": "Abby Schoess",
+    "Initials": "AS",
+    "Date": "August 21st, 2020"
+  },
+  {
+    "id": 8,
+    "User": "Tony Hawk",
+    "Initials": "TH",
+    "Date": "August 18th, 2020"
+  },
+  {
+    "id": 9,
+    "User": "Bill Gates",
+    "Initials": "BG",
+    "Date": "August 17th, 2020"
+  },
+  {
+    "id": 10,
+    "User": "Barrack Obama",
+    "Initials": "BO",
+    "Date": "August 15th, 2020"
+  },
+  {
+    "id": 11,
+    "User": "Bat Man",
+    "Initials": "BM",
+    "Date": "August 9th, 2020"
+  },
+  {
+    "id": 12,
+    "User": "Joe Peterson",
+    "Initials": "JP",
+    "Date": "August 8th, 2020"
   }
 ]
