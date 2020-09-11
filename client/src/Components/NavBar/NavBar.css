@@ -1,0 +1,13 @@
+body {
+    font-family: 'Sail', cursive;
+}
+
+.navBar {
+    flex-grow: 1;
+}
+
+.title {
+    font-family: 'Sail', cursive;
+    flex-grow: 1;
+    color: white;
+}
