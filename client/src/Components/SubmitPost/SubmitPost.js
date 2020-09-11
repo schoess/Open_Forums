@@ -1,13 +1,6 @@
 //Submit Post
 import React from "react";
-import {
-  Grid,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-} from "@material-ui/core";
+import { Grid, TextField, Button, FormControl, InputLabel, Select } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useAuth0 } from "@auth0/auth0-react";
 import AlertDialog from "../AuthenticationModal/AuthenticationModal";
@@ -50,8 +43,7 @@ function SubmitPost() {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const forumCategory =
-      (category.categoryName && category.categoryName) || "General";
+    const forumCategory = (category.categoryName && category.categoryName) || "General";
 
     // API
     await forumApi.createForum({
@@ -75,7 +67,14 @@ function SubmitPost() {
     await forumApi
       .getAllForum()
       .then((res) => {
-        setForums(res.data);
+        if (window.location.pathname === "/my_forum") {
+          let personalForum = res.data.filter((forum) => {
+            return forum.user && forum.user.id === user.sub;
+          });
+          setForums(personalForum);
+        } else {
+          setForums(res.data);
+        }
       })
       .catch((err) => console.log(err));
 
@@ -111,16 +110,7 @@ function SubmitPost() {
             </FormControl>
           </div>
           <div>
-            <TextField
-              style={myStyle.textField}
-              id="title"
-              label="Title"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-            />
+            <TextField style={myStyle.textField} id="title" label="Title" variant="outlined" margin="normal" fullWidth value={title} onChange={(event) => setTitle(event.target.value)} />
           </div>
           <div>
             <TextField
@@ -138,25 +128,11 @@ function SubmitPost() {
           </div>
           <div>
             {(!isAuthenticated && (
-              <Button
-                style={myStyle.button}
-                label="submit"
-                type="submit"
-                fullWidth
-                color="primary"
-                variant="contained"
-              >
+              <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
                 <AlertDialog />
               </Button>
             )) || (
-              <Button
-                style={myStyle.button}
-                label="submit"
-                type="submit"
-                fullWidth
-                color="primary"
-                variant="contained"
-              >
+              <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
                 Send
               </Button>
             )}
