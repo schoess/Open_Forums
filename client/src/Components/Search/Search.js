@@ -4,8 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { FormControl, InputLabel, Select, Button } from "@material-ui/core";
-import * as _ from "lodash";
+import { FormControl, InputLabel, Select } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -86,7 +85,6 @@ const Search = () => {
       .then((res) => {
         if (category === "All") {
           let filtered = res.data;
-          debugger;
 
           if (text) {
             filtered = res.data.filter(

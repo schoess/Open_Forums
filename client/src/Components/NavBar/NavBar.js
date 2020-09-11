@@ -13,11 +13,15 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+<<<<<<< HEAD
     color: "white"
+=======
+    color: "white",
+>>>>>>> 22b4fc8efe2610a673256d319a877aeb96fc4145
   },
 }));
 
-function NavBar() {
+function NavBar(props) {
   const { isAuthenticated } = useAuth0();
   const classes = useStyles();
 
@@ -28,10 +32,8 @@ function NavBar() {
           <Link to="/" variant="h6" className={classes.title} align="left">
             <Typography variant="h5">Open Forum</Typography>
           </Link>
-          <Search />
-          <Button color="inherit">
-            {isAuthenticated ? <UserAccount /> : <Login />}
-          </Button>
+          {props.isSearchEnable && <Search />}
+          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
         </Toolbar>
       </AppBar>
     </div>

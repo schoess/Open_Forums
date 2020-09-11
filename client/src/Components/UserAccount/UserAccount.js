@@ -1,10 +1,10 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Menu, MenuItem } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import SetUsername from "../SetUsername/SetUsername";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,9 +35,11 @@ export default function ImageAvatars() {
     logout();
   };
 
+  const DirectChat = () => {};
+
   const handleMyForum = () => {
     setAnchorEl(null);
-    let path = `/forums`;
+    const path = "/my_forum";
     history.push(path);
   };
 
@@ -68,7 +70,7 @@ export default function ImageAvatars() {
         >
           <MenuItem onClick={handleMyForum}>My Forum</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          <MenuItem onClick={SetUsername}>Set Username</MenuItem>
+          <MenuItem onClick={DirectChat}>Direct Chat</MenuItem>
         </Menu>
       </div>
     </div>

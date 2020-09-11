@@ -35,7 +35,7 @@ const myStyle = {
 function PostReply(props) {
   const [forumTitle, setForumTitle] = useState("");
   const [replyToDescription, setReplyToDescription] = useState("");
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
 
   const replyToForum = async (event) => {
     event.preventDefault();

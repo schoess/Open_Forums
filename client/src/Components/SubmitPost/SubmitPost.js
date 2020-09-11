@@ -75,7 +75,14 @@ function SubmitPost() {
     await forumApi
       .getAllForum()
       .then((res) => {
-        setForums(res.data);
+        if (window.location.pathname === "/my_forum") {
+          let personalForum = res.data.filter((forum) => {
+            return forum.user && forum.user.id === user.sub;
+          });
+          setForums(personalForum);
+        } else {
+          setForums(res.data);
+        }
       })
       .catch((err) => console.log(err));
 
