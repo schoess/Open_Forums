@@ -6,11 +6,16 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import CreateIcon from "@material-ui/icons/Create";
+<<<<<<< HEAD:client/src/Components/CreatePost/CreatePost.js
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useAuth0 } from "@auth0/auth0-react";
 import SubmitPost from "../SubmitPost/SubmitPost";
 import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
 import AlertDialog from "../AuthenticationModal/AuthenticationModal";
+=======
+import SubmitPost from "../SubmitPost/SubmitPost";
+import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
+>>>>>>> 8546b72372018846fa2a1b42177145dc45bc09b2:client/src/Components/CreatePost/CreatePost.jsx
 
 const myStyle = {
   CreatePostButton: {
@@ -27,7 +32,6 @@ export default function CreatePost() {
     showSubmitPostModal,
     setShowSubmitPostModal,
   } = useSubmitPostModalContext();
-  const { isAuthenticated } = useAuth0();
 
   const handleClickOpen = () => {
     setShowSubmitPostModal(true);
@@ -40,13 +44,10 @@ export default function CreatePost() {
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <div style={myStyle.CreatePostButton}>
-      {(isAuthenticated && (
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          <CreateIcon />
-          Create Post
-        </Button>
-      )) || <AlertDialog />}
-
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <CreateIcon />
+        Create Post
+      </Button>
       <Dialog
         open={showSubmitPostModal}
         onClose={handleClose}

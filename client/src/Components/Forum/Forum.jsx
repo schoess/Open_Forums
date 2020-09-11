@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import forumApi from "../../utils/forum.api";
 import {
   Card,
   CardContent,
@@ -8,10 +7,11 @@ import {
   CardHeader,
   Avatar,
 } from "@material-ui/core";
-import Replies from "../Reply/Replies";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import moment from "moment";
+import Replies from "../Reply/Replies";
+import forumApi from "../../utils/forum.api";
 
 const myStyle = {
   cardContainer: {
