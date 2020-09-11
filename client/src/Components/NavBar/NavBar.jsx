@@ -27,10 +27,14 @@ function NavBar(props) {
       <AppBar position="fixed">
         <Toolbar>
           <Link to="/" variant="h6" className="title" align="left">
-            <Typography className="titleFont" variant="h5">Open Forum</Typography>
+            <Typography className="titleFont" variant="h5">
+              Open Forum
+            </Typography>
           </Link>
           {props.isSearchEnable && <Search />}
-          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
+          <Button color="inherit">
+            {isAuthenticated ? <UserAccount /> : <Login />}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

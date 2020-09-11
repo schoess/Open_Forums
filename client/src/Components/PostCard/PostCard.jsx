@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-<<<<<<< HEAD:client/src/Components/PostCard/PostCard.js
-import forumApi from "../../utils/forum.api";
 import {
   Card,
   CardActions,
@@ -10,9 +8,6 @@ import {
   CardHeader,
   IconButton,
 } from "@material-ui/core";
-=======
-import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton } from "@material-ui/core";
->>>>>>> 8546b72372018846fa2a1b42177145dc45bc09b2:client/src/Components/PostCard/PostCard.jsx
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
@@ -75,7 +70,7 @@ export default function PostCard(props) {
       const hasUserLikedBefore = _.includes(forum.likedUsers, currentUserId);
       let likes = forum.likes;
       if (hasUserLikedBefore) {
-        likes = likes - 1;
+        likes -= 1;
       }
       const likedUsers = _.filter(
         forum.likedUsers,
@@ -90,6 +85,7 @@ export default function PostCard(props) {
         likedUsers,
       };
 
+      // eslint-disable-next-line no-underscore-dangle
       await forumApi.updateForum(forum._id, updatedForum);
       await loadAllForum();
     }
@@ -106,7 +102,7 @@ export default function PostCard(props) {
       .getAllForum()
       .then((res) => {
         if (props.myForum) {
-          let personalForum = res.data.filter((forum) => {
+          const personalForum = res.data.filter((forum) => {
             return forum.user && forum.user.id === user.sub;
           });
           setForums(personalForum);
