@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import forumApi from "../../utils/forum.api";
 import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
