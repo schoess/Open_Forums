@@ -1,28 +1,28 @@
 // CreatePost
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import { Button, Dialog, IconButton, Tooltip } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import CreateIcon from "@material-ui/icons/Create";
+import BorderColorIcon from "@material-ui/icons/BorderColor";
 import SubmitPost from "../SubmitPost/SubmitPost";
 import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
 
 const myStyle = {
   CreatePostButton: {
     backgroundColor: "primary",
-    paddingTop: "100px",
+    paddingTop: "20px",
     position: "sticky",
+    paddingRight: "50px",
     top: "0",
+  },
+  BorderIcon: {
+    paddingRight: "5px",
   },
 };
 
 export default function CreatePost() {
-  const {
-    showSubmitPostModal,
-    setShowSubmitPostModal,
-  } = useSubmitPostModalContext();
+  const { showSubmitPostModal, setShowSubmitPostModal } = useSubmitPostModalContext();
 
   const handleClickOpen = () => {
     setShowSubmitPostModal(true);
@@ -34,15 +34,16 @@ export default function CreatePost() {
 
   return (
     <div style={myStyle.CreatePostButton}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Tooltip title="Add your Own Post" color="inherit" onClick={handleClickOpen}>
+        <IconButton aria-label="Create">
+          <BorderColorIcon style={myStyle.BorderIcon} />
+          Create Post
+        </IconButton>
+      </Tooltip>
+      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         <CreateIcon />
-        Create Post
-      </Button>
-      <Dialog
-        open={showSubmitPostModal}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
+      </Button> */}
+      <Dialog open={showSubmitPostModal} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create Your own Post</DialogTitle>
         <DialogContent>
           <SubmitPost />
