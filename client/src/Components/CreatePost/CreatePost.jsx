@@ -11,11 +11,8 @@ import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext
 
 const myStyle = {
   CreatePostButton: {
-    backgroundColor: "white",
-    marginTop: "100px",
-    position: "sticky",
-    top: "100px",
-    zIndex: "1",
+    backgroundColor: "#FF5733",
+    marginRight: "30px",
   },
 };
 
@@ -35,7 +32,7 @@ export default function CreatePost() {
 
   return (
     <div style={myStyle.CreatePostButton}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button onClick={handleClickOpen}>
         <CreateIcon />
         Create Post
       </Button>

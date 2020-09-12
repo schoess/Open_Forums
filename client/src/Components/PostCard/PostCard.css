@@ -7,12 +7,12 @@
 
 .cardIndividual {
   margin: 7px 100px;
-  opacity: 80%;
+  opacity: .8;
   padding: 10px;
 }
 
 .cardIndividual:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .cardTitle {

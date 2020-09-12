@@ -12,3 +12,8 @@
 a:link {
   text-decoration: none !important;
 }
+
+.darkModeToggleDiv {
+    display: inline;
+    padding-right: 500px;
+}

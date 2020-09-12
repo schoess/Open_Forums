@@ -1,40 +1,23 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import "./theme.css";
 
-const font = "'Roboto', sans-serif";
+const mainFont = "'Roboto', sans-serif";
+const palletType = darkState ? "dark" : "light";
+const mainPrimaryColor = darkState ? "#000000" : "#ffffff";
+const mainSecondaryColor = darkState ? "#581845" : "#FF5733";
 const theme = createMuiTheme({
   palette: {
-    type: "dark",
+    type: palletType,
     primary: {
-      main: "#581845",
+      main: mainPrimaryColor,
     },
     secondary: {
-      main: "#900C3F",
+      main: mainSecondaryColor,
     },
   },
   typography: {
-    fontFamily: font,
+    fontFamily: mainFont,
   },
 });
-
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       light: "#bc477b",
-//       main: "#880e4f",
-//       dark: "#560027",
-//       contrastText: "#ffffff",
-//     },
-//     secondary: {
-//       light: "#4fb3bf",
-//       main: "#00838f",
-//       dark: "#005662",
-//       contrastText: "#ffffff",
-//     },
-//   },
-//   typography: {
-//     fontFamily: font,
-//   },
-// });
 
 export default theme;
