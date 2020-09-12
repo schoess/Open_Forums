@@ -1,8 +1,21 @@
 import React, { useEffect } from "react";
-import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  Avatar,
+  CardHeader,
+  IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  Grid,
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./PostCard.css";
@@ -20,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   date: {
-    color: "inherit",
+    paddingRight: 60
   },
   inputRoot: {
     color: "inherit",
@@ -43,16 +56,20 @@ export default function PostCard(props) {
   const classes = useStyles();
   const { forums, setForums } = useForumContext();
   const { isAuthenticated, user } = useAuth0();
-  
+  const [sortOrder, setSortOrder] = React.useState("new");
+  const onSortChange = (event) => {
+    setSortOrder(event.target.value);
+    const queryParam = {
+      sortOrder: event.target.value === "new" ? "desc" : "asc",
+    };
+
+    loadAllForum(queryParam);
+  };
+
   const deleteOnClick = (forum) => () => {
     forumApi.deleteForum(forum._id);
     loadAllForum();
   };
-
-
-  
-
-
   const likeButtonOnClick = (forum) => async () => {
     const currentUserId = user.sub;
     if (!_.includes(forum.likedUsers, currentUserId)) {
@@ -104,9 +121,9 @@ export default function PostCard(props) {
   }, []);
 
   // Loads all forums and sets them to data
-  function loadAllForum() {
+  function loadAllForum(params) {
     forumApi
-      .getAllForum()
+      .getAllForum(params)
       .then((res) => {
         if (props.myForum) {
           let personalForum = res.data.filter((forum) => {
@@ -121,73 +138,60 @@ export default function PostCard(props) {
   }
   return (
     <div className="cardContainer">
-        {forums.map((forum) => {
-         return (
-            <Card className="cardIndividual" key={forum._id}>
-              <CardHeader
-                // className={classes.cardAction}
-                className="padding-delete"
-                avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
-                title={forum.user && forum.user.name}
-                subheader={moment(forum.date).format("lll")}
-              />
-              <Link to={`/forums/${forum._id}`}>
-                <CardContent className="padding-delete">
-                  <Typography className="cardTitle padding-delete cardContent" color="secondary">
-                    <h2 className="cardTitle">{forum.forum_title}</h2>
-                  </Typography>
-                </CardContent>
-              </Link>
-              <CardActions className="padding-delete">
-                <div className="likeDislikeBtns">
-                  <span className="likeCount">{forum.likes}</span>
-                  <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
-                    <ThumbUpAltIcon className="likeBtn" size="small" />
-                  </IconButton>
-                  <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
-                    <ThumbDownAltIcon className="dislikeBtn" />
-                  </IconButton>
-                  <span className="dislikeCount">{forum.dislikes}</span>
-                </div>
-                {/* show delete button only for the user who posted the forum */}
-                {forum.user && forum.user.id === user.sub && <DeleteIcon className="deleteBtn" onClick={deleteOnClick(forum)} size="small" variant="contained" />}
-              </CardActions>
-            </Card>
-           
-          );
-          
-        })}
-       </div>
-    
+      <Grid container item justify="flex-end" className={classes.date}>
+        <FormControl className={classes.date}>
+          <InputLabel htmlFor="sort-by">
+            Sort By Date
+          </InputLabel>
+          <Select
+            native
+            onChange={onSortChange}
+            value={sortOrder}
+            className={classes.date}
+            inputProps={{
+              name: "date",
+              id: "sort-by",
+            }}
+          >
+            <option value="new">Newest</option>
+            <option value="old">Oldest</option>
+          </Select>
+        </FormControl>
+      </Grid>
+      {forums.map((forum) => {
+        return (
+          <Card className="cardIndividual" key={forum._id}>
+            <CardHeader
+              // className={classes.cardAction}
+              className="padding-delete"
+              avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
+              title={forum.user && forum.user.name}
+              subheader={moment(forum.date).format("lll")}
+            />
+            <Link to={`/forums/${forum._id}`}>
+              <CardContent className="padding-delete">
+                <Typography className="cardTitle padding-delete cardContent" color="secondary">
+                  <h2 className="cardTitle">{forum.forum_title}</h2>
+                </Typography>
+              </CardContent>
+            </Link>
+            <CardActions className="padding-delete">
+              <div className="likeDislikeBtns">
+                <span className="likeCount">{forum.likes}</span>
+                <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
+                  <ThumbUpAltIcon className="likeBtn" size="small" />
+                </IconButton>
+                <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
+                  <ThumbDownAltIcon className="dislikeBtn" />
+                </IconButton>
+                <span className="dislikeCount">{forum.dislikes}</span>
+              </div>
+              {/* show delete button only for the user who posted the forum */}
+              {forum.user && forum.user.id === user.sub && <DeleteIcon className="deleteBtn" onClick={deleteOnClick(forum)} size="small" variant="contained" />}
+            </CardActions>
+          </Card>
+        );
+      })}
+    </div>
   );
 }
-
-/*const [dateSort, setDateSort] = React.useState({
-    date: "Newest",
-    text: "",
-  });
-const onDateChange = (event) => {
-    setDateSort({ date: event.target.value });
-    //handleSearch(event.target.value, dateSort.text);
-  };
-
-  <div>
-          <FormControl >
-            <InputLabel htmlFor="age-native-simple" className={classes.date} >
-              Sort By Date
-            </InputLabel>
-        <Select
-                native
-                value={dateSort.date}
-                onChange={onDateChange}
-                className={classes.date}
-                inputProps={{
-                  name: "date",
-                  id: "age-native-simple",
-                }}>
-                <option >Newest</option>
-                <option >Oldest</option>
-    
-              </Select>
-      </FormControl>
-      </div> */

@@ -13,15 +13,23 @@ module.exports = {
       });
   },
   findAll: (req, res) => {
-    Forum.find(req.query)
-      .then((dbForums) => res.json(dbForums.reverse()))
+    let { sortBy, sortOrder } = req.query;
+    if (!sortBy) {
+      sortBy = "date";
+    }
+    if (!sortOrder) {
+      sortOrder = "desc";
+    }
+    const sortObj = {};
+    sortObj[sortBy] = sortOrder;
+    //console.log(sortObj);
+    //console.log(sortOrder);
+
+    Forum.find({})
+      .sort(sortObj)
+      .then((dbForums) => res.json(dbForums))
       .catch((err) => res.status(422).json(err));
   },
-  /*findAll: (req, res) => {
-  Forum.find(req.query)
-      .then((dbForums) => res.json(dbForums.sort({date: -1}))
-      .catch((err) => res.status(422).json(err))
-  },*/
   findById: (req, res) => {
     Forum.findById(req.params.forumId)
       .then((dbForum) => res.json(dbForum))
