@@ -29,7 +29,9 @@ function NavBar(props) {
             <Typography variant="h5">Open Forum</Typography>
           </Link>
           {props.isSearchEnable && <Search />}
-          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
+          <Button color="inherit">
+            {isAuthenticated ? <UserAccount /> : <Login />}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

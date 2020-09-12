@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import forumApi from "../../utils/forum.api";
-import { Card, Typography, CardContent, CardActions, Button, TextField } from "@material-ui/core";
+import {
+  Card,
+  Typography,
+  CardContent,
+  CardActions,
+  Button,
+  TextField,
+} from "@material-ui/core";
 
 // "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
@@ -51,7 +58,13 @@ function PostReply(props) {
       <form onSubmit={replyToForum}>
         <Card style={myStyle.replyCard}>
           <CardContent>
-            <Typography style={myStyle.replyText} variant="body2" component="p" value={forumTitle} onChange={(event) => setForumTitle(event.target.value)}>
+            <Typography
+              style={myStyle.replyText}
+              variant="body2"
+              component="p"
+              value={forumTitle}
+              onChange={(event) => setForumTitle(event.target.value)}
+            >
               Reply Card
             </Typography>
           </CardContent>
@@ -68,7 +81,12 @@ function PostReply(props) {
             onChange={(event) => setReplyToDescription(event.target.value)}
           />
           <CardActions>
-            <Button type="submit" color="secondary" size="small" variant="contained">
+            <Button
+              type="submit"
+              color="secondary"
+              size="small"
+              variant="contained"
+            >
               Reply
             </Button>
           </CardActions>

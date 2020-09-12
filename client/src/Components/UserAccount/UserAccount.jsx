@@ -46,7 +46,13 @@ export default function ImageAvatars() {
   return (
     <div className={classes.root}>
       <div>
-        <Avatar alt="" src={user.picture} aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} />
+        <Avatar
+          alt=""
+          src={user.picture}
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleMenu}
+        />
         <Menu
           id="menu-appbar"
           anchorEl={anchorEl}
@@ -64,7 +70,9 @@ export default function ImageAvatars() {
         >
           <MenuItem onClick={handleMyForum}>My Forum</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          <Link to="/directchat"><MenuItem>Direct Chat</MenuItem></Link>
+          <Link to="/directchat">
+            <MenuItem>Direct Chat</MenuItem>
+          </Link>
         </Menu>
       </div>
     </div>

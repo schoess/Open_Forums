@@ -34,8 +34,6 @@ export default function Replies(props) {
   const [replies, setReplies] = useState([]);
   const { isAuthenticated, user } = useAuth0();
 
-  
-
   // Loads all replies and sets them to data
   function loadAllReplyForum() {
     forumApi

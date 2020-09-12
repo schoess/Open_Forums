@@ -87,7 +87,15 @@ const Search = () => {
           let filtered = res.data;
 
           if (text) {
-            filtered = res.data.filter((forum) => forum.forum_title.toLowerCase().includes(text.toLocaleLowerCase()) || forum.forum_description.toLowerCase().includes(text.toLocaleLowerCase()));
+            filtered = res.data.filter(
+              (forum) =>
+                forum.forum_title
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase()) ||
+                forum.forum_description
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase())
+            );
           }
 
           setForums(filtered);
@@ -95,12 +103,22 @@ const Search = () => {
           let filtered;
 
           if (category) {
-            filtered = res.data.filter((forum) => forum.category.toLowerCase().includes(category.toLocaleLowerCase()));
+            filtered = res.data.filter((forum) =>
+              forum.category
+                .toLowerCase()
+                .includes(category.toLocaleLowerCase())
+            );
           }
 
           if (text) {
             filtered = filtered.filter(
-              (filteredCategory) => filteredCategory.forum_title.toLowerCase().includes(text.toLocaleLowerCase()) || filteredCategory.forum_description.toLowerCase().includes(text.toLocaleLowerCase())
+              (filteredCategory) =>
+                filteredCategory.forum_title
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase()) ||
+                filteredCategory.forum_description
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase())
             );
           }
 

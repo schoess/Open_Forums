@@ -2,7 +2,6 @@ import axios from "axios";
 
 export default {
   // Create forum
-
   createForum: async function (forum) {
     return await axios.post("/api/forums", forum);
   },
