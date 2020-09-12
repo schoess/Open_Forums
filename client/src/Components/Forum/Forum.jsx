@@ -3,9 +3,9 @@ import {
   Card,
   CardContent,
   Typography,
-  IconButton,
   CardHeader,
   Avatar,
+  IconButton,
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
