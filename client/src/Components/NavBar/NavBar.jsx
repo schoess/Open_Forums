@@ -2,13 +2,13 @@ import React from "react";
 import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Login from "../Login/Login";
 import { makeStyles } from "@material-ui/core/styles";
+import Login from "../Login/Login";
 import UserAccount from "../UserAccount/UserAccount";
 import Search from "../Search/Search";
 import CreatePost from "../CreatePost/CreatePost";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -31,7 +31,9 @@ function NavBar(props) {
           </Link>
           <CreatePost />
           {props.isSearchEnable && <Search />}
-          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
+          <Button color="inherit">
+            {isAuthenticated ? <UserAccount /> : <Login />}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

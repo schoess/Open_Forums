@@ -1,8 +1,21 @@
 import React, { useEffect } from "react";
-import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  Avatar,
+  CardHeader,
+  IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  Grid,
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./PostCard.css";
@@ -11,34 +24,72 @@ import * as _ from "lodash";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 
-// const useStyles = makeStyles((theme) => ({
-//   cardAction: {
-//     paddingTop: 5,
-//     paddingBottom: 0,
-//   },
-// }));
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  date: {
+    margin: theme.spacing(1),
+    minWidth: 80,
+    color: "inherit",
+    marginRight: 80,
+  },
+ cursorPointer: {
+    cursor: "pointer",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(2em + ${theme.spacing(2)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "25ch",
+    },
+  },
+}));
 
 // BV: switched to css file for style in order to style hover effects easier
 
 export default function PostCard(props) {
-  // const classes = useStyles();
+  const classes = useStyles();
   const { forums, setForums } = useForumContext();
   const { isAuthenticated, user } = useAuth0();
+  const [sortOrder, setSortOrder] = React.useState("new");
+  const onSortChange = (event) => {
+    setSortOrder(event.target.value);
+    const queryParam = {
+      sortOrder: event.target.value === "new" ? "desc" : "asc",
+    };
+
+    loadAllForum(queryParam);
+  };
 
   const deleteOnClick = (forum) => () => {
     forumApi.deleteForum(forum._id);
     loadAllForum();
   };
-
   const likeButtonOnClick = (forum) => async () => {
     const currentUserId = user.sub;
     if (!_.includes(forum.likedUsers, currentUserId)) {
-      const hasUserDislikedBefore = _.includes(forum.dislikedUsers, currentUserId);
+      const hasUserDislikedBefore = _.includes(
+        forum.dislikedUsers,
+        currentUserId
+      );
       let dislikes = forum.dislikes;
       if (hasUserDislikedBefore) {
         dislikes = dislikes - 1;
       }
-      const dislikedUsers = _.filter(forum.dislikedUsers, (dislikedUser) => dislikedUser !== currentUserId);
+      const dislikedUsers = _.filter(
+        forum.dislikedUsers,
+        (dislikedUser) => dislikedUser !== currentUserId
+      );
       const updatedForum = {
         ...forum,
         likes: forum.likes + 1,
@@ -60,7 +111,10 @@ export default function PostCard(props) {
       if (hasUserLikedBefore) {
         likes = likes - 1;
       }
-      const likedUsers = _.filter(forum.likedUsers, (likedUser) => likedUser !== currentUserId);
+      const likedUsers = _.filter(
+        forum.likedUsers,
+        (likedUser) => likedUser !== currentUserId
+      );
 
       const updatedForum = {
         ...forum,
@@ -81,9 +135,9 @@ export default function PostCard(props) {
   }, []);
 
   // Loads all forums and sets them to data
-  function loadAllForum() {
+  function loadAllForum(params) {
     forumApi
-      .getAllForum()
+      .getAllForum(params)
       .then((res) => {
         if (props.myForum) {
           let personalForum = res.data.filter((forum) => {
@@ -98,19 +152,44 @@ export default function PostCard(props) {
   }
   return (
     <div className="cardContainer">
+      <Grid container item justify="flex-end" className={classes.date}>
+        <FormControl className={classes.date}>
+          <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
+          <Select
+            value={sortOrder}
+            onChange={onSortChange}
+            className={classes.date}
+            inputProps={{
+              name: "date",
+              id: "sort-by",
+            }}
+          >
+            <option value="new" className ={classes.cursorPointer} >Newest</option>
+            <option value="old" className ={classes.cursorPointer} >Oldest</option>
+          </Select>
+        </FormControl>
+      </Grid>
       {forums.map((forum) => {
         return (
           <Card className="cardIndividual" key={forum._id}>
             <CardHeader
               // className={classes.cardAction}
               className="padding-delete"
-              avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
+              avatar={
+                <Avatar
+                  alt={forum.user && forum.user.name}
+                  src={forum.user && forum.user.picture}
+                />
+              }
               title={forum.user && forum.user.name}
               subheader={moment(forum.date).format("lll")}
             />
             <Link to={`/forums/${forum._id}`}>
               <CardContent className="padding-delete">
-                <Typography className="cardTitle padding-delete cardContent" color="secondary">
+                <Typography
+                  className="cardTitle padding-delete cardContent"
+                  color="secondary"
+                >
                   <h2 className="cardTitle">{forum.forum_title}</h2>
                 </Typography>
               </CardContent>
@@ -118,16 +197,31 @@ export default function PostCard(props) {
             <CardActions className="padding-delete">
               <div className="likeDislikeBtns">
                 <span className="likeCount">{forum.likes}</span>
-                <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
+                <IconButton
+                  disabled={!isAuthenticated}
+                  onClick={likeButtonOnClick(forum)}
+                  size="small"
+                >
                   <ThumbUpAltIcon className="likeBtn" size="small" />
                 </IconButton>
-                <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
+                <IconButton
+                  disabled={!isAuthenticated}
+                  onClick={dislikeButtonOnClick(forum)}
+                  size="small"
+                >
                   <ThumbDownAltIcon className="dislikeBtn" />
                 </IconButton>
                 <span className="dislikeCount">{forum.dislikes}</span>
               </div>
               {/* show delete button only for the user who posted the forum */}
-              {forum.user && forum.user.id === user.sub && <DeleteIcon className="deleteBtn" onClick={deleteOnClick(forum)} size="small" variant="contained" />}
+              {forum.user && forum.user.id === user.sub && (
+                <DeleteIcon
+                  className="deleteBtn"
+                  onClick={deleteOnClick(forum)}
+                  size="small"
+                  variant="contained"
+                />
+              )}
             </CardActions>
           </Card>
         );

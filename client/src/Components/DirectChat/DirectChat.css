@@ -1,23 +1,23 @@
 a:link {
-    text-decoration: none ;
-  }
+  text-decoration: none;
+}
 
-  .people-container {
-    margin-top: 100px !important;
-    max-width: 350px;
-  }
+.people-container {
+  margin-top: 100px !important;
+  max-width: 350px;
+}
 
-  .people-card {
-    width: 350px;
-    margin: 1px;
-  }
+.people-card {
+  width: 350px;
+  margin: 1px;
+}
 
-  .paper {
-    min-height: 350px;
-    width: 100% !important;
-    margin-top: 100px;
-  }
+.paper {
+  min-height: 350px;
+  width: 100% !important;
+  margin-top: 100px;
+}
 
-  .send-button {
-    margin-top: 8px !important;
-  }
+.send-button {
+  margin-top: 8px !important;
+}
