@@ -10,6 +10,7 @@ import DirectChat from "./Components/DirectChat/DirectChat";
 import { SubmitPostModalContextProvider } from "./contexts/SubmitPostModalContext";
 import MyForum from "./Components/MyForum/MyForum";
 import NavBar from "./Components/NavBar/NavBar";
+import "./App.css";
 
 function App() {
   const { isLoading } = useAuth0();

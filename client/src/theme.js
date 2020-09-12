@@ -1,4 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import "./theme.css";
+
+const font = "'Roboto', sans-serif";
 
 const theme = createMuiTheme({
   palette: {
@@ -14,6 +17,9 @@ const theme = createMuiTheme({
       dark: "#005662",
       contrastText: "#ffffff",
     },
+  },
+  typography: {
+    fontFamily: font,
   },
 });
 
