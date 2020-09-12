@@ -11,7 +11,7 @@
     "seed": "node scripts/seedForumDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "lint": "client/node_modules/.bin/eslint \"**/*.js \"",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
