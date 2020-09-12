@@ -70,7 +70,9 @@ export default function ImageAvatars() {
         >
           <MenuItem onClick={handleMyForum}>My Forum</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          <Link to="/directchat"><MenuItem>Direct Chat</MenuItem></Link>
+          <Link to="/directchat">
+            <MenuItem>Direct Chat</MenuItem>
+          </Link>
         </Menu>
       </div>
     </div>

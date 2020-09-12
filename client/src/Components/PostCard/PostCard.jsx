@@ -7,10 +7,15 @@ import {
   Avatar,
   CardHeader,
   IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  Grid,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./PostCard.css";
@@ -19,15 +24,57 @@ import * as _ from "lodash";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  date: {
+    margin: theme.spacing(1),
+    minWidth: 80,
+    color: "inherit",
+    marginRight: 80,
+  },
+ cursorPointer: {
+    cursor: "pointer",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(2em + ${theme.spacing(2)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "25ch",
+    },
+  },
+}));
+
+// BV: switched to css file for style in order to style hover effects easier
+
 export default function PostCard(props) {
+  const classes = useStyles();
   const { forums, setForums } = useForumContext();
   const { isAuthenticated, user } = useAuth0();
+  const [sortOrder, setSortOrder] = React.useState("new");
+  const onSortChange = (event) => {
+    setSortOrder(event.target.value);
+    const queryParam = {
+      sortOrder: event.target.value === "new" ? "desc" : "asc",
+    };
+
+    loadAllForum(queryParam);
+  };
 
   const deleteOnClick = (forum) => () => {
     forumApi.deleteForum(forum._id);
     loadAllForum();
   };
-
   const likeButtonOnClick = (forum) => async () => {
     const currentUserId = user.sub;
     if (!_.includes(forum.likedUsers, currentUserId)) {
@@ -89,9 +136,9 @@ export default function PostCard(props) {
   }, []);
 
   // Loads all forums and sets them to data
-  function loadAllForum() {
+  function loadAllForum(params) {
     forumApi
-      .getAllForum()
+      .getAllForum(params)
       .then((res) => {
         if (props.myForum) {
           const personalForum = res.data.filter((forum) => {
@@ -106,6 +153,23 @@ export default function PostCard(props) {
   }
   return (
     <div className="cardContainer">
+      <Grid container item justify="flex-end" className={classes.date}>
+        <FormControl className={classes.date}>
+          <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
+          <Select
+            value={sortOrder}
+            onChange={onSortChange}
+            className={classes.date}
+            inputProps={{
+              name: "date",
+              id: "sort-by",
+            }}
+          >
+            <option value="new" className ={classes.cursorPointer} >Newest</option>
+            <option value="old" className ={classes.cursorPointer} >Oldest</option>
+          </Select>
+        </FormControl>
+      </Grid>
       {forums.map((forum) => {
         return (
           <Card className="cardIndividual" key={forum._id}>
@@ -125,7 +189,7 @@ export default function PostCard(props) {
               <CardContent className="padding-delete">
                 <Typography
                   className="cardTitle padding-delete cardContent"
-                  color="dark"
+                  color="secondary"
                 >
                   <h2 className="cardTitle">{forum.forum_title}</h2>
                 </Typography>
