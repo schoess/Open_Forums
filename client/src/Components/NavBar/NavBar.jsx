@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Button,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../Login/Login";
@@ -24,9 +20,10 @@ const useStyles = makeStyles(() => ({
 function NavBar(props) {
   const { isAuthenticated } = useAuth0();
   const classes = useStyles();
+  // const theme = useTheme();
   return (
     <div className="navBar">
-      <AppBar position="fixed">
+      <AppBar color="secondary" position="fixed">
         <Toolbar>
           <Link to="/" variant="h6" className="title" align="left">
             <Typography className={classes.root} variant="h5">

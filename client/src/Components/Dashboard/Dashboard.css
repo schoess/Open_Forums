@@ -1,5 +1,4 @@
 body {
-  background-image: url("../../assets/images/home_background.png");
   /* parallax scrolling effect */
   height: 500px;
   background-attachment: fixed;

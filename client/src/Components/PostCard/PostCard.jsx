@@ -19,15 +19,7 @@ import * as _ from "lodash";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
 
-// const useStyles = makeStyles((theme) => ({
-//   cardAction: {
-//     paddingTop: 5,
-//     paddingBottom: 0,
-//   },
-// }));
-
 export default function PostCard(props) {
-  // const classes = useStyles();
   const { forums, setForums } = useForumContext();
   const { isAuthenticated, user } = useAuth0();
 
@@ -45,7 +37,7 @@ export default function PostCard(props) {
       );
       let dislikes = forum.dislikes;
       if (hasUserDislikedBefore) {
-        dislikes = dislikes - 1;
+        dislikes -= 1;
       }
       const dislikedUsers = _.filter(
         forum.dislikedUsers,
@@ -133,7 +125,7 @@ export default function PostCard(props) {
               <CardContent className="padding-delete">
                 <Typography
                   className="cardTitle padding-delete cardContent"
-                  color="secondary"
+                  color="dark"
                 >
                   <h2 className="cardTitle">{forum.forum_title}</h2>
                 </Typography>
