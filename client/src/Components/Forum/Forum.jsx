@@ -81,14 +81,6 @@ export default function (props) {
           >
             {forum.forum_description}
           </Typography>
-          <IconButton>
-            <ThumbUpAltIcon className="likeBtn" size="small" />
-            {forum.likes}
-          </IconButton>
-          <IconButton>
-            <ThumbDownAltIcon className="dislikeBtn" size="small" />
-            {forum.dislikes}
-          </IconButton>
         </CardContent>
       </Card>
       <Typography variant="h6" component="p">
