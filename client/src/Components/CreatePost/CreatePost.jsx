@@ -1,6 +1,6 @@
 // CreatePost
 import React from "react";
-import { Button, Dialog, IconButton, Tooltip } from "@material-ui/core";
+import { Button, Dialog } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -13,15 +13,16 @@ const myStyle = {
     backgroundColor: "primary",
     paddingTop: "20px",
     position: "sticky",
-    paddingRight: "50px",
+    paddingLeft: "350px",
     top: "0",
   },
-  BorderIcon: {
+  BorderColorIcon: {
     paddingRight: "5px",
+    paddingLeft: "25px",
   },
 };
 
-export default function CreatePost() {
+function CreatePost() {
   const { showSubmitPostModal, setShowSubmitPostModal } = useSubmitPostModalContext();
 
   const handleClickOpen = () => {
@@ -34,15 +35,10 @@ export default function CreatePost() {
 
   return (
     <div style={myStyle.CreatePostButton}>
-      <Tooltip title="Add your Own Post" color="inherit" onClick={handleClickOpen}>
-        <IconButton aria-label="Create">
-          <BorderColorIcon style={myStyle.BorderIcon} />
-          Create Post
-        </IconButton>
-      </Tooltip>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        <CreateIcon />
-      </Button> */}
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <BorderColorIcon />
+        Create Post
+      </Button>
       <Dialog open={showSubmitPostModal} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create Your own Post</DialogTitle>
         <DialogContent>
@@ -57,3 +53,5 @@ export default function CreatePost() {
     </div>
   );
 }
+
+export default CreatePost;
