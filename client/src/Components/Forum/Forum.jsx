@@ -1,14 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  CardHeader,
-  Avatar,
-  IconButton,
-} from "@material-ui/core";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import { Card, CardContent, Typography, CardHeader, Avatar } from "@material-ui/core";
 import moment from "moment";
 import Replies from "../Reply/Replies";
 import forumApi from "../../utils/forum.api";
@@ -55,30 +46,16 @@ export default function (props) {
       <Card style={myStyle.cardIndividual}>
         <CardHeader
           style={myStyle.cardHeader}
-          // className={classes.cardAction}
           className="padding-delete"
-          avatar={
-            <Avatar
-              alt={forum.user && forum.user.name}
-              src={forum.user && forum.user.picture}
-            />
-          }
+          avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
           title={forum.user && forum.user.name}
           subheader={moment(forum.date).format("lll")}
         />
         <CardContent>
-          <Typography
-            style={myStyle.titleCardBody}
-            variant="body2"
-            component="p"
-          >
+          <Typography style={myStyle.titleCardBody} variant="body2" component="p">
             {forum.forum_title}
           </Typography>
-          <Typography
-            style={myStyle.descCardBody}
-            variant="body2"
-            component="p"
-          >
+          <Typography style={myStyle.descCardBody} variant="body2" component="p">
             {forum.forum_description}
           </Typography>
         </CardContent>

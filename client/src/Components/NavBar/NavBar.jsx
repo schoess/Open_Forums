@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Login from "../Login/Login";
 import UserAccount from "../UserAccount/UserAccount";
 import Search from "../Search/Search";
-import CreatePost from "../CreatePost/CreatePost";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,11 +28,8 @@ function NavBar(props) {
           <Link to="/" variant="h6" className={classes.title} align="left">
             <Typography variant="h5">Open Forum</Typography>
           </Link>
-          <CreatePost />
           {props.isSearchEnable && <Search />}
-          <Button color="inherit">
-            {isAuthenticated ? <UserAccount /> : <Login />}
-          </Button>
+          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
         </Toolbar>
       </AppBar>
     </div>
