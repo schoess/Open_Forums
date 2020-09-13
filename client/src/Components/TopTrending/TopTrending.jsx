@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     minWidth: 275,
     marginTop: 195,
     height: 400,
-    background: "#f1f1f1",
+    background: "white",
     marginRight: "50px",
   },
   bullet: {
