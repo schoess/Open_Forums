@@ -1,5 +1,12 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import { useDarkModeContext } from "./contexts/DarkModeContext";
 import "./theme.css";
+
+console.log("WHAT IS useDarkModeContext.darkState? = " + useDarkModeContext.darkState);
+// BV: Answer--"undefined"
+
+// BV: How do I get the value of "darkState" in this? Below doesn't work since not in function.
+const { darkState } = useDarkModeContext();
 
 const mainFont = "'Roboto', sans-serif";
 const palletType = darkState ? "dark" : "light";

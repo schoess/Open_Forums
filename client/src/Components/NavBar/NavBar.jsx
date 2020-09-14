@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AppBar, Toolbar, Button, Typography, Switch } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import Login from "../Login/Login";
 import UserAccount from "../UserAccount/UserAccount";
 import Search from "../Search/Search";
 import CreatePost from "../CreatePost/CreatePost";
+import { useDarkModeContext } from "../../contexts/DarkModeContext";
 import "./NavBar.css";
 
 const font = "'Sail', cursive";
@@ -21,9 +22,12 @@ const useStyles = makeStyles(() => ({
 function NavBar(props) {
   const { isAuthenticated } = useAuth0();
   const classes = useStyles();
-  const [darkState, setDarkState] = useState(false);
+  // BV: Can/should I have the state in the context and export it here to use?
+  const { darkState, setDarkState } = useDarkModeContext(false);
   const handleThemeChange = () => {
     setDarkState(!darkState);
+    console.log("Dark Mode Toggle CLICKED! This is darkState = " + darkState);
+    // BV: The above is working; darkState switches from true to false.
   };
 
   return (
@@ -36,7 +40,7 @@ function NavBar(props) {
             </Typography>
           </Link>
           <div className="darkModeToggleDiv">
-            <Switch color="secondary" onClick={handleThemeChange} />
+            <Switch color="secondary" onChange={handleThemeChange} />
           </div>
           <CreatePost />
           {props.isSearchEnable && <Search />}
