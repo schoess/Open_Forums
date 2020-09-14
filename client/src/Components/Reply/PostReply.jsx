@@ -1,14 +1,8 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Card, CardActions, Button, TextField } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
-import {
-  Card,
-  Typography,
-  CardContent,
-  CardActions,
-  Button,
-  TextField,
-} from "@material-ui/core";
 
 // "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
@@ -21,7 +15,7 @@ const myStyle = {
   // },
   replyContainer: {
     fontSize: "18px",
-    marginTop: "70px",
+    marginTop: "20px",
   },
   replyText: {
     fontSize: "16px",
@@ -33,14 +27,14 @@ const myStyle = {
 };
 
 function PostReply(props) {
-  const [forumTitle, setForumTitle] = useState("");
+  // const [forumTitle, setForumTitle] = useState("");
   const [replyToDescription, setReplyToDescription] = useState("");
   const { user } = useAuth0();
 
   const replyToForum = async (event) => {
     event.preventDefault();
     console.log(user);
-    //API call for posting reply
+    // API call for posting reply
     await forumApi.createReplyToForum(props.forumId, {
       user: {
         id: user.sub,
@@ -54,28 +48,16 @@ function PostReply(props) {
   };
 
   return (
-    <div style={myStyle.replyContainer}>
+    <div className="reply-box" style={myStyle.replyContainer}>
       <form onSubmit={replyToForum}>
-        <Card style={myStyle.replyCard}>
-          <CardContent>
-            <Typography
-              style={myStyle.replyText}
-              variant="body2"
-              component="p"
-              value={forumTitle}
-              onChange={(event) => setForumTitle(event.target.value)}
-            >
-              Reply Card
-            </Typography>
-          </CardContent>
+        <Card className="reply-card" style={myStyle.replyCard}>
           <TextField
-            styel={myStyle.replyTextField}
-            id="message"
-            label="Message"
+            className="reply-text-field"
+            style={myStyle.replyTextField}
+            id="standard-full-width"
+            label="Reply"
             variant="outlined"
-            margin="normal"
-            multiline
-            rows={6}
+            margin="dense"
             fullWidth
             value={replyToDescription}
             onChange={(event) => setReplyToDescription(event.target.value)}
@@ -83,7 +65,7 @@ function PostReply(props) {
           <CardActions>
             <Button
               type="submit"
-              color="secondary"
+              color="primary"
               size="small"
               variant="contained"
             >

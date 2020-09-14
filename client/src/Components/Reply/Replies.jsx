@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
 import {
   Card,
   Typography,
-  CardContent,
   CardActions,
   IconButton,
   CardHeader,
@@ -18,6 +21,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import * as _ from "lodash";
 import forumApi from "../../utils/forum.api";
 import PostReply from "./PostReply";
+import "./Replies.css";
 
 // "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
@@ -59,9 +63,9 @@ export default function Replies(props) {
         reply.dislikedUsers,
         currentUserId
       );
-      let dislikes = reply.dislikes;
+      let { dislikes } = reply;
       if (hasUserDislikedBefore) {
-        dislikes = dislikes - 1;
+        dislikes -= 1;
       }
       const dislikedUsers = _.filter(
         reply.dislikedUsers,
@@ -85,9 +89,9 @@ export default function Replies(props) {
     const currentUserId = user.sub;
     if (!_.includes(reply.dislikedUsers, currentUserId)) {
       const hasUserLikedBefore = _.includes(reply.likedUsers, currentUserId);
-      let likes = reply.likes;
+      let { likes } = reply;
       if (hasUserLikedBefore) {
-        likes = likes - 1;
+        likes -= 1;
       }
       const likedUsers = _.filter(
         reply.likedUsers,
@@ -108,30 +112,36 @@ export default function Replies(props) {
 
   return (
     <div>
+      {isAuthenticated && (
+        <PostReply
+          loadAllReplyForum={loadAllReplyForum}
+          forumId={props.forumId}
+        />
+      )}
       {replies.map((reply) => {
         return (
-          <Card key={reply._id}>
-            <CardHeader
-              avatar={
-                <Avatar
-                  alt={_.get(reply, "user.name")}
-                  src={_.get(reply, "user.picture")}
-                />
-              }
-              title={_.get(reply, "user.name")}
-              subheader={moment(reply.date).format("lll")}
-            />
-            <CardContent style={myStyle.replyCardBody}>
+          <Card className="card-styles" key={reply._id}>
+            <CardActions style={myStyle.replyCardBody}>
+              <CardHeader
+                className="avatar-styles"
+                avatar={
+                  <Avatar
+                    alt={_.get(reply, "user.name")}
+                    src={_.get(reply, "user.picture")}
+                  />
+                }
+                title={_.get(reply, "user.name")}
+                subheader={moment(reply.date).format("lll")}
+              />
               <Typography
+                className="reply-styles"
                 style={myStyle.replyCardBody}
                 variant="body2"
                 component="p"
               >
                 {reply.reply_description}
               </Typography>
-            </CardContent>
-            <CardActions>
-              <div className="likeDislikeBtns">
+              <div className="likeDislikeBtns button-styles">
                 <span className="likeCount">{reply.likes}</span>
                 <IconButton
                   disabled={!isAuthenticated}
@@ -161,12 +171,6 @@ export default function Replies(props) {
           </Card>
         );
       })}
-      {isAuthenticated && (
-        <PostReply
-          loadAllReplyForum={loadAllReplyForum}
-          forumId={props.forumId}
-        />
-      )}
     </div>
   );
 }
