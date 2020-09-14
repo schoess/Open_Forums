@@ -1,37 +1,37 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  Typography,
-  CardHeader,
-  Avatar,
-} from "@material-ui/core";
+import { Card, CardContent, Typography, CardHeader, Avatar } from "@material-ui/core";
 import moment from "moment";
 import Replies from "../Reply/Replies";
 import forumApi from "../../utils/forum.api";
 
 const myStyle = {
   cardContainer: {
-    textAlign: "center",
-    width: "1200px",
+    // textAlign: "center",
+    width: "1000px",
     margin: "auto",
     paddingTop: "90px",
+    borderRadius: 25,
   },
   cardIndividual: {
     margin: "20px",
     marginTop: "40px",
+    borderRadius: 25,
   },
-  titleCardBody: {
+  cardTitle: {
     textAlign: "left",
-    fontWeight: 700,
+    paddingLeft: "50px",
+    marginTop: 0,
+    marginBottom: 0,
     fontSize: "22px",
+    fontWeight: 700,
   },
   descCardBody: {
     textAlign: "left",
     fontSize: "18px",
     paddingBottom: 10,
+    paddingLeft: "50px",
   },
   cardHeader: {
     marginTop: "20px",
@@ -54,29 +54,15 @@ export default function (props) {
       <Card style={myStyle.cardIndividual}>
         <CardHeader
           style={myStyle.cardHeader}
-          className="padding-delete"
-          avatar={(
-            <Avatar
-              alt={forum.user && forum.user.name}
-              src={forum.user && forum.user.picture}
-            />
-          )}
-          title={forum.user && forum.user.name}
-          subheader={moment(forum.date).format("lll")}
+          // className="padding-delete"
+          avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
+          title={forum.user && forum.user.name + ", " + moment(forum.date).fromNow()}
         />
         <CardContent>
-          <Typography
-            style={myStyle.titleCardBody}
-            variant="body2"
-            component="p"
-          >
+          <Typography style={myStyle.cardTitle} variant="body2" component="p">
             {forum.forum_title}
           </Typography>
-          <Typography
-            style={myStyle.descCardBody}
-            variant="body2"
-            component="p"
-          >
+          <Typography style={myStyle.descCardBody} variant="body2" component="p">
             {forum.forum_description}
           </Typography>
         </CardContent>
