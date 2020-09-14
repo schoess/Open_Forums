@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import {
   Card,
@@ -5,10 +7,7 @@ import {
   Typography,
   CardHeader,
   Avatar,
-  IconButton,
 } from "@material-ui/core";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
 import moment from "moment";
 import Replies from "../Reply/Replies";
 import forumApi from "../../utils/forum.api";
@@ -55,14 +54,13 @@ export default function (props) {
       <Card style={myStyle.cardIndividual}>
         <CardHeader
           style={myStyle.cardHeader}
-          // className={classes.cardAction}
           className="padding-delete"
-          avatar={
+          avatar={(
             <Avatar
               alt={forum.user && forum.user.name}
               src={forum.user && forum.user.picture}
             />
-          }
+          )}
           title={forum.user && forum.user.name}
           subheader={moment(forum.date).format("lll")}
         />
@@ -83,9 +81,6 @@ export default function (props) {
           </Typography>
         </CardContent>
       </Card>
-      <Typography variant="h6" component="p">
-        Replies{" "}
-      </Typography>
       <Replies forumId={props.match.params.forumId} />
     </div>
   );

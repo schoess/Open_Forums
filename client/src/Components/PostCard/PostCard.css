@@ -1,4 +1,6 @@
-.cardContainer {
+/* Changed this css as Material Ui in PostCard.jsx */
+
+/* .cardContainer {
   text-align: center;
   width: 100%;
   margin: 0 auto;
@@ -7,12 +9,12 @@
 
 .cardIndividual {
   margin: 7px 100px;
-  opacity: 80%;
+  opacity: .8;
   padding: 10px;
 }
 
 .cardIndividual:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .cardTitle {
@@ -20,7 +22,7 @@
   padding-left: 50px;
   margin-top: 0;
   margin-bottom: 0;
-}
+} */
 
 .likeDislikeBtns {
   margin-left: auto;
@@ -38,7 +40,7 @@
   color: #888098;
 }
 
-.padding-delete {
+/* .padding-delete {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
 }
@@ -46,7 +48,7 @@
 .cardContent {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-}
+} */
 /* referenced cssdeck.com for CSS on like/dislike count below */
 
 .likeCount {
