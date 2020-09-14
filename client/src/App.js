@@ -6,7 +6,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { ForumContextProvider } from "./contexts/ForumContext";
 import Forum from "./Components/Forum/Forum";
-import DirectChat from "./Components/DirectChat/DirectChat";
 import { SubmitPostModalContextProvider } from "./contexts/SubmitPostModalContext";
 import { DarkModeContextProvider } from "./contexts/DarkModeContext";
 import MyForum from "./Components/MyForum/MyForum";
@@ -20,6 +19,7 @@ function App() {
   return (
     <ForumContextProvider>
       <SubmitPostModalContextProvider>
+<<<<<<< HEAD
         <DarkModeContextProvider>
           <NavBar />
           <CssBaseline />
@@ -30,6 +30,15 @@ function App() {
             <Route path="/directchat" component={DirectChat} />
           </Switch>
         </DarkModeContextProvider>
+=======
+        <NavBar />
+        <CssBaseline />
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/my_forum" component={MyForum} />
+          <Route path="/forums/:forumId" component={Forum} />
+        </Switch>
+>>>>>>> 6acc48beeaf515544f7190424b0e2b29c5fa2346
       </SubmitPostModalContextProvider>
     </ForumContextProvider>
   );

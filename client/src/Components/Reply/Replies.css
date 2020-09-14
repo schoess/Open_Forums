@@ -1,0 +1,29 @@
+.avatar-styles {
+    margin-right: 5px;
+}
+
+.card-styles {
+    margin: 5px;
+    border-radius: 25px !important;
+}
+
+.reply-styles {
+    font-weight: 600 !important;
+}
+
+.button-styles {
+    position: relative !important;
+    margin-left: auto !important;
+    margin-right: 5px;
+}
+
+.reply-box {
+    margin-bottom: 20px;
+}
+ .reply-card {
+    border-radius: 25px !important;
+ }
+
+ .reply-text-field {
+    padding: 5px 10px 0px 10px !important;
+ }

@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Menu, MenuItem } from "@material-ui/core";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +35,6 @@ export default function ImageAvatars() {
     logout();
   };
 
-  const DirectChat = () => {};
-
   const handleMyForum = () => {
     setAnchorEl(null);
     const path = "/my_forum";
@@ -46,13 +44,7 @@ export default function ImageAvatars() {
   return (
     <div className={classes.root}>
       <div>
-        <Avatar
-          alt=""
-          src={user.picture}
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={handleMenu}
-        />
+        <Avatar alt="" src={user.picture} aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} />
         <Menu
           id="menu-appbar"
           anchorEl={anchorEl}
@@ -70,9 +62,6 @@ export default function ImageAvatars() {
         >
           <MenuItem onClick={handleMyForum}>My Forum</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          <Link to="/directchat">
-            <MenuItem>Direct Chat</MenuItem>
-          </Link>
         </Menu>
       </div>
     </div>
