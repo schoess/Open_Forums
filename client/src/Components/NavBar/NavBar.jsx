@@ -44,7 +44,9 @@ function NavBar(props) {
           </div>
           <CreatePost />
           {props.isSearchEnable && <Search />}
-          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
+          <Button color="inherit">
+            {isAuthenticated ? <UserAccount /> : <Login />}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
