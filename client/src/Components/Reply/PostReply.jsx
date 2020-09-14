@@ -24,6 +24,10 @@ const myStyle = {
   replyCard: {
     padding: "0px 10px",
   },
+  commentButton: {
+    float: "right",
+    paddingRight: "20px",
+  },
 };
 
 function PostReply(props) {
@@ -55,21 +59,16 @@ function PostReply(props) {
             className="reply-text-field"
             style={myStyle.replyTextField}
             id="standard-full-width"
-            label="Reply"
+            label="What are your thoughts?"
             variant="outlined"
             margin="dense"
             fullWidth
             value={replyToDescription}
             onChange={(event) => setReplyToDescription(event.target.value)}
           />
-          <CardActions>
-            <Button
-              type="submit"
-              color="primary"
-              size="small"
-              variant="contained"
-            >
-              Reply
+          <CardActions style={myStyle.commentButton}>
+            <Button type="submit" color="primary" size="small" variant="contained">
+              Comment
             </Button>
           </CardActions>
         </Card>

@@ -8,6 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useAuth0 } from "@auth0/auth0-react";
+import { createSvgIcon } from "@material-ui/core";
 
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
@@ -27,20 +28,14 @@ export default function AlertDialog() {
 
   return (
     <div>
-      <Button color="inherit" onClick={handleClickOpen}>
-        Send
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <createSvgIcon />
+        Create Post
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
+      <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
         <DialogTitle id="alert-dialog-title">Open Forum</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            You Have not Logged in yet. Do you want to continue, Please login..
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">You Have not Logged in yet. Do you want to continue, Please login..</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button
