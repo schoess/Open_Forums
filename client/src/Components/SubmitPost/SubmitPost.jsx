@@ -1,4 +1,4 @@
-//Submit Post
+// Submit Post
 import React from "react";
 import {
   Grid,
@@ -26,6 +26,7 @@ const myStyle = {
   entireForm: {
     paddingTop: "50px",
     position: "-webkit-sticky",
+    // eslint-disable-next-line no-dupe-keys
     position: "sticky",
     top: "0",
   },
