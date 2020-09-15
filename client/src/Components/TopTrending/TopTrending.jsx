@@ -64,7 +64,10 @@ export default function OutlinedCard() {
                 topTrendingForums.sortedResult.map((trendingForum) => (
                   <ListItemLink href={`/forums/${trendingForum._id}`}>
                     <ListItemAvatar>
-                      <Avatar alt={trendingForum.user && trendingForum.user.name} src={trendingForum.user && trendingForum.user.picture} />
+                      <Avatar
+                        alt={trendingForum.user && trendingForum.user.name}
+                        src={trendingForum.user && trendingForum.user.picture}
+                      />
                     </ListItemAvatar>
                     <ListItemText>{trendingForum.forum_title}</ListItemText>
                   </ListItemLink>

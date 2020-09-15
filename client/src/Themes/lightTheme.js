@@ -16,8 +16,9 @@ const lightTheme = createMuiTheme({
       // dark: "#005662",
       contrastText: "#ffffff",
     },
-    tertiary: {
-      main: "#76B041",
+    // below lets us use a third color easily; not actually for errors.
+    error: {
+      main: "#2B7CDE",
     },
   },
 });
