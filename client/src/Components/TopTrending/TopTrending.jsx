@@ -6,12 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import forumApi from "../../utils/forum.api";
 import { Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
     marginTop: 195,
     height: 400,
-    background: "white",
+    // background: "white",
+    background: theme.palette.background.paper,
     marginRight: "50px",
   },
   bullet: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-});
+}));
 
 export default function OutlinedCard() {
   const classes = useStyles();
@@ -59,7 +60,10 @@ export default function OutlinedCard() {
                 topTrendingForums.sortedResult.map((trendingForum) => (
                   <ListItem button>
                     <ListItemAvatar>
-                      <Avatar alt={trendingForum.user && trendingForum.user.name} src={trendingForum.user && trendingForum.user.picture} />
+                      <Avatar
+                        alt={trendingForum.user && trendingForum.user.name}
+                        src={trendingForum.user && trendingForum.user.picture}
+                      />
                     </ListItemAvatar>
                     <ListItemText>{trendingForum.forum_title}</ListItemText>
                   </ListItem>

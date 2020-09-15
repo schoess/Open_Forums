@@ -1,5 +1,17 @@
 import React, { useEffect } from "react";
-import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton, FormControl, InputLabel, Select, Grid } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  Avatar,
+  CardHeader,
+  IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  Grid,
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
@@ -52,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "7px 100px",
     opacity: 0.8,
     padding: "10px",
-    background: "white",
+    // background: "white",
+    background: theme.palette.background.paper,
     "&:hover": {
       opacity: 1,
       background: "rgba(255, 240, 243, 0.93)",
