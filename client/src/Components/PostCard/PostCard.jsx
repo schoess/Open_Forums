@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "7px 100px",
     opacity: 0.8,
     padding: "10px",
-    background: "white",
+    // background: "white",
+    background: theme.palette.background.paper,
     "&:hover": {
       opacity: 1,
       background: "rgba(255, 240, 243, 0.93)",

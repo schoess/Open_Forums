@@ -39,7 +39,7 @@ function CreatePost() {
   return (
     <div style={myStyle.CreatePostButton}>
       {(isAuthenticated && (
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>
           <BorderColorIcon />
           Create Post
         </Button>

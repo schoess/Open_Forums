@@ -4,14 +4,15 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import forumApi from "../../utils/forum.api";
-import { Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar } from "@material-ui/core";
+import { Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar, Paper } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
     marginTop: 195,
     height: 400,
-    background: "white",
+    // background: "white",
+    background: theme.palette.background.paper,
     marginRight: "50px",
   },
   bullet: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-});
+}));
 
 export default function OutlinedCard() {
   const classes = useStyles();
