@@ -1,17 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-  Avatar,
-  CardHeader,
-  IconButton,
-  FormControl,
-  InputLabel,
-  Select,
-  Grid,
-} from "@material-ui/core";
+import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton, FormControl, InputLabel, Select, Grid } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
@@ -23,6 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import * as _ from "lodash";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
+import CreatePost from "../CreatePost/CreatePost";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -183,6 +172,7 @@ export default function PostCard(props) {
     <div>
       <Grid item xs={12} className={classes.cardContainer}>
         <Grid container item justify="flex-end" className={classes.date}>
+          <CreatePost />
           <FormControl className={classes.date}>
             <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
             <Select
@@ -230,14 +220,7 @@ export default function PostCard(props) {
                   <span className="dislikeCount">{forum.dislikes}</span>
                 </div>
                 {/* show delete button only for the user who posted the forum */}
-                {forum.user && forum.user.id === user.sub && (
-                  <DeleteIcon
-                    className={classes.deleteIcon}
-                    onClick={deleteOnClick(forum)}
-                    size="small"
-                    variant="contained"
-                  />
-                )}
+                {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
               </CardActions>
             </Card>
           );

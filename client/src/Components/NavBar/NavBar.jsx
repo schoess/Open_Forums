@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Button, Typography, Switch } from "@material-ui/core";
+import { AppBar, Toolbar, Button, Tooltip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -7,21 +7,14 @@ import { useDarkModeContext } from "../../contexts/DarkModeContext";
 import Login from "../Login/Login";
 import UserAccount from "../UserAccount/UserAccount";
 import Search from "../Search/Search";
-import CreatePost from "../CreatePost/CreatePost";
 import "./NavBar.css";
+import { Brightness7, Brightness4 } from "@material-ui/icons";
+import SparkLogo from "../../assets/images/spark.svg";
 
 const font = "'Sail', cursive";
 
-const useStyles = makeStyles(() => ({
-  root: {
-    fontFamily: font,
-    fontSize: "60px",
-  },
-}));
-
 function NavBar(props) {
   const { isAuthenticated } = useAuth0();
-  const classes = useStyles();
   const { darkMode, setDarkMode } = useDarkModeContext();
 
   const handleThemeChange = () => {
@@ -32,19 +25,14 @@ function NavBar(props) {
     <div className="navBar">
       <AppBar color="primary" position="fixed">
         <Toolbar>
-          <Link className="title" to="/" variant="h6" align="left">
-            <Typography className={classes.root} variant="h5">
-              spark
-            </Typography>
+          <Link to="/" variant="h6" className="title" align="left">
+            <img src={SparkLogo} alt="SparkLogo" />
           </Link>
-          <div className="darkModeToggleDiv">
-            <Switch color="secondary" onClick={handleThemeChange} />
-          </div>
-          <CreatePost />
           {props.isSearchEnable && <Search />}
-          <Button color="inherit">
-            {isAuthenticated ? <UserAccount /> : <Login />}
-          </Button>
+          <Tooltip title="Toggle light/dark theme" placement="bottom">
+            {darkMode ? <Brightness7 onClick={handleThemeChange} /> : <Brightness4 onClick={handleThemeChange} />}
+          </Tooltip>
+          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
         </Toolbar>
       </AppBar>
     </div>
