@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "7px 100px",
     opacity: 0.8,
     padding: "10px",
-    background: "white",
+    // background: "white",
+    background: theme.palette.background.paper,
     "&:hover": {
       opacity: 1,
       background: "rgba(255, 240, 243, 0.93)",
@@ -106,7 +107,7 @@ export default function PostCard(props) {
       const hasUserDislikedBefore = _.includes(forum.dislikedUsers, currentUserId);
       let dislikes = forum.dislikes;
       if (hasUserDislikedBefore) {
-        dislikes = dislikes - 1;
+        dislikes -= 1;
       }
       const dislikedUsers = _.filter(forum.dislikedUsers, (dislikedUser) => dislikedUser !== currentUserId);
       const updatedForum = {
@@ -128,7 +129,7 @@ export default function PostCard(props) {
       const hasUserLikedBefore = _.includes(forum.likedUsers, currentUserId);
       let likes = forum.likes;
       if (hasUserLikedBefore) {
-        likes = likes - 1;
+        likes -= 1;
       }
       const likedUsers = _.filter(forum.likedUsers, (likedUser) => likedUser !== currentUserId);
 
@@ -140,6 +141,7 @@ export default function PostCard(props) {
         likedUsers,
       };
 
+      // eslint-disable-next-line no-underscore-dangle
       await forumApi.updateForum(forum._id, updatedForum);
       await loadAllForum();
     }
@@ -156,7 +158,7 @@ export default function PostCard(props) {
       .getAllForum(params)
       .then((res) => {
         if (props.myForum) {
-          let personalForum = res.data.filter((forum) => {
+          const personalForum = res.data.filter((forum) => {
             return forum.user && forum.user.id === user.sub;
           });
           setForums(personalForum);
