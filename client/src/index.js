@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import Auth0ProviderWithHistory from "./contexts/Auth0ProviderWithHistory";

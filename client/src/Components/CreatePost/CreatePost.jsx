@@ -12,11 +12,7 @@ import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext
 
 const myStyle = {
   CreatePostButton: {
-    backgroundColor: "primary",
-    paddingTop: "20px",
-    position: "sticky",
-    paddingLeft: "350px",
-    top: "0",
+    padding: "10px 100px 10px 100px",
   },
   BorderColorIcon: {
     paddingRight: "5px",
@@ -39,7 +35,7 @@ function CreatePost() {
   return (
     <div style={myStyle.CreatePostButton}>
       {(isAuthenticated && (
-        <Button variant="contained" color="primary" onClick={handleClickOpen}>
+        <Button variant="contained" color="secondary" onClick={handleClickOpen}>
           <BorderColorIcon />
           Create Post
         </Button>
@@ -50,7 +46,7 @@ function CreatePost() {
           <SubmitPost />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
         </DialogActions>

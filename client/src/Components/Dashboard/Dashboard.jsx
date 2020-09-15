@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import PostCard from "../PostCard/PostCard";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
 import TopTrending from "../TopTrending/TopTrending";
-import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {

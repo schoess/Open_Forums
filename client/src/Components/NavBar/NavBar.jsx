@@ -1,22 +1,21 @@
 import React from "react";
-import { AppBar, Toolbar, Button, Typography, Grid, Switch, Tooltip, SvgIcon } from "@material-ui/core";
+import { AppBar, Toolbar, Button, Typography, Switch } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { makeStyles } from "@material-ui/core/styles";
+import { useDarkModeContext } from "../../contexts/DarkModeContext";
 import Login from "../Login/Login";
 import UserAccount from "../UserAccount/UserAccount";
 import Search from "../Search/Search";
-import { useDarkModeContext } from "../../contexts/DarkModeContext";
-import { Brightness7, Brightness4 } from "@material-ui/icons";
-import SparkLogo from "../../assets/images/spark.svg";
+import CreatePost from "../CreatePost/CreatePost";
+import "./NavBar.css";
+
+const font = "'Sail', cursive";
 
 const useStyles = makeStyles(() => ({
   root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-    color: "white",
+    fontFamily: font,
+    fontSize: "60px",
   },
 }));
 
@@ -25,23 +24,27 @@ function NavBar(props) {
   const classes = useStyles();
   const { darkMode, setDarkMode } = useDarkModeContext();
 
-  const toggleTheme = () => {
+  const handleThemeChange = () => {
     setDarkMode(!darkMode);
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="fixed">
+    <div className="navBar">
+      <AppBar color="primary" position="fixed">
         <Toolbar>
-          <Link to="/" variant="h6" className={classes.title} align="left">
-            <img src={SparkLogo} alt="SparkLogo" />
+          <Link className="title" to="/" variant="h6" align="left">
+            <Typography className={classes.root} variant="h5">
+              spark
+            </Typography>
           </Link>
-
+          <div className="darkModeToggleDiv">
+            <Switch color="secondary" onClick={handleThemeChange} />
+          </div>
+          <CreatePost />
           {props.isSearchEnable && <Search />}
-          <Tooltip title="Toggle light/dark theme" placement="bottom">
-            {darkMode ? <Brightness7 onClick={toggleTheme} /> : <Brightness4 onClick={toggleTheme} />}
-          </Tooltip>
-          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
+          <Button color="inherit">
+            {isAuthenticated ? <UserAccount /> : <Login />}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

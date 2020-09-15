@@ -12,7 +12,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import "./App.css";
 import darkTheme from "./Themes/darkTheme";
 import { useDarkModeContext } from "./contexts/DarkModeContext";
-import theme from "./Themes/theme";
+import lightTheme from "./Themes/lightTheme";
 
 function App() {
   const { isLoading } = useAuth0();
@@ -25,7 +25,7 @@ function App() {
   return (
     <ForumContextProvider>
       <SubmitPostModalContextProvider>
-        <ThemeProvider theme={darkMode ? darkTheme : theme}>
+        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
           <NavBar />
           <CssBaseline />
           <Switch>

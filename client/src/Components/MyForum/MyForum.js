@@ -1,6 +1,6 @@
 import React from "react";
-import PostCard from "../PostCard/PostCard";
 import { Container, Grid } from "@material-ui/core";
+import PostCard from "../PostCard/PostCard";
 import NavBar from "../NavBar/NavBar";
 import "../Dashboard/Dashboard.css";
 import CreatePost from "../CreatePost/CreatePost";
@@ -14,7 +14,7 @@ function MyForum() {
           container
           spacing={1}
           direction="row"
-          //"row-reverse"
+          // "row-reverse"
           justify="center"
         >
           <CreatePost />
