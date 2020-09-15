@@ -23,7 +23,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import * as _ from "lodash";
 import forumApi from "../../utils/forum.api";
 import { useForumContext } from "../../contexts/ForumContext";
-import CreatePost from "../CreatePost/CreatePost";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.paper,
     "&:hover": {
       opacity: 1,
-      background: "rgba(255, 240, 243, 0.93)",
+      // background: "rgba(255, 240, 243, 0.93)",
     },
   },
   cardTitle: {
@@ -184,7 +183,6 @@ export default function PostCard(props) {
     <div>
       <Grid item xs={12} className={classes.cardContainer}>
         <Grid container item justify="flex-end" className={classes.date}>
-          <CreatePost />
           <FormControl className={classes.date}>
             <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
             <Select
@@ -215,7 +213,7 @@ export default function PostCard(props) {
               />
               <Link to={`/forums/${forum._id}`}>
                 <CardContent className={classes.cardContent}>
-                  <Typography color="secondary">
+                  <Typography color="error">
                     <h2 className={classes.cardTitle}>{forum.forum_title}</h2>
                   </Typography>
                 </CardContent>
@@ -232,7 +230,14 @@ export default function PostCard(props) {
                   <span className="dislikeCount">{forum.dislikes}</span>
                 </div>
                 {/* show delete button only for the user who posted the forum */}
-                {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
+                {forum.user && forum.user.id === user.sub && (
+                  <DeleteIcon
+                    className={classes.deleteIcon}
+                    onClick={deleteOnClick(forum)}
+                    size="small"
+                    variant="contained"
+                  />
+                )}
               </CardActions>
             </Card>
           );
