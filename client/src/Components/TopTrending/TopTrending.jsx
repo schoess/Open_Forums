@@ -34,6 +34,10 @@ export default function OutlinedCard() {
   const classes = useStyles();
   const [topTrendingForums, setTopTrendingForums] = useState([]);
 
+  function ListItemLink(props) {
+    return <ListItem button component="a" {...props} />;
+  }
+
   useEffect(() => {
     // getting all forums. sorting and slicing top 5 liked forums to display in trending card
     forumApi
@@ -58,7 +62,7 @@ export default function OutlinedCard() {
             <List component="nav">
               {topTrendingForums.sortedResult &&
                 topTrendingForums.sortedResult.map((trendingForum) => (
-                  <ListItem button>
+                  <ListItemLink href={`/forums/${trendingForum._id}`}>
                     <ListItemAvatar>
                       <Avatar
                         alt={trendingForum.user && trendingForum.user.name}
@@ -66,7 +70,7 @@ export default function OutlinedCard() {
                       />
                     </ListItemAvatar>
                     <ListItemText>{trendingForum.forum_title}</ListItemText>
-                  </ListItem>
+                  </ListItemLink>
                 ))}
             </List>
           </div>
