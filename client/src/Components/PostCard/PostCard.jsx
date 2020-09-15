@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "7px 100px",
     opacity: 0.8,
     padding: "10px",
-    background: "white",
+    // background: "white",
+    background: theme.palette.background.paper,
     "&:hover": {
       opacity: 1,
       background: "rgba(255, 240, 243, 0.93)",
@@ -76,9 +77,11 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: 0,
     },
   },
+  deleteIcon: {
+    cursor: "pointer",
+    color: "#888098",
+  },
 }));
-
-// BV: switched to css file for style in order to style hover effects easier
 
 export default function PostCard(props) {
   const classes = useStyles();
@@ -192,10 +195,9 @@ export default function PostCard(props) {
         </Grid>
         {forums.map((forum) => {
           return (
-            <Card className={classes.cardIndividual} key={forum._id}>
+            <Card className={classes.cardIndividual} key={forum._id} borderColor="primary">
               <CardHeader
                 className={classes.cardHeader}
-                // className="padding-delete"
                 avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
                 title={forum.user && forum.user.name + ", " + moment(forum.date).fromNow()}
               />
@@ -218,7 +220,7 @@ export default function PostCard(props) {
                   <span className="dislikeCount">{forum.dislikes}</span>
                 </div>
                 {/* show delete button only for the user who posted the forum */}
-                {forum.user && forum.user.id === user.sub && <DeleteIcon className="deleteBtn" onClick={deleteOnClick(forum)} size="small" variant="contained" />}
+                {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
               </CardActions>
             </Card>
           );

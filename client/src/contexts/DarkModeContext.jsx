@@ -4,14 +4,14 @@ import React, { useState, createContext } from "react";
 export const DarkModeContext = createContext();
 
 export const DarkModeContextProvider = (props) => {
-  const [darkState, setDarkState] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   return React.createElement(
     DarkModeContext.Provider,
     {
       value: {
-        darkState,
-        setDarkState,
+        darkMode,
+        setDarkMode,
       },
     },
     props.children

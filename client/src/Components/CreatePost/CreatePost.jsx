@@ -6,20 +6,17 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import SubmitPost from "../SubmitPost/SubmitPost";
+import { useAuth0 } from "@auth0/auth0-react";
+import AlertDialog from "../AuthenticationModal/AuthenticationModal";
 import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
 
 const myStyle = {
   CreatePostButton: {
-<<<<<<< HEAD
-    backgroundColor: "#FF5733",
-    marginRight: "30px",
-=======
     backgroundColor: "primary",
     paddingTop: "20px",
     position: "sticky",
     paddingLeft: "350px",
     top: "0",
->>>>>>> 6acc48beeaf515544f7190424b0e2b29c5fa2346
   },
   BorderColorIcon: {
     paddingRight: "5px",
@@ -29,6 +26,7 @@ const myStyle = {
 
 function CreatePost() {
   const { showSubmitPostModal, setShowSubmitPostModal } = useSubmitPostModalContext();
+  const { isAuthenticated } = useAuth0();
 
   const handleClickOpen = () => {
     setShowSubmitPostModal(true);
@@ -40,15 +38,12 @@ function CreatePost() {
 
   return (
     <div style={myStyle.CreatePostButton}>
-<<<<<<< HEAD
-      <Button onClick={handleClickOpen}>
-        <CreateIcon />
-=======
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        <BorderColorIcon />
->>>>>>> 6acc48beeaf515544f7190424b0e2b29c5fa2346
-        Create Post
-      </Button>
+      {(isAuthenticated && (
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>
+          <BorderColorIcon />
+          Create Post
+        </Button>
+      )) || <AlertDialog />}
       <Dialog open={showSubmitPostModal} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create Your own Post</DialogTitle>
         <DialogContent>
