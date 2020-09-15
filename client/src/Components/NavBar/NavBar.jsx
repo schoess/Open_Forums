@@ -7,7 +7,7 @@ import Login from "../Login/Login";
 import UserAccount from "../UserAccount/UserAccount";
 import Search from "../Search/Search";
 import CreatePost from "../CreatePost/CreatePost";
-import { useDarkModeContext } from "../../contexts/DarkModeContext";
+// import { useDarkModeContext } from "../../contexts/DarkModeContext";
 import "./NavBar.css";
 
 const font = "'Sail', cursive";
@@ -22,13 +22,16 @@ const useStyles = makeStyles(() => ({
 function NavBar(props) {
   const { isAuthenticated } = useAuth0();
   const classes = useStyles();
+
   // BV: Can/should I have the state in the context and export it here to use?
-  const { darkState, setDarkState } = useDarkModeContext(false);
-  const handleThemeChange = () => {
-    setDarkState(!darkState);
-    console.log("Dark Mode Toggle CLICKED! This is darkState = " + darkState);
-    // BV: The above is working; darkState switches from true to false.
-  };
+  // const { darkState, setDarkState } = useDarkModeContext(false);
+  // const handleThemeChange = () => {
+  //   setDarkState(!darkState);
+  //   console.log("Dark Mode Toggle CLICKED! This is darkState = " + darkState);
+  //   // BV: The above is working; darkState switches from true to false.
+  // };
+
+  console.log("THIS IS props.handleThemeChange = " + props.handleThemeChange);
 
   return (
     <div className="navBar">
@@ -40,7 +43,7 @@ function NavBar(props) {
             </Typography>
           </Link>
           <div className="darkModeToggleDiv">
-            <Switch color="secondary" onChange={handleThemeChange} />
+            <Switch color="secondary" onClick={props.handleThemeChange} />
           </div>
           <CreatePost />
           {props.isSearchEnable && <Search />}
