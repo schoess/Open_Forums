@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import forumApi from "../../utils/forum.api";
-import { Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar, Paper } from "@material-ui/core";
+import { Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
