@@ -28,16 +28,16 @@ function Dashboard() {
             direction="row"
           // "row-reverse"
           // justify="center"
-        >
-          <Grid item xs={12} container>
-            <Grid item xs={8}>
-              <PostCard className="postCard" />
-            </Grid>
-            <Grid item xs={4}>
-              <TopTrending />
+          >
+            <Grid item xs={12} container>
+              <Grid item xs={8}>
+                <PostCard className="postCard" />
+              </Grid>
+              <Grid item xs={4}>
+                <TopTrending />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
         </div>
       </Paper>
     </div>
