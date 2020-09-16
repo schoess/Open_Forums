@@ -59,6 +59,7 @@ function PostReply(props) {
             className="reply-text-field"
             style={myStyle.replyTextField}
             id="standard-full-width"
+            required
             label="What are your thoughts?"
             variant="outlined"
             margin="dense"

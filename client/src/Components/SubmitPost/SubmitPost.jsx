@@ -122,6 +122,7 @@ function SubmitPost() {
             <TextField
               style={myStyle.textField}
               id="title"
+              required
               label="Title"
               variant="outlined"
               margin="normal"
