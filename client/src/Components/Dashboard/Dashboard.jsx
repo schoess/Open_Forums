@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  background: {
+    backgroundColor: "#303030",
+  },
 }));
 
 function Dashboard() {
@@ -18,10 +21,11 @@ function Dashboard() {
     <div className={classes.root}>
       <NavBar isSearchEnable={true} />
       <Paper>
-        <Grid
-          container
-          spacing={1}
-          direction="row"
+        <div className={classes.background}>
+          <Grid
+            container
+            spacing={1}
+            direction="row"
           // "row-reverse"
           // justify="center"
         >
@@ -34,6 +38,7 @@ function Dashboard() {
             </Grid>
           </Grid>
         </Grid>
+        </div>
       </Paper>
     </div>
   );
