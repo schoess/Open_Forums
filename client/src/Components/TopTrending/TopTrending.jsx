@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import forumApi from "../../utils/forum.api";
 import { Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,17 +34,13 @@ const useStyles = makeStyles((theme) => ({
 export default function OutlinedCard() {
   const classes = useStyles();
   const [topTrendingForums, setTopTrendingForums] = useState([]);
-
-  function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  }
+  const history = useHistory();
 
   useEffect(() => {
     // getting all forums. sorting and slicing top 5 liked forums to display in trending card
     forumApi
       .getAllForum()
       .then((res) => {
-        console.log(res.data);
         let sortedResult = res.data.sort((a, b) => (a.likes < b.likes ? 1 : -1)).slice(0, 5);
         setTopTrendingForums({ sortedResult });
       })
@@ -62,15 +59,12 @@ export default function OutlinedCard() {
             <List component="nav">
               {topTrendingForums.sortedResult &&
                 topTrendingForums.sortedResult.map((trendingForum) => (
-                  <ListItemLink href={`/forums/${trendingForum._id}`}>
+                  <ListItem button onClick={() => history.push(`/forums/${trendingForum._id}`)}>
                     <ListItemAvatar>
-                      <Avatar
-                        alt={trendingForum.user && trendingForum.user.name}
-                        src={trendingForum.user && trendingForum.user.picture}
-                      />
+                      <Avatar alt={trendingForum.user && trendingForum.user.name} src={trendingForum.user && trendingForum.user.picture} />
                     </ListItemAvatar>
                     <ListItemText>{trendingForum.forum_title}</ListItemText>
-                  </ListItemLink>
+                  </ListItem>
                 ))}
             </List>
           </div>

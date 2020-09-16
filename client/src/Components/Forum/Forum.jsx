@@ -5,6 +5,7 @@ import { Card, CardContent, Typography, CardHeader, Avatar } from "@material-ui/
 import moment from "moment";
 import Replies from "../Reply/Replies";
 import forumApi from "../../utils/forum.api";
+import { useDarkModeContext } from "../../contexts/DarkModeContext";
 
 const myStyle = {
   cardContainer: {
@@ -39,6 +40,7 @@ const myStyle = {
 };
 export default function (props) {
   const [forum, setForum] = React.useState({});
+  const { darkMode } = useDarkModeContext();
 
   useEffect(() => {
     forumApi
@@ -48,6 +50,8 @@ export default function (props) {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  console.log("dark mode outside useeffect: ", darkMode);
 
   return (
     <div style={myStyle.cardContainer}>
