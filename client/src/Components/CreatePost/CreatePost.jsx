@@ -12,7 +12,12 @@ import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext
 
 const myStyle = {
   CreatePostButton: {
-    padding: "10px 100px 10px 100px",
+    padding: "10px 10px 10px 100px",
+    // backgroundColor: "primary",
+    // paddingTop: "20px",
+    // position: "sticky",
+    // paddingLeft: "350px",
+    // top: "0",
   },
   BorderColorIcon: {
     paddingRight: "5px",

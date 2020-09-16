@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, { useEffect } from "react";
+import React from "react";
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -18,8 +18,6 @@ function App() {
   const { isLoading } = useAuth0();
 
   const { darkMode } = useDarkModeContext();
-
-  useEffect(() => {}, []);
 
   if (isLoading) return <div>Loading...</div>;
   return (
