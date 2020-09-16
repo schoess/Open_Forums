@@ -97,7 +97,7 @@ export default function Replies(props) {
   return (
     <div>
       {isAuthenticated && <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />}
-      {replies.map((reply) => {
+      {replies.reverse().map((reply) => {
         return (
           <Card className="card-styles" key={reply._id}>
             <CardActions style={myStyle.replyCardBody}>
