@@ -32,7 +32,7 @@ app.use(routes);
 // mongoose.set("useFindAndModify", false);
 
 const connection =
-  "mongodb+srv://forumGuy:x44ChTJmQysK3kwQ@cluster0.rmtku.mongodb.net/Open_Forums?retryWrites=true&w=majority";
+  `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASS}@cluster0.rmtku.mongodb.net/Open_Forums?retryWrites=true&w=majority`;
 mongoose
   .connect(connection, {
     useNewUrlParser: true,
