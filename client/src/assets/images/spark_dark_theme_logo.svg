@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="219px" height="68px" viewBox="0 0 219 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Group Copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <text id="text-1" font-family="Luminari-Regular, Luminari" font-size="48" font-weight="normal" letter-spacing="0.6" fill="#4280B1">
+            <tspan x="35" y="47">Spark</tspan>
+        </text>
+        <filter x="-1.7%" y="-2.3%" width="103.4%" height="109.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 0.988235294   0 0 0 0 0.521568627  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-46.000000, -175.000000)">
+            <g id="Group-Copy-2" transform="translate(46.000000, 163.000000)">
+                <g id="Spark" fill="#4280B1" fill-opacity="1">
+                    <use filter="url(#filter-2)" xlink:href="#text-1"></use>
+                    <use xlink:href="#text-1"></use>
+                </g>
+                <image id="Bitmap" x="0" y="12" width="29" height="67" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD0AAAC+CAYAAACGRgefAAAAAXNSR0IArs4c6QAABflJREFUeAHtnM2V1TwMhpk5rNnTCHtogDJogeUsaYEyaAD2NMKeBuC8A5qjqyvZTuIfSUkWXxzbcfToUXznDt+Zh1cJjw9P3/6UsB5KgxHGaoAaQ0joLaDfnz7eMd51aJlZ3dcKqQFqsbuGrsG2QP789fvu/XYHvRdUg9Mso88FdAlUs7kFUANfCr0F9igoh18GbQFLsz1hCXw69ErYJdAasDSLwEbYJWCcp5jWYPFwCTwaFs/EMRxaA5awCGQW8HDoFuCZsADGMcy0V+Bh0BJYlvMKu8+K//+nu2nvwOB+5Bk42pbAcr3VhimebqY1YF7WXoAB3gW6BOwJtotpDRYLk2GPwIhvt2kNmGCxsFdgxLZrI6sBY2HPxy7oGpBny4h9c3nXLHsH3gydAXgTdBZgQA95p7Gw56Ppnc5kGTJ2mY7yeWxVWxVas2wtFqW/Ci1BolsGTxG6ZDnC57EURtdFaJpEZ26Z+iKeTeisliHJhJYGyXLksiYmFbpkmW6MfFahJVAmy2C7g85uWYWWljNe35m2IDNsYMR2A62VNr3PdEOG8w20BZTJMhiboK1kRO1/gdZKOypULe4XaG1ixvcZnEVoLREZ+p6hz1TaTaaz7dxF6KzvcxE6w7trMTye7X0+r2mrBDL3n/dz2rKa8ePqeqe57cyf0Zdpbjp7+9q9sxsmPtV09h9NVWjKSNbzBS3Nvnv7pul/xJH3eb9OaRqySsJee7eyJT4JStfyO0QI02SOn2UyCBD98tOHj2HcPbQMGEHj4P28TcB0/jf7dv7zRiUnYCJ96ZClQYvMOhMQj5FikzHwOXxMzjdN0wL0UL7I6jbFxuPQ+mhcjpnQdEOEs4TSYuZzzPLGjVQWK0ucVxoPXAND35dP72+GPn/9cXMNJvemjyZcJgGJe4YmozcpcXhRi1MCEoLsL5puKSdaeOSZ27bAJZiMB+M0pwgtb1x5zcGPxAHwKjRs883kyAOP3kvgmm25YZWe9QKtLVS6cfXYkXhfoGsQ3mwjXgneavsGWi5SS8SqcSrzvc+/ga4t4sU2j3OPqCZoLx9dHJbb5uAtJX4HzRfgD6G2J9scnOLDuQZ+B81v5m2Ptnl8NVl8rgpdWyC6bRWaZ4W3vdqmMq/JIhYTuraAJ9sE03o2oa0FvNu24ub9Rejotq1dvAjNs8Pb3HbEMq9CW7Y5OE9IhHYVugRB4NFsN0FbtnlCIoE3QXM42Sbb6I8C3gxdsh0NvBkaJlvBMdfzsQkaICVwAvVe5puhCUw7RynzXdAl2xxcS4yHvl3QCDwy+G7oGjjGvb7bh6ABZh1U5h7BD0OXytxKyOr+w9AAsMC92u4C3WLOU5l3g67ZRmK8gHeDBtRqcPoFIWKhQ/vtSVdoPMgCpyA8nLtDW+C0qWF8dZkPgbZscnBrzoz+YdC1Ml9pexi0ZYzbHgFeSzbimg6Nh44GxzNKx1DolqyXghs1NhQaQVvgK20Phy7Z4uCleb3HpkBbtjnMiE2Nr8/bU6DxQAt8he1p0DzTsk3gs2xPhbZsyySMvp4KDRgLfKbt6dCjLbasvwTast0ScI85S6B7BH5kDVfQ9F4fAWq51xV0S8B75shfGZ0CWiZqGfTKzWwZtMz+zOsLema2rWdhBx/9M/hl2sp+tv6lpks7+MgSXwq9qoKWQ2u26cfRUbaXQ4+wrSWSPyclNAfU2i6gNTMjS9wFtGaD9/V+t91Aa7Y5eM+2G2gNikocYz1tu4LWbI8Ad/f3xjgkt68lhI/LtraO2z8EYcFpEBK09dqdaQTeE1BLhEvo0eCuNjLNyoi+U0KH+huD1ia3tRpOafqC3lomUedfpqOa2xr3ZXprxqLOv0xHNbc17pBfOI7+ZBYSeqtZOf96p2VGsl6f0vT11TJrOUuuU5b3BS3LIOv1ZTqrWcl1mZYZyXp9StOn+ZbFv46eBpq/qm6hEeSof7J1DU12esOHgO5tPQw0WdfOViXwzYvflwJaqwQLGHOvz2leAtHaVolrHGnKG3Ct4Kcs71NCpypven9rZZ4Sugb/F1n0bAId0auNAAAAAElFTkSuQmCC"></image>
+                <text id="Ignite-discussion" font-family="AndaleMono, Andale Mono" font-size="16" font-weight="normal" letter-spacing="0.2" fill="#FFFFFF">
+                    <tspan x="54" y="76">Ignite discussion</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
