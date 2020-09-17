@@ -11,17 +11,8 @@ import AlertDialog from "../AuthenticationModal/AuthenticationModal";
 import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
 
 const myStyle = {
-  CreatePostButton: {
-    padding: "10px 10px 10px 100px",
-    // backgroundColor: "primary",
-    // paddingTop: "20px",
-    // position: "sticky",
-    // paddingLeft: "350px",
-    // top: "0",
-  },
-  BorderColorIcon: {
-    paddingRight: "5px",
-    paddingLeft: "25px",
+  createPostButton: {
+    padding: "12px 200px 0px 0px",
   },
 };
 
@@ -38,9 +29,10 @@ function CreatePost() {
   };
 
   return (
-    <div style={myStyle.CreatePostButton}>
+    <div style={myStyle.createPostButton}>
       {(isAuthenticated && (
-        <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+        // variant and color aren't doing anything... wtf...
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>
           <BorderColorIcon />
           Create Post
         </Button>
