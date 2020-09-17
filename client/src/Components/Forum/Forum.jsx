@@ -49,6 +49,7 @@ export default function (props) {
         setForum(res.data);
       })
       .catch((err) => console.log(err));
+    // eslint-disable-next-line
   }, []);
 
   console.log("dark mode outside useeffect: ", darkMode);
