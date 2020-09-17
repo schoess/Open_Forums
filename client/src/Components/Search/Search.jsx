@@ -4,7 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { useForumContext } from "../../contexts/ForumContext";
 import forumApi from "../../utils/forum.api";
-import { FormControl, InputLabel, Select } from "@material-ui/core";
+import { FormControl, InputLabel, Select, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,15 +87,7 @@ const Search = () => {
           let filtered = res.data;
 
           if (text) {
-            filtered = res.data.filter(
-              (forum) =>
-                forum.forum_title
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase()) ||
-                forum.forum_description
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase())
-            );
+            filtered = res.data.filter((forum) => forum.forum_title.toLowerCase().includes(text.toLocaleLowerCase()) || forum.forum_description.toLowerCase().includes(text.toLocaleLowerCase()));
           }
 
           setForums(filtered);
@@ -103,22 +95,12 @@ const Search = () => {
           let filtered;
 
           if (category) {
-            filtered = res.data.filter((forum) =>
-              forum.category
-                .toLowerCase()
-                .includes(category.toLocaleLowerCase())
-            );
+            filtered = res.data.filter((forum) => forum.category.toLowerCase().includes(category.toLocaleLowerCase()));
           }
 
           if (text) {
             filtered = filtered.filter(
-              (filteredCategory) =>
-                filteredCategory.forum_title
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase()) ||
-                filteredCategory.forum_description
-                  .toLowerCase()
-                  .includes(text.toLocaleLowerCase())
+              (filteredCategory) => filteredCategory.forum_title.toLowerCase().includes(text.toLocaleLowerCase()) || filteredCategory.forum_description.toLowerCase().includes(text.toLocaleLowerCase())
             );
           }
 
@@ -129,54 +111,55 @@ const Search = () => {
   };
 
   return (
-    <>
-      <div>
-        <FormControl>
-          <InputLabel htmlFor="age-native-simple" className={classes.category}>
-            Categories
-          </InputLabel>
-          <Select
-            native
-            value={searchCriteria.category}
-            onChange={onCategoryChange}
-            className={classes.category}
-            inputProps={{
-              name: "category",
-              id: "age-native-simple",
+    <Grid container direction="row" justify="flex-end" alignItems="center">
+      <Grid item xs={12} sm={4} md={4} lg={2}>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <FormControl>
+            <InputLabel className={classes.category}>Categories</InputLabel>
+            <Select
+              native
+              value={searchCriteria.category}
+              onChange={onCategoryChange}
+              className={classes.category}
+              inputProps={{
+                name: "category",
+              }}
+            >
+              <option>All</option>
+              <option>General</option>
+              <option>Sports</option>
+              <option>Food</option>
+              <option>Technology</option>
+              <option>Kids</option>
+              <option>Health/Fitness</option>
+              <option>Art</option>
+              <option>Business</option>
+              <option>Entertainment</option>
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} sm={8} md={8} lg={3}>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
             }}
-          >
-            <option>All</option>
-            <option>General</option>
-            <option>Sports</option>
-            <option>Food</option>
-            <option>Technology</option>
-            <option>Kids</option>
-            <option>Health/Fitness</option>
-            <option>Art</option>
-            <option>Business</option>
-            <option>Entertainment</option>
-          </Select>
-        </FormControl>
-      </div>
-      <div className={classes.search}>
-        <div className={classes.searchIcon}>
-          <SearchIcon />
+            inputProps={{
+              name: "text",
+              id: "aria-label",
+            }}
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
         </div>
-        <InputBase
-          placeholder="Search…"
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          inputProps={{
-            name: "text",
-            id: "aria-label",
-          }}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
-      </div>
-    </>
+      </Grid>
+    </Grid>
   );
 };
 
