@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import PostCard from "../PostCard/PostCard";
 import NavBar from "../NavBar/NavBar";
 import TopTrending from "../TopTrending/TopTrending";
@@ -18,7 +18,8 @@ const useStyles = makeStyles({
 function Dashboard() {
   const classes = useStyles();
   const { width } = useViewportContext();
-  const breakpoint = 960;
+  const { darkMode } = useDarkModeContext();
+  const breakpoint = 960; // medium screen size
 
   return (
     <Grid container direction="row" justify="center" alignItems="center" className={darkMode ? classes.darkBackground : classes.lightBackground}>
