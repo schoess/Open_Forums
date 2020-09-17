@@ -230,12 +230,15 @@ export default function PostCard(props) {
           </FormControl>
         </Grid>
         {forums.map((forum) => {
+          const name = _.get(forum, 'user.name');
+          const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
+
           return (
             <Card className={classes.cardIndividual} key={forum._id}>
               <CardHeader
                 className={classes.cardHeader}
                 avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
-                title={forum.user && forum.user.name + ", " + moment(forum.date).fromNow()}
+                title={username + ", " + moment(forum.date).fromNow()}
               />
               <Link to={`/forums/${forum._id}`}>
                 <CardContent className={classes.cardContent}>
