@@ -1,19 +1,17 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import "./theme.css";
 
+const fontPrimary = "'Inconsolata', monospace";
+
 const lightTheme = createMuiTheme({
   palette: {
     type: "light",
     primary: {
-      // light: "#bc477b",
-      main: "#E86F4A",
-      // dark: "#560027",
+      main: "#B9136C",
       contrastText: "#ffffff",
     },
     secondary: {
-      // light: "#4fb3bf",
       main: "#17BEBB",
-      // dark: "#005662",
       contrastText: "#ffffff",
     },
     // below lets us use a third color easily; not actually for errors.
@@ -21,6 +19,9 @@ const lightTheme = createMuiTheme({
       main: "#2B7CDE",
     },
   },
+  typography: {
+    fontFamily: fontPrimary,
+  }
 });
 
 export default lightTheme;

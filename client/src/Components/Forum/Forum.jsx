@@ -6,6 +6,7 @@ import moment from "moment";
 import Replies from "../Reply/Replies";
 import forumApi from "../../utils/forum.api";
 import { useDarkModeContext } from "../../contexts/DarkModeContext";
+import * as _ from "lodash";
 
 const myStyle = {
   cardContainer: {
@@ -53,7 +54,8 @@ export default function (props) {
   }, []);
 
   console.log("dark mode outside useeffect: ", darkMode);
-
+  const name = _.get(forum, 'user.name'); //forum.user.name
+  const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
   return (
     <div style={myStyle.cardContainer}>
       <Card style={myStyle.cardIndividual}>
@@ -61,7 +63,7 @@ export default function (props) {
           style={myStyle.cardHeader}
           // className="padding-delete"
           avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
-          title={forum.user && forum.user.name + ", " + moment(forum.date).fromNow()}
+          title={username+ ", " + moment(forum.date).fromNow()}
         />
         <CardContent>
           <Typography style={myStyle.cardTitle} variant="body2" component="p">
