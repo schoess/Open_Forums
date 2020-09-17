@@ -86,6 +86,14 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "100px",
     },
   },
+  myForumDisplay: {
+    [theme.breakpoints.down("md")]: {
+      marginTop: "100px",
+    },
+    [theme.breakpoints.up("md")]: {
+      marginTop: "100px",
+    },
+  },
 }));
 
 export default function PostCard(props) {
@@ -174,7 +182,7 @@ export default function PostCard(props) {
       .catch((err) => console.log(err));
   }
   return (
-    <Grid container direction="row" justify="center" alignItems="center" className={classes.cardDisplay}>
+    <Grid container direction="row" justify="center" alignItems="center" className={(props.myForum && classes.myForumDisplay) || classes.cardDisplay}>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Grid container direction="row" justify="flex-end">
           <Grid item xs={6} sm={5} md={3} lg={2}>

@@ -12,9 +12,7 @@ function Dashboard() {
   return (
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid item xs={12} sm={12} md={12} lg={12} id="nav-bar">
-        {/* <AppBar color="primary" position="fixed"> */}
         <NavBar isSearchEnable={true} />
-        {/* </AppBar> */}
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Grid container direction="row" justify="center" alignItems="flex-start">
