@@ -1,6 +1,8 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import "./theme.css";
 
+const fontPrimary = "'Inconsolata', monospace";
+
 const darkTheme = createMuiTheme({
   palette: {
     type: "dark",
@@ -15,6 +17,9 @@ const darkTheme = createMuiTheme({
       main: "#BDC8DB",
     },
   },
+  typography: {
+    fontFamily: fontPrimary,
+  }
 });
 
 export default darkTheme;
