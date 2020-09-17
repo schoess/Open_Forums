@@ -51,7 +51,7 @@ export default function OutlinedCard() {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography variant="h6" color="black">
+        <Typography variant="h6">
           Top Trending Forums...
         </Typography>
         <Grid item xs={12}>
@@ -59,7 +59,7 @@ export default function OutlinedCard() {
             <List component="nav">
               {topTrendingForums.sortedResult &&
                 topTrendingForums.sortedResult.map((trendingForum) => (
-                  <ListItem button onClick={() => history.push(`/forums/${trendingForum._id}`)}>
+                  <ListItem key={trendingForum._id} button onClick={() => history.push(`/forums/${trendingForum._id}`)}>
                     <ListItemAvatar>
                       <Avatar alt={trendingForum.user && trendingForum.user.name} src={trendingForum.user && trendingForum.user.picture} />
                     </ListItemAvatar>

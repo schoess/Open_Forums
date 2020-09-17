@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PostCard from "../PostCard/PostCard";
 import NavBar from "../NavBar/NavBar";
@@ -10,9 +10,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  background: {
-    backgroundColor: "#303030",
-  },
 }));
 
 function Dashboard() {
@@ -20,26 +17,24 @@ function Dashboard() {
   return (
     <div className={classes.root}>
       <NavBar isSearchEnable={true} />
-      <Paper>
-        <div className={classes.background}>
-          <Grid
-            container
-            spacing={1}
-            direction="row"
+      <div>
+        <Grid
+          container
+          spacing={1}
+          direction="row"
           // "row-reverse"
           // justify="center"
-          >
-            <Grid item xs={12} container>
-              <Grid item xs={8}>
-                <PostCard className="postCard" />
-              </Grid>
-              <Grid item xs={4}>
-                <TopTrending />
-              </Grid>
+        >
+          <Grid item xs={12} container>
+            <Grid item xs={8}>
+              <PostCard className="postCard" />
+            </Grid>
+            <Grid item xs={4}>
+              <TopTrending />
             </Grid>
           </Grid>
-        </div>
-      </Paper>
+        </Grid>
+      </div>
     </div>
   );
 }
