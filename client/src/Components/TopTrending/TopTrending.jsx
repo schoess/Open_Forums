@@ -6,11 +6,21 @@ import forumApi from "../../utils/forum.api";
 import { Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar, makeStyles } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles({
-  body: {
-    marginTop: "60px",
+const useStyles = makeStyles((theme) => ({
+  root: {
+    [theme.breakpoints.only("xs")]: {
+      marginTop: "140px",
+      marginBottom: "25px",
+    },
+    [theme.breakpoints.only("sm")]: {
+      marginTop: "100px",
+      marginBottom: "25px",
+    },
+    [theme.breakpoints.up("md")]: {
+      marginTop: "100px",
+    },
   },
-});
+}));
 
 export default function OutlinedCard() {
   const [topTrendingForums, setTopTrendingForums] = useState([]);
@@ -30,7 +40,7 @@ export default function OutlinedCard() {
   }, []);
 
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
+    <Grid container direction="row" justify="center" alignItems="center" className={classes.root}>
       <Grid item xs={10} sm={10} md={10} lg={10}>
         <Card className={classes.body}>
           <CardContent>

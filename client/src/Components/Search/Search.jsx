@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(3),
       width: "auto",
     },
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: theme.spacing(2),
+      width: "auto",
+    },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -112,7 +116,7 @@ const Search = () => {
 
   return (
     <Grid container direction="row" justify="flex-end" alignItems="center">
-      <Grid item xs={12} sm={4} md={4} lg={2}>
+      <Grid item xs={4} sm={4} md={4} lg={2}>
         <Grid container direction="row" justify="center" alignItems="center">
           <FormControl>
             <InputLabel className={classes.category}>Categories</InputLabel>
@@ -139,7 +143,7 @@ const Search = () => {
           </FormControl>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={8} md={8} lg={5}>
+      <Grid item xs={8} sm={8} md={8} lg={5}>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />

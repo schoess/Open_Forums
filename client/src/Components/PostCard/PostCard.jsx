@@ -81,6 +81,11 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     color: "#888098",
   },
+  cardDisplay: {
+    [theme.breakpoints.up("md")]: {
+      marginTop: "100px",
+    },
+  },
 }));
 
 export default function PostCard(props) {
@@ -169,32 +174,36 @@ export default function PostCard(props) {
       .catch((err) => console.log(err));
   }
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
+    <Grid container direction="row" justify="center" alignItems="center" className={classes.cardDisplay}>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Grid container direction="row" justify="flex-end">
-          <Grid item xs={12} sm={12} md={6} lg={2}>
-            <CreatePost />
+          <Grid item xs={6} sm={5} md={3} lg={2}>
+            <Grid container direction="row" justify="flex-end">
+              <CreatePost />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={2}>
-            <FormControl>
-              <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
-              <Select
-                value={sortOrder}
-                onChange={onSortChange}
-                className={classes.date}
-                inputProps={{
-                  name: "date",
-                  id: "sort-by",
-                }}
-              >
-                <option value="new" className={classes.cursorPointer}>
-                  Newest
-                </option>
-                <option value="old" className={classes.cursorPointer}>
-                  Oldest
-                </option>
-              </Select>
-            </FormControl>
+          <Grid item xs={5} sm={3} md={3} lg={3}>
+            <Grid container direction="row" justify="center">
+              <FormControl>
+                <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
+                <Select
+                  value={sortOrder}
+                  onChange={onSortChange}
+                  className={classes.date}
+                  inputProps={{
+                    name: "date",
+                    id: "sort-by",
+                  }}
+                >
+                  <option value="new" className={classes.cursorPointer}>
+                    Newest
+                  </option>
+                  <option value="old" className={classes.cursorPointer}>
+                    Oldest
+                  </option>
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
