@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, CardActions, CardContent, Typography, Avatar, CardHeader, IconButton, FormControl, InputLabel, Select, Grid } from "@material-ui/core";
+import { Card, CardActions, CardContent, Avatar, CardHeader, IconButton, FormControl, InputLabel, Select, Grid } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     marginBottom: 0,
     fontSize: "16px",
+    color: "#2B7CDE"
   },
   cardHeader: {
     fontSize: "50px",
@@ -193,7 +194,7 @@ export default function PostCard(props) {
         </Grid>
         {forums.map((forum) => {
           return (
-            <Card className={classes.cardIndividual} key={forum._id} borderColor="primary">
+            <Card className={classes.cardIndividual} key={forum._id}>
               <CardHeader
                 className={classes.cardHeader}
                 avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
@@ -201,9 +202,7 @@ export default function PostCard(props) {
               />
               <Link to={`/forums/${forum._id}`}>
                 <CardContent className={classes.cardContent}>
-                  <Typography color="error">
                     <h2 className={classes.cardTitle}>{forum.forum_title}</h2>
-                  </Typography>
                 </CardContent>
               </Link>
               <CardActions>
