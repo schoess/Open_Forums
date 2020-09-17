@@ -49,11 +49,12 @@ const useStyles = makeStyles((theme) => ({
   },
   cardIndividual: {
     borderRadius: 15,
-    margin: "7px 100px",
+    marginTop: "5px",
+    marginBottom: "5px",
     opacity: 0.8,
     padding: "10px",
     "&:hover": {
-      opacity: 1,
+      opacity: 2,
       // background: "rgba(255, 240, 243, 0.93)",
     },
   },
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     marginBottom: 0,
     fontSize: "16px",
-    color: "#2B7CDE"
+    color: "#2B7CDE",
   },
   cardHeader: {
     fontSize: "50px",
@@ -168,61 +169,71 @@ export default function PostCard(props) {
       .catch((err) => console.log(err));
   }
   return (
-    <div>
-      <Grid item xs={12} className={classes.cardContainer}>
-        <Grid container item justify="flex-end" className={classes.date}>
-          <CreatePost />
-          <FormControl className={classes.date}>
-            <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
-            <Select
-              value={sortOrder}
-              onChange={onSortChange}
-              className={classes.date}
-              inputProps={{
-                name: "date",
-                id: "sort-by",
-              }}
-            >
-              <option value="new" className={classes.cursorPointer}>
-                Newest
-              </option>
-              <option value="old" className={classes.cursorPointer}>
-                Oldest
-              </option>
-            </Select>
-          </FormControl>
+    <Grid container direction="row" justify="center" alignItems="center">
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid container direction="row" justify="flex-end">
+          <Grid item xs={12} sm={12} md={6} lg={2}>
+            <CreatePost />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={2}>
+            <FormControl>
+              <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
+              <Select
+                value={sortOrder}
+                onChange={onSortChange}
+                className={classes.date}
+                inputProps={{
+                  name: "date",
+                  id: "sort-by",
+                }}
+              >
+                <option value="new" className={classes.cursorPointer}>
+                  Newest
+                </option>
+                <option value="old" className={classes.cursorPointer}>
+                  Oldest
+                </option>
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
-        {forums.map((forum) => {
-          return (
-            <Card className={classes.cardIndividual} key={forum._id}>
-              <CardHeader
-                className={classes.cardHeader}
-                avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
-                title={forum.user && forum.user.name + ", " + moment(forum.date).fromNow()}
-              />
-              <Link to={`/forums/${forum._id}`}>
-                <CardContent className={classes.cardContent}>
-                    <h2 className={classes.cardTitle}>{forum.forum_title}</h2>
-                </CardContent>
-              </Link>
-              <CardActions>
-                <div className="likeDislikeBtns">
-                  <span className="likeCount">{forum.likes}</span>
-                  <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
-                    <ThumbUpAltIcon className="likeBtn" size="small" />
-                  </IconButton>
-                  <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
-                    <ThumbDownAltIcon className="dislikeBtn" />
-                  </IconButton>
-                  <span className="dislikeCount">{forum.dislikes}</span>
-                </div>
-                {/* show delete button only for the user who posted the forum */}
-                {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
-              </CardActions>
-            </Card>
-          );
-        })}
       </Grid>
-    </div>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid container direction="row" justify="center" alignItems="center">
+          {forums.map((forum) => {
+            return (
+              <Grid item xs={10} sm={10} md={10} lg={10}>
+                <Card className={classes.cardIndividual} key={forum._id}>
+                  <CardHeader
+                    className={classes.cardHeader}
+                    avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
+                    title={forum.user && forum.user.name + ", " + moment(forum.date).fromNow()}
+                  />
+                  <Link to={`/forums/${forum._id}`}>
+                    <CardContent className={classes.cardContent}>
+                      <h2 className={classes.cardTitle}>{forum.forum_title}</h2>
+                    </CardContent>
+                  </Link>
+                  <CardActions>
+                    <div className="likeDislikeBtns">
+                      <span className="likeCount">{forum.likes}</span>
+                      <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
+                        <ThumbUpAltIcon className="likeBtn" size="small" />
+                      </IconButton>
+                      <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
+                        <ThumbDownAltIcon className="dislikeBtn" />
+                      </IconButton>
+                      <span className="dislikeCount">{forum.dislikes}</span>
+                    </div>
+                    {/* show delete button only for the user who posted the forum */}
+                    {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }

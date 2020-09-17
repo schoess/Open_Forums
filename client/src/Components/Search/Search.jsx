@@ -139,7 +139,7 @@ const Search = () => {
           </FormControl>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={8} md={8} lg={3}>
+      <Grid item xs={12} sm={8} md={8} lg={5}>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
