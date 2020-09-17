@@ -44,6 +44,7 @@ export default function Replies(props) {
   // get all replies
   useEffect(() => {
     loadAllReplyForum();
+    // eslint-disable-next-line
   }, []);
   const deleteOnClick = (reply) => () => {
     forumApi.deleteReply(reply._id);

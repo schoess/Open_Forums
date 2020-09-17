@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Button, Tooltip } from "@material-ui/core";
+import { AppBar, Button, Tooltip, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -12,12 +12,12 @@ import { Brightness7, Brightness4 } from "@material-ui/icons";
 import SparkDarkThemeLogo from "../../assets/images/spark_dark_theme_logo.svg";
 import SparkLightThemeLogo from "../../assets/images/spark_light_theme_logo.svg";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   logo: {
-    paddingTop: "10px",
-    paddingLeft: "10px",
+    paddingTop: "5px",
+    paddingLeft: "5px",
   },
-}));
+});
 
 function NavBar(props) {
   const { isAuthenticated } = useAuth0();
@@ -29,20 +29,32 @@ function NavBar(props) {
   };
 
   return (
-    <div className="navBar">
-      <AppBar color="primary" position="fixed">
-        <Toolbar>
-          <Link to="/" variant="h6" className="title" align="left">
-            {darkMode ? <img src={SparkDarkThemeLogo} alt="SparkDarkThemeLogo" className={classes.logo} /> : <img src={SparkLightThemeLogo} alt="SparkLightThemeLogo" />}
-          </Link>
+    <AppBar color="primary" position="fixed">
+      <Grid container direction="row" justify="space-evenly" alignItems="center">
+        <Grid item xs={12} sm={12} md={2} lg={1}>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Link to="/">
+              {darkMode ? (
+                <img src={SparkDarkThemeLogo} alt="SparkDarkThemeLogo" className={classes.logo} width="150" height="50" />
+              ) : (
+                <img src={SparkLightThemeLogo} alt="SparkLightThemeLogo" width="150" height="50" />
+              )}
+            </Link>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sm={12} md={6} lg={10}>
           {props.isSearchEnable && <Search />}
-          <Tooltip title="Toggle light/dark theme" placement="bottom">
-            {darkMode ? <Brightness7 onClick={handleThemeChange} /> : <Brightness4 onClick={handleThemeChange} />}
-          </Tooltip>
-          <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+        </Grid>
+        <Grid item xs={12} sm={12} md={2} lg={1}>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Tooltip title="Toggle light/dark theme" placement="bottom">
+              {darkMode ? <Brightness7 onClick={handleThemeChange} /> : <Brightness4 onClick={handleThemeChange} />}
+            </Tooltip>
+            <Button color="inherit">{isAuthenticated ? <UserAccount /> : <Login />}</Button>
+          </Grid>
+        </Grid>
+      </Grid>
+    </AppBar>
   );
 }
 
