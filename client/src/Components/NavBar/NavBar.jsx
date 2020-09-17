@@ -1,6 +1,5 @@
 import React from "react";
 import { AppBar, Toolbar, Button, Tooltip } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDarkModeContext } from "../../contexts/DarkModeContext";
@@ -10,8 +9,6 @@ import Search from "../Search/Search";
 import "./NavBar.css";
 import { Brightness7, Brightness4 } from "@material-ui/icons";
 import SparkLogo from "../../assets/images/spark.svg";
-
-const font = "'Sail', cursive";
 
 function NavBar(props) {
   const { isAuthenticated } = useAuth0();
