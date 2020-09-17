@@ -199,7 +199,10 @@ export default function PostCard(props) {
               <CardHeader
                 className={classes.cardHeader}
                 avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
-                title={forum.user && forum.user.name + ", " + moment(forum.date).fromNow()}
+                title={forum.user && forum.user.name.includes("@")
+                  ? (forum.user.name.substring(0, forum.user.name.lastIndexOf("@")) 
+                  : forum.user.name
+                  + ", " + moment(forum.date).fromNow()}
               />
               <Link to={`/forums/${forum._id}`}>
                 <CardContent className={classes.cardContent}>
