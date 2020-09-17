@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 const express = require("express");
 const mongoose = require("mongoose");
-
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3001;
@@ -34,7 +33,7 @@ app.use(routes);
 // mongoose.set("useFindAndModify", false);
 
 const connection =
-  `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASS}@cluster0.rmtku.mongodb.net/Open_Forums?retryWrites=true&w=majority`;
+  `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASS}@cluster0.rmtku.mongodb.net/Open_Forums?authSource=admin&retryWrites=true&w=majority`;
 mongoose
   .connect(connection, {
     useNewUrlParser: true,

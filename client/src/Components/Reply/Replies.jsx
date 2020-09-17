@@ -43,6 +43,7 @@ export default function Replies(props) {
   // get all replies
   useEffect(() => {
     loadAllReplyForum();
+    // eslint-disable-next-line
   }, []);
   const deleteOnClick = (reply) => () => {
     forumApi.deleteReply(reply._id);
@@ -97,7 +98,7 @@ export default function Replies(props) {
   return (
     <div>
       {isAuthenticated && <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />}
-      {replies.map((reply) => {
+      {replies.reverse().map((reply) => {
         return (
           <Card className="card-styles" key={reply._id}>
             <CardActions style={myStyle.replyCardBody}>

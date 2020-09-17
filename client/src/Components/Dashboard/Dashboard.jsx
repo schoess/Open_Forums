@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PostCard from "../PostCard/PostCard";
 import NavBar from "../NavBar/NavBar";
@@ -27,7 +27,7 @@ function Dashboard() {
   return (
     <div className={darkMode ? classes.darkBackground : classes.lightBackground}>
       <NavBar isSearchEnable={true} />
-      <Paper>
+      <div>
         <Grid
           container
           spacing={1}
@@ -44,7 +44,7 @@ function Dashboard() {
             </Grid>
           </Grid>
         </Grid>
-      </Paper>
+      </div>
     </div>
   );
 }
