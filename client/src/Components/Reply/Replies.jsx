@@ -15,13 +15,6 @@ import "./Replies.css";
 
 // "reply" refers to the submit form, "replies" refers to the previously submitted replies
 const myStyle = {
-  // cardContainer: {
-  //   textAlign: "center",
-  //   width: "700px",
-  //   margin: "0 auto",
-  //   paddingTop: 50,
-  //   paddigBottom: 50
-  // },
   deleteIcon: {
     cursor: "pointer",
     color: "#888098",
