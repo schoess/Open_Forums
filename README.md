@@ -85,6 +85,7 @@ The back end uses Node.js and Express.js, backed by a Mongo Atlas with a Mongoos
 
 * [lodash](https://lodash.com/) - JavaScript Library that provides utility functions -- used for Object Mapping in this app
 * [Material UI](https://material-ui.com/) - React component for building design 
+* [dotenv](https://www.npmjs.com/package/dotenv)- Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env
 
 #### License
 * This program is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license.
