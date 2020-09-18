@@ -16,7 +16,7 @@ import { useViewportContext } from "../../contexts/ViewportContext";
 const useStyles = makeStyles({
   logo: {
     paddingTop: "5px",
-    paddingLeft: "77px",
+    paddingLeft: "5px",
   },
 });
 
@@ -40,8 +40,12 @@ function NavBar(props) {
             <Grid container direction="row" justify="flex-end" alignItems="center">
               <Grid item xs={6}>
                 <Grid container direction="row" justify="flex-start" alignItems="center">
-                  <Link className={classes.logo} to="/">
-                    {darkMode ? <img src={SparkDarkThemeLogo} alt="SparkDarkThemeLogo" width="150" height="50" /> : <img src={SparkLightThemeLogo} alt="SparkLightThemeLogo" width="150" height="50" />}
+                  <Link to="/">
+                    {darkMode ? (
+                      <img src={SparkDarkThemeLogo} alt="SparkDarkThemeLogo" className={classes.logo} width="150" height="50" />
+                    ) : (
+                      <img src={SparkLightThemeLogo} alt="SparkLightThemeLogo" width="150" height="50" />
+                    )}
                   </Link>
                 </Grid>
               </Grid>
@@ -63,8 +67,12 @@ function NavBar(props) {
         <Grid container direction="row" justify="space-evenly" alignItems="center">
           <Grid item xs={12} sm={3} md={2} lg={1}>
             <Grid container direction="row" justify="flex-start" alignItems="center">
-              <Link className={classes.logo} to="/">
-                {darkMode ? <img src={SparkDarkThemeLogo} alt="SparkDarkThemeLogo" width="150" height="50" /> : <img src={SparkLightThemeLogo} alt="SparkLightThemeLogo" width="150" height="50" />}
+              <Link to="/">
+                {darkMode ? (
+                  <img src={SparkDarkThemeLogo} alt="SparkDarkThemeLogo" className={classes.logo} width="150" height="50" />
+                ) : (
+                  <img src={SparkLightThemeLogo} alt="SparkLightThemeLogo" width="150" height="50" />
+                )}
               </Link>
             </Grid>
           </Grid>
