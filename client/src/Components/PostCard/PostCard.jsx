@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
   },
   cardIndividual: {
     borderRadius: 15,
-    margin: "7px 100px",
+    marginTop: "5px",
+    marginBottom: "5px",
     opacity: 0.8,
     padding: "10px",
     "&:hover": {
@@ -92,29 +93,42 @@ const useStyles = makeStyles((theme) => ({
     color: "#000000",
     backgroundColor: "#F391C5",
     padding: "4px 4px 5px 4px",
-    borderRadius: "20px", 
+    borderRadius: "20px",
   },
   likeCountDark: {
     color: "#000000",
     backgroundColor: "#96A7C5",
     padding: "4px 4px 5px 4px",
-    borderRadius: "20px", 
+    borderRadius: "20px",
   },
   dislikeCountLight: {
     color: "#000000",
     backgroundColor: "#F391C5",
     padding: "4px 4px 5px 4px",
-    borderRadius: "20px", 
+    borderRadius: "20px",
   },
   dislikeCountDark: {
     color: "#000000",
     backgroundColor: "#96A7C5",
     padding: "4px 4px 5px 4px",
-    borderRadius: "20px", 
+    borderRadius: "20px",
   },
   deleteIcon: {
     cursor: "pointer",
     color: "#888098",
+  },
+  cardDisplay: {
+    [theme.breakpoints.up("md")]: {
+      marginTop: "100px",
+    },
+  },
+  myForumDisplay: {
+    [theme.breakpoints.down("md")]: {
+      marginTop: "100px",
+    },
+    [theme.breakpoints.up("md")]: {
+      marginTop: "100px",
+    },
   },
 }));
 
@@ -205,64 +219,77 @@ export default function PostCard(props) {
       .catch((err) => console.log(err));
   }
   return (
-    <div>
-      <Grid item xs={12} className={classes.cardContainer}>
-        <Grid container item justify="flex-end" className={classes.date}>
-          <CreatePost />
-          <FormControl className={classes.date}>
-            <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
-            <Select
-              value={sortOrder}
-              onChange={onSortChange}
-              className={classes.date}
-              inputProps={{
-                name: "date",
-                id: "sort-by",
-              }}
-            >
-              <option value="new" className={classes.cursorPointer}>
-                Newest
-              </option>
-              <option value="old" className={classes.cursorPointer}>
-                Oldest
-              </option>
-            </Select>
-          </FormControl>
+    <Grid container direction="row" justify="center" alignItems="center" className={(props.myForum && classes.myForumDisplay) || classes.cardDisplay}>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid container direction="row" justify="flex-end">
+          <Grid item xs={6} sm={5} md={3} lg={2}>
+            <Grid container direction="row" justify="flex-end">
+              <CreatePost />
+            </Grid>
+          </Grid>
+          <Grid item xs={5} sm={3} md={3} lg={3}>
+            <Grid container direction="row" justify="center">
+              <FormControl>
+                <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
+                <Select
+                  value={sortOrder}
+                  onChange={onSortChange}
+                  className={classes.date}
+                  inputProps={{
+                    name: "date",
+                    id: "sort-by",
+                  }}
+                >
+                  <option value="new" className={classes.cursorPointer}>
+                    Newest
+                  </option>
+                  <option value="old" className={classes.cursorPointer}>
+                    Oldest
+                  </option>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
         </Grid>
-        {forums.map((forum) => {
-          const name = _.get(forum, 'user.name');
-          const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
-
-          return (
-            <Card className={classes.cardIndividual} key={forum._id}>
-              <CardHeader
-                className={classes.cardHeader}
-                avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
-                title={username + ", " + moment(forum.date).fromNow()}
-              />
-              <Link to={`/forums/${forum._id}`}>
-                <CardContent className={classes.cardContent}>
-                    <h2 className={classes.cardTitle}>{forum.forum_title}</h2>
-                </CardContent>
-              </Link>
-              <CardActions>
-                <div className="likeDislikeBtns">
-                  <span className={darkMode ? classes.likeCountDark : classes.likeCountLight}>{forum.likes}</span>
-                  <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
-                    <ThumbUpAltIcon className={darkMode ? classes.likeButtonDark : classes.likeButtonLight} size="small" />
-                  </IconButton>
-                  <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
-                    <ThumbDownAltIcon className={darkMode ? classes.dislikeButtonDark : classes.dislikeButtonLight} />
-                  </IconButton>
-                  <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{forum.dislikes}</span>
-                </div>
-                {/* show delete button only for the user who posted the forum */}
-                {forum.user && forum.user.id === user && user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
-              </CardActions>
-            </Card>
-          );
-        })}
       </Grid>
-    </div>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid container direction="row" justify="center" alignItems="center">
+          {forums.map((forum) => {
+            const name = _.get(forum, "user.name");
+            const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
+            return (
+              <Grid item xs={10} sm={10} md={10} lg={10}>
+                <Card className={classes.cardIndividual} key={forum._id}>
+                  <CardHeader
+                    className={classes.cardHeader}
+                    avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
+                    title={username + ", " + moment(forum.date).fromNow()}
+                  />
+                  <Link to={`/forums/${forum._id}`}>
+                    <CardContent className={classes.cardContent}>
+                      <h2 className={classes.cardTitle}>{forum.forum_title}</h2>
+                    </CardContent>
+                  </Link>
+                  <CardActions>
+                    <div className="likeDislikeBtns">
+                      <span className={darkMode ? classes.likeCountDark : classes.likeCountLight}>{forum.likes}</span>
+                      <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
+                        <ThumbUpAltIcon className={darkMode ? classes.likeButtonDark : classes.likeButtonLight} size="small" />
+                      </IconButton>
+                      <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(forum)} size="small">
+                        <ThumbDownAltIcon className={darkMode ? classes.dislikeButtonDark : classes.dislikeButtonLight} />
+                      </IconButton>
+                      <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{forum.dislikes}</span>
+                    </div>
+                    {/* show delete button only for the user who posted the forum */}
+                    {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
