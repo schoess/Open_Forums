@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
-import { Card, Typography, CardActions, IconButton, CardHeader, Avatar } from "@material-ui/core";
+import { Card, CardActions, IconButton, CardHeader, Avatar } from "@material-ui/core";
 import { ThumbUpAlt as ThumbUpAltIcon, ThumbDownAlt as ThumbDownAltIcon, Delete as DeleteIcon } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#F391C5",
     padding: "4px 4px 5px 4px",
     borderRadius: "20px",
+    marginLeft: "20px",
   },
   likeCountDark: {
     color: "#000000",
@@ -154,7 +155,7 @@ export default function Replies(props) {
                 </IconButton>
                 <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{reply.dislikes}</span>
               </div>
-              {isAuthenticated && user.sub === _.get(reply, "user.id") && <DeleteIcon onClick={deleteOnClick(reply)} size="small" variant="contained" />}
+              {isAuthenticated && user.sub === _.get(reply, "user.id") && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(reply)} size="small" variant="contained" />}
             </CardActions>
           </Card>
         );

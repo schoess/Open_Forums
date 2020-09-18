@@ -51,7 +51,7 @@ export default function (props) {
     // eslint-disable-next-line
   }, []);
 
-  console.log("dark mode outside useeffect: ", darkMode);
+  console.log("dark mode outside useeffect: ", forum);
   const name = _.get(forum, 'user.name'); //forum.user.name
   const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
   return (
@@ -59,7 +59,6 @@ export default function (props) {
       <Card style={myStyle.cardIndividual}>
         <CardHeader
           style={myStyle.cardHeader}
-          // className="padding-delete"
           avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
           title={username+ ", " + moment(forum.date).fromNow()}
         />
