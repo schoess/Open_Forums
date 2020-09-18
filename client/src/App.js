@@ -13,6 +13,7 @@ import "./App.css";
 import darkTheme from "./Themes/darkTheme";
 import { useDarkModeContext } from "./contexts/DarkModeContext";
 import lightTheme from "./Themes/lightTheme";
+import { ViewportContextProvider } from "./contexts/ViewportContext";
 
 function App() {
   const { isLoading } = useAuth0();
@@ -21,19 +22,21 @@ function App() {
 
   if (isLoading) return <div>Loading...</div>;
   return (
-    <ForumContextProvider>
-      <SubmitPostModalContextProvider>
-        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-          <NavBar />
-          <CssBaseline />
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/my_forum" component={MyForum} />
-            <Route path="/forums/:forumId" component={Forum} />
-          </Switch>
-        </ThemeProvider>
-      </SubmitPostModalContextProvider>
-    </ForumContextProvider>
+    <ViewportContextProvider>
+      <ForumContextProvider>
+        <SubmitPostModalContextProvider>
+          <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+            <NavBar />
+            <CssBaseline />
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/my_forum" component={MyForum} />
+              <Route path="/forums/:forumId" component={Forum} />
+            </Switch>
+          </ThemeProvider>
+        </SubmitPostModalContextProvider>
+      </ForumContextProvider>
+    </ViewportContextProvider>
   );
 }
 

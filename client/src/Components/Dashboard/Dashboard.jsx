@@ -1,41 +1,49 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid, makeStyles } from "@material-ui/core";
 import PostCard from "../PostCard/PostCard";
 import NavBar from "../NavBar/NavBar";
-import "./Dashboard.css";
 import TopTrending from "../TopTrending/TopTrending";
+import { useViewportContext } from "../../contexts/ViewportContext";
+import { useDarkModeContext } from "../../contexts/DarkModeContext";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
+const useStyles = makeStyles({
+  darkBackground: {
+    backgroundColor: "#303030",
   },
-}));
+  lightBackground: {
+    backgroundColor: "ffffff",
+  },
+});
 
 function Dashboard() {
   const classes = useStyles();
+  const { width } = useViewportContext();
+  const { darkMode } = useDarkModeContext();
+  const breakpoint = 960; // medium screen size
+
   return (
-    <div className={classes.root}>
-      <NavBar isSearchEnable={true} />
-      <div>
-        <Grid
-          container
-          spacing={1}
-          direction="row"
-          // "row-reverse"
-          // justify="center"
-        >
-          <Grid item xs={12} container>
-            <Grid item xs={8}>
-              <PostCard className="postCard" />
-            </Grid>
-            <Grid item xs={4}>
+    <Grid container direction="row" justify="center" alignItems="center" className={darkMode ? classes.darkBackground : classes.lightBackground}>
+      <Grid item xs={12} sm={12} md={12} lg={12} id="nav-bar">
+        <NavBar isSearchEnable={true} />
+      </Grid>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid container direction="row" justify="center" alignItems="flex-start">
+          {width < breakpoint && (
+            <Grid item xs={12} sm={12} md={4} lg={4}>
               <TopTrending />
             </Grid>
+          )}
+          <Grid item xs={12} sm={12} md={8} lg={8}>
+            <PostCard />
           </Grid>
+          {width >= breakpoint && (
+            <Grid item xs={12} sm={12} md={4} lg={4}>
+              <TopTrending />
+            </Grid>
+          )}
         </Grid>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 export default Dashboard;

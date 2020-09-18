@@ -10,21 +10,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import AlertDialog from "../AuthenticationModal/AuthenticationModal";
 import { useSubmitPostModalContext } from "../../contexts/SubmitPostModalContext";
 
-const myStyle = {
-  CreatePostButton: {
-    padding: "10px 10px 10px 100px",
-    // backgroundColor: "primary",
-    // paddingTop: "20px",
-    // position: "sticky",
-    // paddingLeft: "350px",
-    // top: "0",
-  },
-  BorderColorIcon: {
-    paddingRight: "5px",
-    paddingLeft: "25px",
-  },
-};
-
 function CreatePost() {
   const { showSubmitPostModal, setShowSubmitPostModal } = useSubmitPostModalContext();
   const { isAuthenticated } = useAuth0();
@@ -38,13 +23,15 @@ function CreatePost() {
   };
 
   return (
-    <div style={myStyle.CreatePostButton}>
+    <>
       {(isAuthenticated && (
-        <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+        // variant and color aren't doing anything... wtf...
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>
           <BorderColorIcon />
           Create Post
         </Button>
       )) || <AlertDialog />}
+
       <Dialog open={showSubmitPostModal} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create Your own Post</DialogTitle>
         <DialogContent>
@@ -56,7 +43,7 @@ function CreatePost() {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
 
