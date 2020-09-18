@@ -133,7 +133,7 @@ export default function Replies(props) {
     <div>
       {isAuthenticated && <PostReply loadAllReplyForum={loadAllReplyForum} forumId={props.forumId} />}
       {replies.reverse().map((reply) => {
-        const name = _.get(reply, 'user.name'); //forum.user.name
+        const name = _.get(reply, "user.name"); //forum.user.name
         const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
         return (
           <Card className="card-styles" key={reply._id}>
@@ -142,10 +142,8 @@ export default function Replies(props) {
                 className="avatar-styles"
                 avatar={<Avatar alt={_.get(reply, "user.name")} src={_.get(reply, "user.picture")} />}
                 title={username + ", " + moment(reply.date).fromNow()}
+                subheader={reply.reply_description}
               />
-                <Typography className="reply-styles" variant="body2" component="p">
-                  {reply.reply_description}
-                </Typography>
               <div className="likeDislikeBtns button-styles">
                 <span className={darkMode ? classes.likeCountDark : classes.likeCountLight}>{reply.likes}</span>
                 <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(reply)} size="small">

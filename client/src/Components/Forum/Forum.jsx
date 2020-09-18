@@ -17,9 +17,7 @@ const myStyle = {
     borderRadius: 25,
   },
   cardIndividual: {
-    margin: "20px",
-    marginTop: "40px",
-    borderRadius: 25,
+    borderRadius: 25
   },
   cardTitle: {
     textAlign: "left",

@@ -258,7 +258,7 @@ export default function PostCard(props) {
             const name = _.get(forum, "user.name");
             const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
             return (
-              <Grid item xs={10} sm={10} md={10} lg={10}>
+              <Grid key={forum._id} item xs={10} sm={10} md={10} lg={10}>
                 <Card className={classes.cardIndividual} key={forum._id}>
                   <CardHeader
                     className={classes.cardHeader}

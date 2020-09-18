@@ -17,8 +17,11 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: "25px",
     },
     [theme.breakpoints.up("md")]: {
-      marginTop: "100px",
+      marginTop: "160px",
     },
+  },
+  body: {
+    borderRadius: "25px",
   },
 }));
 
