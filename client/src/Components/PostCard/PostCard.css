@@ -2,20 +2,6 @@
   margin-left: auto;
 }
 
-.likeCount {
-  color: #ffffff;
-  background-color: #B9136C;
-  padding: 4px 4px 5px 4px;
-  border-radius: 20px;
-}
-
-.dislikeCount {
-  color: #ffffff;
-  background-color: #B9136C;
-  padding: 4px 4px 5px 4px;
-  border-radius: 20px;
-}
-
 a:link {
   text-decoration: none;
 }
