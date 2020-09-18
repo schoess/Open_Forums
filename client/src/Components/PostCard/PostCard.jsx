@@ -58,18 +58,33 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
     },
   },
-  cardTitle: {
+  cardTitleLight: {
+    color: "#17BEBB",
     textAlign: "left",
     paddingLeft: "50px",
     marginTop: 0,
     marginBottom: 0,
     fontSize: "16px",
-    color: "#246EB9",
   },
-  cardHeader: {
+  cardTitleDark: {
+    color: "#ffffff",
+    textAlign: "left",
+    paddingLeft: "50px",
+    marginTop: 0,
+    marginBottom: 0,
+    fontSize: "16px",
+  },
+  cardHeaderLight: {
     fontSize: "50px",
     padding: 0,
     paddingBottom: 0,
+    color: "#B9136C"
+  },
+  cardHeaderDark: {
+    fontSize: "50px",
+    padding: 0,
+    paddingBottom: 0,
+    color: "#8CCCE3"
   },
   cardContent: {
     padding: 0,
@@ -261,13 +276,13 @@ export default function PostCard(props) {
               <Grid key={forum._id} item xs={10} sm={10} md={10} lg={10}>
                 <Card className={classes.cardIndividual} key={forum._id}>
                   <CardHeader
-                    className={classes.cardHeader}
+                    className={darkMode ? classes.cardHeaderDark : classes.cardHeaderLight}
                     avatar={<Avatar alt={forum.user && forum.user.name} src={forum.user && forum.user.picture} />}
                     title={username + ", " + moment(forum.date).fromNow()}
                   />
                   <Link to={`/forums/${forum._id}`}>
                     <CardContent className={classes.cardContent}>
-                      <h2 className={classes.cardTitle}>{forum.forum_title}</h2>
+                      <h2 className={darkMode ? classes.cardTitleDark : classes.cardTitleLight}>{forum.forum_title}</h2>
                     </CardContent>
                   </Link>
                   <CardActions>

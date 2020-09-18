@@ -10,7 +10,7 @@ const darkTheme = createMuiTheme({
       main: "#011A27",
     },
     secondary: {
-      main: "#4D648D",
+      main: "#8CCCE3",
     },
     // below lets us use a third color easily; not actually for errors.
     error: {
