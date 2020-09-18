@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Card, CardActions, Button, TextField } from "@material-ui/core";
+import { Card, CardActions, Button, TextField, Grid } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 
 // "reply" refers to the submit form, "replies" refers to the previously submitted replies
@@ -9,6 +9,7 @@ const myStyle = {
   replyContainer: {
     fontSize: "18px",
     marginTop: "20px",
+    marginBottom: "20px",
   },
   replyText: {
     fontSize: "16px",
@@ -45,29 +46,31 @@ function PostReply(props) {
   };
 
   return (
-    <div className="reply-box" style={myStyle.replyContainer}>
-      <form onSubmit={replyToForum}>
-        <Card className="reply-card" style={myStyle.replyCard}>
-          <TextField
-            className="reply-text-field"
-            style={myStyle.replyTextField}
-            id="standard-full-width"
-            required
-            label="What are your thoughts?"
-            variant="outlined"
-            margin="dense"
-            fullWidth
-            value={replyToDescription}
-            onChange={(event) => setReplyToDescription(event.target.value)}
-          />
-          <CardActions style={myStyle.commentButton}>
-            <Button type="submit" color="primary" size="small" variant="contained">
-              Comment
-            </Button>
-          </CardActions>
-        </Card>
-      </form>
-    </div>
+    <Grid container direction="row" alignItems="center" justify="center">
+      <Grid item xs={12} sm={12} md={12} lg={12} style={myStyle.replyContainer}>
+        <form onSubmit={replyToForum}>
+          <Card className="reply-card" style={myStyle.replyCard}>
+            <TextField
+              className="reply-text-field"
+              style={myStyle.replyTextField}
+              id="standard-full-width"
+              required
+              label="What are your thoughts?"
+              variant="outlined"
+              margin="dense"
+              fullWidth
+              value={replyToDescription}
+              onChange={(event) => setReplyToDescription(event.target.value)}
+            />
+            <CardActions style={myStyle.commentButton}>
+              <Button type="submit" color="primary" size="small" variant="contained">
+                Comment
+              </Button>
+            </CardActions>
+          </Card>
+        </form>
+      </Grid>
+    </Grid>
   );
 }
 
