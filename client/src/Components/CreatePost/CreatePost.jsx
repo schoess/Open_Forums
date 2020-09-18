@@ -26,7 +26,7 @@ function CreatePost() {
     <>
       {(isAuthenticated && (
         // variant and color aren't doing anything... wtf...
-        <Button variant="contained" color="primary" onClick={handleClickOpen}>
+        <Button variant="contained" color="secondary" onClick={handleClickOpen}>
           <BorderColorIcon />
           Create Post
         </Button>
