@@ -141,8 +141,8 @@ export default function Replies(props) {
         const name = _.get(reply, "user.name"); //forum.user.name
         const username = name && name.includes("@") ? name.substring(0, name.lastIndexOf("@")) : name;
         return (
-          <Grid item xs={11} sm={11} md={11} lg={11}>
-            <Card className="card-styles" key={reply._id}>
+          <Grid item xs={11} sm={11} md={11} lg={11} key={reply._id}>
+            <Card className="card-styles" >
               <CardActions>
                 <Grid container direction="row" justify="flex-start" alignItems="center">
                   <Grid item xs={12} sm={12} md={10} lg={10}>
@@ -157,6 +157,7 @@ export default function Replies(props) {
                   </Grid>
                   <Grid item xs={12} sm={12} md={2} lg={2}>
                     <Grid container direction="row" justify="flex-end" alignItems="center">
+                      <div className="likeDislikeBtns">
                       <span className={darkMode ? classes.likeCountDark : classes.likeCountLight}>{reply.likes}</span>
                       <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(reply)} size="small">
                         <ThumbUpAltIcon className={darkMode ? classes.likeButtonDark : classes.likeButtonLight} size="small" />
@@ -165,6 +166,7 @@ export default function Replies(props) {
                         <ThumbDownAltIcon className={darkMode ? classes.dislikeButtonDark : classes.dislikeButtonLight} />
                       </IconButton>
                       <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{reply.dislikes}</span>
+                      </div>
                       {isAuthenticated && user.sub === _.get(reply, "user.id") && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(reply)} size="small" variant="contained" />}
                     </Grid>
                   </Grid>
