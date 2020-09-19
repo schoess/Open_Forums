@@ -79,7 +79,7 @@ The back end uses Node.js and Express.js, backed by a Mongo Atlas with a Mongoos
 * [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for node.js
 
 ##### Authentication 
-* OAuth 1.0 is the industry-standard protocol for authorization
+* [Auth0 1.0](https://auth0.com/docs/get-started)- adding user authentication and authorization services
 
 ##### Additional Technologies used are:
 
