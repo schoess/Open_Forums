@@ -8,7 +8,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useAuth0 } from "@auth0/auth0-react";
-// import { createSvgIcon } from "@material-ui/core";
 
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
@@ -29,7 +28,6 @@ export default function AlertDialog() {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        {/* <createSvgIcon /> */}
         Create Post
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
