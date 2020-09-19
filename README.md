@@ -26,7 +26,7 @@ Spark Ignite Discussion is what it claims. A forum dedicated only to what it's u
 
 #### Take a Look
 
-Open_Forums: [Spark Ignite Discussion!](https://open-forums-schoess.herokuapp.com/)
+Open_Forums: [Spark Ignite Discussion!](https://spark-forums-schoess.herokuapp.com/)
 
 ![Home Page](./screenshots/forum_page.png)
 ![Home Page](./screenshots/reply_page.png)
