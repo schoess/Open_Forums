@@ -1,6 +1,6 @@
 // CreatePost
 import React from "react";
-import { Button, Dialog } from "@material-ui/core";
+import { Button, Dialog, Grid } from "@material-ui/core";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -33,15 +33,23 @@ function CreatePost() {
       )) || <AlertDialog />}
 
       <Dialog open={showSubmitPostModal} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Create Your own Post</DialogTitle>
-        <DialogContent>
-          <SubmitPost />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="secondary">
-            Cancel
-          </Button>
-        </DialogActions>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <DialogTitle id="form-dialog-title">Create Your own Post</DialogTitle>
+            <DialogContent>
+              <SubmitPost />
+            </DialogContent>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Grid container direction="row" justify="flex-end" alignItems="center">
+              <DialogActions>
+                <Button onClick={handleClose} color="secondary">
+                  Cancel
+                </Button>
+              </DialogActions>
+            </Grid>
+          </Grid>
+        </Grid>
       </Dialog>
     </>
   );
