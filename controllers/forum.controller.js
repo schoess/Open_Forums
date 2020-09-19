@@ -22,8 +22,6 @@ module.exports = {
     }
     const sortObj = {};
     sortObj[sortBy] = sortOrder;
-    //console.log(sortObj);
-    //console.log(sortOrder);
 
     Forum.find({})
       .sort(sortObj)

@@ -9,7 +9,6 @@ import Forum from "./Components/Forum/Forum";
 import { SubmitPostModalContextProvider } from "./contexts/SubmitPostModalContext";
 import MyForum from "./Components/MyForum/MyForum";
 import NavBar from "./Components/NavBar/NavBar";
-import "./App.css";
 import darkTheme from "./Themes/darkTheme";
 import { useDarkModeContext } from "./contexts/DarkModeContext";
 import lightTheme from "./Themes/lightTheme";
