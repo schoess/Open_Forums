@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardActions, CardContent, Avatar, CardHeader, IconButton, FormControl, InputLabel, Select, Grid } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
@@ -78,13 +78,13 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "50px",
     padding: 0,
     paddingBottom: 0,
-    color: "#B9136C"
+    color: "#B9136C",
   },
   cardHeaderDark: {
     fontSize: "50px",
     padding: 0,
     paddingBottom: 0,
-    color: "#8CCCE3"
+    color: "#8CCCE3",
   },
   cardContent: {
     padding: 0,
@@ -152,7 +152,8 @@ export default function PostCard(props) {
   const { forums, setForums } = useForumContext();
   const { darkMode } = useDarkModeContext();
   const { isAuthenticated, user } = useAuth0();
-  const [sortOrder, setSortOrder] = React.useState("new");
+  const [sortOrder, setSortOrder] = useState("new");
+
   const onSortChange = (event) => {
     setSortOrder(event.target.value);
     const queryParam = {
@@ -247,6 +248,7 @@ export default function PostCard(props) {
               <FormControl>
                 <InputLabel htmlFor="sort-by">Sort By Date</InputLabel>
                 <Select
+                  native
                   value={sortOrder}
                   onChange={onSortChange}
                   className={classes.date}
@@ -255,12 +257,8 @@ export default function PostCard(props) {
                     id: "sort-by",
                   }}
                 >
-                  <option value="new" className={classes.cursorPointer}>
-                    Newest
-                  </option>
-                  <option value="old" className={classes.cursorPointer}>
-                    Oldest
-                  </option>
+                  <option value="new">Newest</option>
+                  <option value="old">Oldest</option>
                 </Select>
               </FormControl>
             </Grid>
