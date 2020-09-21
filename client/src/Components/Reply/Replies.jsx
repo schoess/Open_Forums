@@ -158,14 +158,14 @@ export default function Replies(props) {
                   <Grid item xs={12} sm={12} md={2} lg={2}>
                     <Grid container direction="row" justify="flex-end" alignItems="center">
                       <div className="likeDislikeBtns">
-                      <span className={darkMode ? classes.likeCountDark : classes.likeCountLight}>{reply.likes}</span>
-                      <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(reply)} size="small">
-                        <ThumbUpAltIcon className={darkMode ? classes.likeButtonDark : classes.likeButtonLight} size="small" />
-                      </IconButton>
-                      <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(reply)} size="small">
-                        <ThumbDownAltIcon className={darkMode ? classes.dislikeButtonDark : classes.dislikeButtonLight} />
-                      </IconButton>
-                      <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{reply.dislikes}</span>
+                        <span className={darkMode ? classes.likeCountDark : classes.likeCountLight}>{reply.likes}</span>
+                        <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(reply)} size="small">
+                          <ThumbUpAltIcon className={darkMode ? classes.likeButtonDark : classes.likeButtonLight} size="small" />
+                        </IconButton>
+                        <IconButton disabled={!isAuthenticated} onClick={dislikeButtonOnClick(reply)} size="small">
+                          <ThumbDownAltIcon className={darkMode ? classes.dislikeButtonDark : classes.dislikeButtonLight} />
+                        </IconButton>
+                        <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{reply.dislikes}</span>
                       </div>
                       {isAuthenticated && user.sub === _.get(reply, "user.id") && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(reply)} size="small" variant="contained" />}
                     </Grid>
