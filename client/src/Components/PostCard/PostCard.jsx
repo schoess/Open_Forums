@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardActions, CardContent, Avatar, CardHeader, IconButton, FormControl, InputLabel, Select, Grid } from "@material-ui/core";
+import { Card, CardActions, CardContent, Avatar, CardHeader, IconButton, FormControl, InputLabel, Select, Grid, Badge} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import CommentIcon from "@material-ui/icons/Comment";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -145,6 +146,17 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "100px",
     },
   },
+  commentButtonDark: {
+    color: "##ffffff",
+    marginBottom: "-10px",
+  },
+  commentButtonLight: {
+    color: "#17BEBB",
+    marginBottom: "-10px",
+  },
+  commentCount: {
+    marginRight: "10px",
+  },
 }));
 
 export default function PostCard(props) {
@@ -283,8 +295,13 @@ export default function PostCard(props) {
                       <h2 className={darkMode ? classes.cardTitleDark : classes.cardTitleLight}>{forum.forum_title}</h2>
                     </CardContent>
                   </Link>
+
                   <CardActions>
-                    <div className="likeDislikeBtns">
+                    <Grid className="likeDislikeBtns">
+                      <span className={classes.commentCount}>
+                      <Badge badgeContent={forum.replies.length} color="secondary">
+                      <CommentIcon className={darkMode ? classes.commentButtonDark : classes.commentButtonLight} size="large" />
+                      </Badge></span>
                       <span className={darkMode ? classes.likeCountDark : classes.likeCountLight}>{forum.likes}</span>
                       <IconButton disabled={!isAuthenticated} onClick={likeButtonOnClick(forum)} size="small">
                         <ThumbUpAltIcon className={darkMode ? classes.likeButtonDark : classes.likeButtonLight} size="small" />
@@ -293,7 +310,7 @@ export default function PostCard(props) {
                         <ThumbDownAltIcon className={darkMode ? classes.dislikeButtonDark : classes.dislikeButtonLight} />
                       </IconButton>
                       <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{forum.dislikes}</span>
-                    </div>
+                    </Grid>
                     {/* show delete button only for the user who posted the forum */}
                     {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
                   </CardActions>
