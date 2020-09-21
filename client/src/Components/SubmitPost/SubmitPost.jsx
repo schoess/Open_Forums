@@ -1,13 +1,6 @@
 // Submit Post
 import React from "react";
-import {
-  Grid,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-} from "@material-ui/core";
+import { Grid, TextField, Button, FormControl, InputLabel, Select } from "@material-ui/core";
 import forumApi from "../../utils/forum.api";
 import { useAuth0 } from "@auth0/auth0-react";
 import AlertDialog from "../AuthenticationModal/AuthenticationModal";
@@ -51,8 +44,7 @@ function SubmitPost() {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const forumCategory =
-      (category.categoryName && category.categoryName) || "General";
+    const forumCategory = (category.categoryName && category.categoryName) || "General";
 
     // API
     await forumApi.createForum({
@@ -91,88 +83,51 @@ function SubmitPost() {
   };
 
   return (
-    <div>
-      <Grid item xs={6} style={myStyle.entireForm}>
-        <form onSubmit={onSubmit}>
-          <div>
-            <FormControl style={myStyle.textField}>
-              <InputLabel htmlFor="age-native-simple">Categories</InputLabel>
-              <Select
-                native
-                value={category.categoryName}
-                onChange={handleChange}
-                inputProps={{
-                  name: "categoryName",
-                  id: "age-native-simple",
-                }}
-              >
-                <option aria-label="None" value="" />
-                <option>Sports</option>
-                <option>Food</option>
-                <option>Technology</option>
-                <option>Kids</option>
-                <option>Health/Fitness</option>
-                <option>Art</option>
-                <option>Business</option>
-                <option>Entertainment</option>
-              </Select>
-            </FormControl>
-          </div>
-          <div>
-            <TextField
-              style={myStyle.textField}
-              id="title"
-              required
-              label="Title"
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-            />
-          </div>
-          <div>
-            <TextField
-              style={myStyle.textField}
-              id="message"
-              label="Message"
-              variant="outlined"
-              margin="normal"
-              multiline
-              rows={6}
-              fullWidth
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
-            />
-          </div>
-          <div>
-            {(!isAuthenticated && (
-              <Button
-                style={myStyle.button}
-                label="submit"
-                type="submit"
-                fullWidth
-                color="primary"
-                variant="contained"
-              >
-                <AlertDialog />
-              </Button>
-            )) || (
-              <Button
-                style={myStyle.button}
-                label="submit"
-                type="submit"
-                fullWidth
-                color="primary"
-                variant="contained"
-              >
-                Send
-              </Button>
-            )}
-          </div>
-        </form>
+    <form onSubmit={onSubmit}>
+      <Grid container direction="row" alignItems="center" justify="center">
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <FormControl>
+            <InputLabel htmlFor="age-native-simple">Categories</InputLabel>
+            <Select
+              native
+              value={category.categoryName}
+              onChange={handleChange}
+              inputProps={{
+                name: "categoryName",
+                id: "age-native-simple",
+              }}
+            >
+              <option aria-label="None" value="" />
+              <option>Sports</option>
+              <option>Food</option>
+              <option>Technology</option>
+              <option>Kids</option>
+              <option>Health/Fitness</option>
+              <option>Art</option>
+              <option>Business</option>
+              <option>Entertainment</option>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <TextField id="title" required label="Title" variant="outlined" margin="normal" fullWidth value={title} onChange={(event) => setTitle(event.target.value)} />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <TextField id="message" label="Message" variant="outlined" margin="normal" multiline rows={6} fullWidth value={description} onChange={(event) => setDescription(event.target.value)} />
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          {(!isAuthenticated && (
+            <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+              <AlertDialog />
+            </Button>
+          )) || (
+            <Button style={myStyle.button} label="submit" type="submit" fullWidth color="primary" variant="contained">
+              Send
+            </Button>
+          )}
+        </Grid>
       </Grid>
-    </div>
+    </form>
   );
 }
 

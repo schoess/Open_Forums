@@ -26,7 +26,7 @@ Spark Ignite Discussion is what it claims. A forum dedicated only to what it's u
 
 #### Take a Look
 
-Open_Forums: [Spark Ignite Discussion!](https://open-forums-schoess.herokuapp.com/)
+Open_Forums: [Spark Ignite Discussion!](https://spark-forums.herokuapp.com/)
 
 ![Home Page](./screenshots/forum_page.png)
 ![Home Page](./screenshots/reply_page.png)
@@ -79,7 +79,7 @@ The back end uses Node.js and Express.js, backed by a Mongo Atlas with a Mongoos
 * [Mongoose](https://mongoosejs.com/) - Elegant mongodb object modeling for node.js
 
 ##### Authentication 
-* OAuth 1.0 is the industry-standard protocol for authorization
+* [Auth0 1.0](https://auth0.com/docs/get-started)- adding user authentication and authorization services
 
 ##### Additional Technologies used are:
 

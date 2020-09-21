@@ -312,7 +312,7 @@ export default function PostCard(props) {
                       <span className={darkMode ? classes.dislikeCountDark : classes.dislikeCountLight}>{forum.dislikes}</span>
                     </Grid>
                     {/* show delete button only for the user who posted the forum */}
-                    {forum.user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
+                    {forum.user && user && forum.user.id === user.sub && <DeleteIcon className={classes.deleteIcon} onClick={deleteOnClick(forum)} size="small" variant="contained" />}
                   </CardActions>
                 </Card>
               </Grid>
