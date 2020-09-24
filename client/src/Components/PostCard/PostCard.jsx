@@ -155,7 +155,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "-10px",
   },
   commentCount: {
-    marginRight: "10px",
+    marginRight: "15px",
   },
 }));
 
